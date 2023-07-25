@@ -1,0 +1,13 @@
+pub fn simple_sort(mut s: []int): []int {
+	let mut i = 1
+	for i < s.len; i++ {
+		let mut j = 0
+		for j < s.len-1; j++ {
+			if s[i] < s[j] {
+				s[i], s[j] = s[j], s[i]
+			}
+		}
+	}
+
+	ret s
+}
