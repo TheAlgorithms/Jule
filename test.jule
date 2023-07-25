@@ -4,6 +4,7 @@ use src::sorting::{
 	simple_sort,
 	shell_sort,
 	quick_sort,
+	insertion_sort,
 }
 
 fn expect(b: bool, algorithm: str) {
@@ -23,6 +24,7 @@ fn test_sorts() {
 	expect(simple_sort(clone(unsorted)) == sorted, "simple_sort")
 	expect(shell_sort(clone(unsorted)) == sorted, "shell_sort")
 	expect(quick_sort(clone(unsorted)) == sorted, "quick_sort")
+	expect(insertion_sort(clone(unsorted)) == sorted, "insertion_sort")
 }
 
 fn main() {
