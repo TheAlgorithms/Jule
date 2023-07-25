@@ -12,6 +12,10 @@ use src::sort::{
 	insertion_sort,
 	exchange_sort,
 }
+use src::string::{
+	is_alpha,
+	is_digit,
+}
 
 static mut TEST_COUNT: i64 = 0
 static mut FAILED_COUNT: i64 = 0
@@ -46,9 +50,18 @@ fn test_search() {
 	expect(linear_search(s, -85) == 6, "linear_search:2")
 }
 
+fn test_string() {
+	expect(is_digit("12345") == true, "is_digit:1")
+	expect(is_digit("foo") == false, "is_digit:2")
+
+	expect(is_alpha("foo") == true, "is_alpha:1")
+	expect(is_alpha("12345") == false, "is_alpha:2")
+}
+
 fn main() {
 	test_sort()
 	test_search()
+	test_string()
 
 	outln("=============================================")
 	if FAILED_COUNT == 0 {
