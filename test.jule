@@ -8,6 +8,10 @@ use src::sort::{
 	exchange_sort,
 }
 
+use src::strings:: {
+	is_digit,
+}
+
 static mut TEST_COUNT: i64 = 0
 static mut FAILED_COUNT: i64 = 0
 
@@ -34,8 +38,14 @@ fn test_sorts() {
 	expect(exchange_sort(clone(unsorted)) == sorted, "exchange_sort")
 }
 
+fn test_strings() {
+	expect(is_digit("12345") == true, "is_digit:1")
+	expect(is_digit("foo") == false, "is_digit:2")
+}
+
 fn main() {
 	test_sorts()
+	test_strings()
 
 	outln("=============================================")
 	if FAILED_COUNT == 0 {
