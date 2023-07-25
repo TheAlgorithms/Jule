@@ -1,0 +1,16 @@
+pub fn selection_sort(mut s: []int): []int {
+	let mut i = 0
+	for i < s.len; i++ {
+		let mut min = i
+		let mut j = i + 1
+		for j < s.len; j++ {
+			if s[j] < s[min] {
+				min = j
+			}
+		}
+
+		s[i], s[min] = s[min], s[i]
+	}
+
+	ret s
+}
