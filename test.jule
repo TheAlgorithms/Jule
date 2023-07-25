@@ -1,3 +1,5 @@
+use std::process::{exit}
+
 use src::sort::{
 	bubble_sort,
 	selection_sort,
@@ -6,11 +8,6 @@ use src::sort::{
 	quick_sort,
 	insertion_sort,
 	exchange_sort,
-}
-
-use src::strings:: {
-	is_digit,
-	is_alpha,
 }
 
 static mut TEST_COUNT: i64 = 0
@@ -39,17 +36,8 @@ fn test_sorts() {
 	expect(exchange_sort(clone(unsorted)) == sorted, "exchange_sort")
 }
 
-fn test_strings() {
-	expect(is_digit("12345") == true, "is_digit:1")
-	expect(is_digit("foo") == false, "is_digit:2")
-
-	expect(is_alpha("foo") == true, "is_alpha:1")
-	expect(is_alpha("12345") == false, "is_alpha:2")
-}
-
 fn main() {
 	test_sorts()
-	test_strings()
 
 	outln("=============================================")
 	if FAILED_COUNT == 0 {
@@ -64,5 +52,6 @@ fn main() {
 		out("/")
 		out(TEST_COUNT)
 		outln("]")
+		exit(1) // Fail exit
 	}
 }
