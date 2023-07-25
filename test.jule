@@ -1,5 +1,8 @@
 use std::process::{exit}
 
+use src::search::{
+	linear_search,
+}
 use src::sort::{
 	bubble_sort,
 	selection_sort,
@@ -9,12 +12,16 @@ use src::sort::{
 	insertion_sort,
 	exchange_sort,
 }
+use src::string::{
+	is_alpha,
+	is_digit,
+}
 
 static mut TEST_COUNT: i64 = 0
 static mut FAILED_COUNT: i64 = 0
 
 fn expect(b: bool, algorithm: str) {
-	TEST_COUNT++;
+	TEST_COUNT++
 	if b {
 		outln("TEST PASS: " + algorithm)
 	} else {
@@ -23,7 +30,7 @@ fn expect(b: bool, algorithm: str) {
 	}
 }
 
-fn test_sorts() {
+fn test_sort() {
 	let unsorted = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
 	let sorted = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
 
@@ -36,8 +43,25 @@ fn test_sorts() {
 	expect(exchange_sort(clone(unsorted)) == sorted, "exchange_sort")
 }
 
+fn test_search() {
+	let s = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
+
+	expect(linear_search(s, 90) == -1, "linear_search:1")
+	expect(linear_search(s, -85) == 6, "linear_search:2")
+}
+
+fn test_string() {
+	expect(is_digit("12345") == true, "is_digit:1")
+	expect(is_digit("foo") == false, "is_digit:2")
+
+	expect(is_alpha("foo") == true, "is_alpha:1")
+	expect(is_alpha("12345") == false, "is_alpha:2")
+}
+
 fn main() {
-	test_sorts()
+	test_sort()
+	test_search()
+	test_string()
 
 	outln("=============================================")
 	if FAILED_COUNT == 0 {
