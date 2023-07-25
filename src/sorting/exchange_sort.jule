@@ -1,0 +1,13 @@
+pub fn exchange_sort(mut s: []int): []int {
+	let mut i = 0
+	for i < s.len-1; i++ {
+		let mut j = i + 1
+		for j < s.len; j++ {
+			if s[i] > s[j] {
+				s[i], s[j] = s[j], s[i]
+			}
+		}
+	}
+
+	ret s
+}
