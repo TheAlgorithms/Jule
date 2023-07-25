@@ -2,6 +2,7 @@ use src::sorting::{
 	bubble_sort,
 	selection_sort,
 	simple_sort,
+	shell_sort,
 }
 
 fn expect(b: bool, algorithm: str) {
@@ -19,6 +20,7 @@ fn test_sorts() {
 	expect(bubble_sort(clone(unsorted)) == sorted, "bubble_sort")
 	expect(selection_sort(clone(unsorted)) == sorted, "selection_sort")
 	expect(simple_sort(clone(unsorted)) == sorted, "simple_sort")
+	expect(shell_sort(clone(unsorted)) == sorted, "shell_sort")
 }
 
 fn main() {
