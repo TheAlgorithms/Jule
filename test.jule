@@ -17,64 +17,90 @@ use src::string::{
 	is_digit,
 }
 
-static mut TEST_COUNT: i64 = 0
-static mut FAILED_COUNT: i64 = 0
+static mut TESTS: TestStack = TestStack.new()
 
-fn expect(b: bool, algorithm: str) {
-	TEST_COUNT++
-	if b {
-		outln("TEST PASS: " + algorithm)
-	} else {
-		outln("TEST FAIL: " + algorithm + " algorithm not implemented correctly")
-		FAILED_COUNT++
-	}
-}
-
-fn test_sort() {
+fn add_tests_sort() {
 	let unsorted = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
 	let sorted = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
 
-	expect(bubble_sort(clone(unsorted)) == sorted, "bubble_sort")
-	expect(selection_sort(clone(unsorted)) == sorted, "selection_sort")
-	expect(simple_sort(clone(unsorted)) == sorted, "simple_sort")
-	expect(shell_sort(clone(unsorted)) == sorted, "shell_sort")
-	expect(quick_sort(clone(unsorted)) == sorted, "quick_sort")
-	expect(insertion_sort(clone(unsorted)) == sorted, "insertion_sort")
-	expect(exchange_sort(clone(unsorted)) == sorted, "exchange_sort")
+	TESTS.add("bubble_sort", fn(): bool {
+		ret bubble_sort(clone(unsorted)) == sorted
+	})
+
+	TESTS.add("selection_sort", fn(): bool {
+		ret selection_sort(clone(unsorted)) == sorted
+	})
+
+	TESTS.add("simple_sort", fn(): bool {
+		ret simple_sort(clone(unsorted)) == sorted
+	})
+
+	TESTS.add("shell_sort", fn(): bool {
+		ret shell_sort(clone(unsorted)) == sorted
+	})
+
+	TESTS.add("quick_sort", fn(): bool {
+		ret quick_sort(clone(unsorted)) == sorted
+	})
+
+	TESTS.add("insertion_sort", fn(): bool {
+		ret insertion_sort(clone(unsorted)) == sorted
+	})
+
+	TESTS.add("exchange_sort", fn(): bool {
+		ret exchange_sort(clone(unsorted)) == sorted
+	})
 }
 
-fn test_search() {
+fn add_tests_search() {
 	let s = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
 
-	expect(linear_search(s, 90) == -1, "linear_search:1")
-	expect(linear_search(s, -85) == 6, "linear_search:2")
+	TESTS.add("linear_search:1", fn(): bool {
+		ret linear_search(s, 90) == -1
+	})
+
+	TESTS.add("linear_search:2", fn(): bool {
+		ret linear_search(s, -85) == 6
+	})
 }
 
-fn test_string() {
-	expect(is_digit("12345") == true, "is_digit:1")
-	expect(is_digit("foo") == false, "is_digit:2")
+fn add_tests_string() {
+	TESTS.add("is_digit:1", fn(): bool {
+		ret is_digit("12345") == true
+	})
 
-	expect(is_alpha("foo") == true, "is_alpha:1")
-	expect(is_alpha("12345") == false, "is_alpha:2")
+	TESTS.add("is_digit:2", fn(): bool {
+		ret is_digit("foo") == false
+	})
+
+	TESTS.add("is_alpha:1", fn(): bool {
+		ret is_alpha("foo") == true
+	})
+
+	TESTS.add("is_alpha:2", fn(): bool {
+		ret is_alpha("12345") == false
+	})
 }
 
 fn main() {
-	test_sort()
-	test_search()
-	test_string()
+	add_tests_sort()
+	add_tests_search()
+	add_tests_string()
+
+	let ok = TESTS.do()
 
 	outln("=============================================")
-	if FAILED_COUNT == 0 {
+	if ok {
 		out("All tests are passed successfully! [")
-		out(TEST_COUNT)
+		out(TESTS.count())
 		out("/")
-		out(TEST_COUNT)
+		out(TESTS.count())
 		outln("]")
 	} else {
 		out("Some tests are failed! [")
-		out(TEST_COUNT - FAILED_COUNT)
+		out(TESTS.count() - TESTS.fails())
 		out("/")
-		out(TEST_COUNT)
+		out(TESTS.count())
 		outln("]")
 		exit(1) // Fail exit
 	}

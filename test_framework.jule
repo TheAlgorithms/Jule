@@ -1,0 +1,58 @@
+// Source codes of testing algorithms of this repository.
+
+type Tester: fn(): bool
+
+struct Test {
+	ident: str
+	tester: fn(): bool
+}
+
+// Statics.
+impl Test {
+	static fn new(ident: str, tester: Tester): Test {
+		ret Test{
+			ident: ident,
+			tester: tester,
+		}
+	}
+}
+
+impl Test {
+	fn test(self): bool {
+		ret self.tester()
+	}
+}
+
+struct TestStack {
+	tests: []Test
+	failed: int
+}
+
+// Statics
+impl TestStack {
+	static fn new(): TestStack {
+		ret TestStack{}
+	}
+}
+
+impl TestStack {
+	fn add(mut self, ident: str, tester: Tester) {
+		self.tests = append(self.tests, Test.new(ident, tester))
+	}
+
+	fn count(self): int { ret self.tests.len }
+
+	fn fails(self): int { ret self.failed }
+
+	fn do(mut self): (is_all_passed: bool) {
+		for _, t in self.tests {
+			if t.test() {
+				outln("[✓] " + t.ident + ": passed")
+			} else {
+				outln("[X] " + t.ident + ": algorithm not implemented correctly")
+				self.failed++
+			}
+		}
+		ret self.failed == 0
+	}
+}
