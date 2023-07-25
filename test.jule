@@ -8,11 +8,16 @@ use src::sort::{
 	exchange_sort,
 }
 
+static mut TEST_COUNT: i64 = 0
+static mut FAILED_COUNT: i64 = 0
+
 fn expect(b: bool, algorithm: str) {
+	TEST_COUNT++;
 	if b {
 		outln("TEST PASS: " + algorithm)
 	} else {
-		panic("TEST FAIL: " + algorithm + " algorithm not implemented correctly")
+		outln("TEST FAIL: " + algorithm + " algorithm not implemented correctly")
+		FAILED_COUNT++
 	}
 }
 
@@ -31,4 +36,19 @@ fn test_sorts() {
 
 fn main() {
 	test_sorts()
+
+	outln("=============================================")
+	if FAILED_COUNT == 0 {
+		out("All tests are passed successfully! [")
+		out(TEST_COUNT)
+		out("/")
+		out(TEST_COUNT)
+		outln("]")
+	} else {
+		out("Some tests are failed! [")
+		out(TEST_COUNT - FAILED_COUNT)
+		out("/")
+		out(TEST_COUNT)
+		outln("]")
+	}
 }
