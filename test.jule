@@ -1,0 +1,21 @@
+use src::sorting::{
+	bubble_sort,
+}
+
+fn expect(b: bool, algorithm: str) {
+	if b {
+		outln("TEST PASS: " + algorithm)
+	} else {
+		panic("TEST FAIL: " + algorithm + " algorithm not implemented correctly")
+	}
+}
+
+fn test_sorts() {
+	let unsorted = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
+	let sorted = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
+	expect(bubble_sort(clone(unsorted)) == sorted, "bubble_sort")
+}
+
+fn main() {
+	test_sorts()
+}
