@@ -1,0 +1,19 @@
+pub fn quick_sort(mut s: []int): []int {
+	if s.len <= 1 {
+		ret s
+	}
+
+	let mut i = -1
+	let last = s[s.len-1]
+	for j in s {
+		if s[j] <= last {
+			i++
+			s[i], s[j] = s[j], s[i]
+		}
+	}
+
+	quick_sort(s[:i])
+	quick_sort(s[i+1:])
+
+	ret s
+}
