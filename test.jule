@@ -16,6 +16,7 @@ use src::string::{
 	is_alpha,
 	is_digit,
 	upper_case,
+	lower_case,
 }
 
 static mut TESTS: TestStack = TestStack.new()
@@ -84,6 +85,10 @@ fn add_tests_string() {
 
 	TESTS.add("upper_case", fn(): bool {
 		ret upper_case("foO") == "FOO"
+	})
+
+	TESTS.add("lower_case", fn(): bool {
+		ret lower_case("FOo") == "foo"
 	})
 }
 

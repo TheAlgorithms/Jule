@@ -1,0 +1,9 @@
+pub fn lower_case(mut string: str): str {
+    for i, c in string {
+        if c >= 'A' && c <= 'Z' {
+            string[i] = 'z' - ('Z' - c)
+        }
+    }
+
+    ret string
+}
