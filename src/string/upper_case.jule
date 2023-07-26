@@ -1,0 +1,9 @@
+pub fn upper_case(mut string: str): str {
+    for i, c in string {
+        if c >= 'a' && c <= 'z' {
+            string[i] = 'Z' - ('z' - c)
+        }
+    }
+
+    ret string
+}
