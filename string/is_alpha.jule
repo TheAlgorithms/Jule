@@ -2,7 +2,7 @@ pub fn is_alpha(string: str): bool {
     let mut state: bool = false
 
     for _, c in string {
-        if c >= 'A' && c <= 'z' {
+        if c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' {
             state = true
         } else {
             state = false
