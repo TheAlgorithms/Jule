@@ -15,6 +15,7 @@ use string::{
 	is_digit,
 	upper_case,
 	lower_case,
+	reverse,
 }
 
 static mut TESTS: TestStack = TestStack.new()
@@ -87,6 +88,10 @@ fn add_tests_string() {
 
 	TESTS.add("lower_case", fn(): bool {
 		ret lower_case("FOo") == "foo"
+	})
+
+	TESTS.add("reverse", fn(): bool {
+		ret reverse("FooBar") == "raBooF"
 	})
 }
 

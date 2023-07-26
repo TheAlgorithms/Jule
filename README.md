@@ -26,6 +26,7 @@ Algorithms and data structures implemented in the Jule programming language.
   - [Is Digit](./string/is_digit.jule)
   - [Lower Case](./string/lower_case.jule)
   - [Upper Case](./string/upper_case.jule)
+  - [Reverse](./string/reverse.jule)
 
 ## Contributing
 
