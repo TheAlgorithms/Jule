@@ -15,6 +15,7 @@ use src::sort::{
 use src::string::{
 	is_alpha,
 	is_digit,
+	upper_case,
 }
 
 static mut TESTS: TestStack = TestStack.new()
@@ -79,6 +80,10 @@ fn add_tests_string() {
 
 	TESTS.add("is_alpha:2", fn(): bool {
 		ret is_alpha("12345") == false
+	})
+
+	TESTS.add("upper_case", fn(): bool {
+		ret upper_case("foO") == "FOO"
 	})
 }
 
