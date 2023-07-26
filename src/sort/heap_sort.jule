@@ -3,7 +3,7 @@ pub fn heapify(mut arr: []i32, n: int, i: int) {
     let left = 2 * i + 1
     let right = 2 * i + 2
 
-    if left < n && arr[left] > att[largest] {
+    if left < n && arr[left] > arr[largest] {
         largest = left
     }
 
@@ -20,7 +20,7 @@ pub fn heapify(mut arr: []i32, n: int, i: int) {
     }
 }
 
-pub fn heap_sort(mut arr: []i32) {
+pub fn heap_sort(mut arr: []int) {
     let n: int = arr.len
     let mut i: int = n / 2
 
