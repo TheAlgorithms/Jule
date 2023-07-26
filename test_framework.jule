@@ -1,5 +1,7 @@
 // Source codes of testing algorithms of this repository.
 
+use std::process::{exit}
+
 type Tester: fn(): bool
 
 struct Test {
@@ -44,7 +46,7 @@ impl TestStack {
 
 	fn fails(self): int { ret self.failed }
 
-	fn do(mut self): (is_all_passed: bool) {
+	fn do(mut self) {
 		for _, t in self.tests {
 			if t.test() {
 				outln("[✓] " + t.ident + ": passed")
@@ -53,6 +55,21 @@ impl TestStack {
 				self.failed++
 			}
 		}
-		ret self.failed == 0
+		
+		outln("=============================================")
+		if self.failed == 0 {
+			out("All tests are passed successfully! [")
+			out(TESTS.count())
+			out("/")
+			out(TESTS.count())
+			outln("]")
+		} else {
+			out("Some tests are failed! [")
+			out(TESTS.count() - TESTS.fails())
+			out("/")
+			out(TESTS.count())
+			outln("]")
+			exit(1) // Fail exit
+		}
 	}
 }

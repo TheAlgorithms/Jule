@@ -1,9 +1,7 @@
-use std::process::{exit}
-
-use src::search::{
+use search::{
 	linear_search,
 }
-use src::sort::{
+use sort::{
 	bubble_sort,
 	selection_sort,
 	simple_sort,
@@ -12,7 +10,7 @@ use src::sort::{
 	insertion_sort,
 	exchange_sort,
 }
-use src::string::{
+use string::{
 	is_alpha,
 	is_digit,
 	upper_case,
@@ -97,21 +95,5 @@ fn main() {
 	add_tests_search()
 	add_tests_string()
 
-	let ok = TESTS.do()
-
-	outln("=============================================")
-	if ok {
-		out("All tests are passed successfully! [")
-		out(TESTS.count())
-		out("/")
-		out(TESTS.count())
-		outln("]")
-	} else {
-		out("Some tests are failed! [")
-		out(TESTS.count() - TESTS.fails())
-		out("/")
-		out(TESTS.count())
-		outln("]")
-		exit(1) // Fail exit
-	}
+	TESTS.do()
 }
