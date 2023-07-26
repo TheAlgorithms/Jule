@@ -1,3 +1,18 @@
+/*
+This function, changes the first character of the string to upper case and the rest to lower case.
+*/
+
+/*
+capitalize("lorem Ipsum Dolor Sit Amet.")
+"Lorem ipsum dolor sit amet."
+
+capitalize(" lorem ispum")
+" lorem ipsum."
+
+capitalize("12345")
+"12345"
+*/
+
 pub fn capitalize(mut string: str): str {
     ret upper_case((str)(string[0])) + lower_case(string[1:])
 }

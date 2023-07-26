@@ -1,3 +1,15 @@
+/*
+This function, converts all uppercase characters in a string to lowercase.
+*/
+
+/*
+lower_case("FooBar")
+"foobar"
+
+lower_case("Foo 123")
+"foo 123"
+*/
+
 pub fn lower_case(mut string: str): str {
     for i, c in string {
         if c >= 'A' && c <= 'Z' {

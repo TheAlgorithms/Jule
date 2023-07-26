@@ -1,3 +1,18 @@
+/*
+This function, checks if a string contains only ASCII characters.
+*/
+
+/*
+is_alpha("FooBar")
+true
+
+is_alpha("Foo123")
+false
+
+is_alpha("Foo Bar")
+false
+*/
+
 pub fn is_alpha(string: str): bool {
     let mut state: bool = false
 
