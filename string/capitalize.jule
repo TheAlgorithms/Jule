@@ -1,0 +1,3 @@
+pub fn capitalize(mut string: str): str {
+    ret upper_case((str)(string[0])) + lower_case(string[1:])
+}
