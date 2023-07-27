@@ -1,3 +1,18 @@
+/*
+This function, checks if a string contains only digits.
+*/
+
+/*
+is_digit("12345")
+true
+
+is_digit("12345f")
+false
+
+is_digit("123 45")
+false
+*/
+
 pub fn is_digit(digit: str): bool {
     let mut state: bool = false
 
