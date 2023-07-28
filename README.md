@@ -28,6 +28,8 @@ Algorithms and data structures implemented in the Jule programming language.
   - [Upper Case](./string/upper_case.jule)
   - [Reverse](./string/reverse.jule)
   - [Capitalize](./string/capitalize.jule)
+- [Math](./math)
+  - [Absolute Value](./math/abs.jule)
 
 ## Contributing
 
