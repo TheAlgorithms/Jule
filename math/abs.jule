@@ -1,0 +1,7 @@
+pub fn abs(mut n: f64): f64 {
+    if n < 0 {
+        n = -n
+    }
+
+    ret n
+}

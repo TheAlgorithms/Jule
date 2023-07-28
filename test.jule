@@ -18,6 +18,9 @@ use string::{
 	reverse,
 	capitalize,
 }
+use math::{
+	abs,
+}
 
 static mut TESTS: TestStack = TestStack.new()
 
@@ -100,10 +103,17 @@ fn add_tests_string() {
 	})
 }
 
+fn add_tests_math() {
+	TESTS.add("abs", fn(): bool {
+		ret abs(-12.2) == 12.2
+	})
+}
+
 fn main() {
 	add_tests_sort()
 	add_tests_search()
 	add_tests_string()
+	add_tests_math()
 
 	TESTS.do()
 }
