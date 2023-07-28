@@ -20,6 +20,7 @@ use string::{
 }
 use math::{
 	abs,
+	median,
 }
 
 static mut TESTS: TestStack = TestStack.new()
@@ -104,8 +105,14 @@ fn add_tests_string() {
 }
 
 fn add_tests_math() {
+	let slice = [2, 5, 2, 6, -4, -15, 1, -3]
+
 	TESTS.add("abs", fn(): bool {
 		ret abs(-12.2) == 12.2
+	})
+
+	TESTS.add("median", fn(): bool {
+		ret median(clone(slice)) == 1.5
 	})
 }
 

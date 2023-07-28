@@ -6,7 +6,6 @@
     <img src="https://img.shields.io/github/repo-size/TheAlgorithms/Jule.svg?label=Repo%20size&logo=github" height="17px">
 </div>
 
-
 Algorithms and data structures implemented in the Jule programming language.
 
 ## Algorithms
@@ -30,6 +29,7 @@ Algorithms and data structures implemented in the Jule programming language.
   - [Capitalize](./string/capitalize.jule)
 - [Math](./math)
   - [Absolute Value](./math/abs.jule)
+  - [Median](./math/median.jule)
 
 ## Contributing
 
