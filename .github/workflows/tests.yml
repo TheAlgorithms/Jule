@@ -47,4 +47,4 @@ jobs:
 
       - name: Cleanup
         run: |
-          rm -f tests
+          rm -f tests.out
