@@ -37,13 +37,13 @@ jobs:
       - name: Compile Tests
         run: |
           ./jule/bin/julec -t .
-          clang++ -O0 --std=c++17 -Wno-everything -o ./tests ./dist/ir.cpp
-          git update-index --add --chmod=-x ./tests
-          chmod +x ./tests
+          clang++ -O0 --std=c++17 -Wno-everything -o ./tests.out ./dist/ir.cpp
+          git update-index --add --chmod=-x ./tests.out
+          chmod +x ./tests.out
 
       - name: Run Tests
         run: |
-          ./tests
+          ./tests.out
 
       - name: Cleanup
         run: |
