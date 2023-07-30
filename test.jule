@@ -1,126 +1,18 @@
-use search::{
-	linear_search,
-}
-use sort::{
-	bubble_sort,
-	selection_sort,
-	simple_sort,
-	shell_sort,
-	quick_sort,
-	insertion_sort,
-	exchange_sort,
-}
-use string::{
-	is_alpha,
-	is_digit,
-	upper_case,
-	lower_case,
-	reverse,
-	capitalize,
-}
-use math::{
-	abs,
-	median,
-}
+// Test all packages.
 
-static mut TESTS: TestStack = TestStack.new()
-
-fn add_tests_sort() {
-	let unsorted = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
-	let sorted = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
-
-	TESTS.add("bubble_sort", fn(): bool {
-		ret bubble_sort(clone(unsorted)) == sorted
-	})
-
-	TESTS.add("selection_sort", fn(): bool {
-		ret selection_sort(clone(unsorted)) == sorted
-	})
-
-	TESTS.add("simple_sort", fn(): bool {
-		ret simple_sort(clone(unsorted)) == sorted
-	})
-
-	TESTS.add("shell_sort", fn(): bool {
-		ret shell_sort(clone(unsorted)) == sorted
-	})
-
-	TESTS.add("quick_sort", fn(): bool {
-		ret quick_sort(clone(unsorted)) == sorted
-	})
-
-	TESTS.add("insertion_sort", fn(): bool {
-		ret insertion_sort(clone(unsorted)) == sorted
-	})
-
-	TESTS.add("exchange_sort", fn(): bool {
-		ret exchange_sort(clone(unsorted)) == sorted
-	})
-}
-
-fn add_tests_search() {
-	let s = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
-
-	TESTS.add("linear_search:1", fn(): bool {
-		ret linear_search(s, 90) == -1
-	})
-
-	TESTS.add("linear_search:2", fn(): bool {
-		ret linear_search(s, -85) == 6
-	})
-}
-
-fn add_tests_string() {
-	TESTS.add("is_digit:1", fn(): bool {
-		ret is_digit("12345") == true
-	})
-
-	TESTS.add("is_digit:2", fn(): bool {
-		ret is_digit("foo") == false
-	})
-
-	TESTS.add("is_alpha:1", fn(): bool {
-		ret is_alpha("foo") == true
-	})
-
-	TESTS.add("is_alpha:2", fn(): bool {
-		ret is_alpha("12345") == false
-	})
-
-	TESTS.add("upper_case", fn(): bool {
-		ret upper_case("foO") == "FOO"
-	})
-
-	TESTS.add("lower_case", fn(): bool {
-		ret lower_case("FOo") == "foo"
-	})
-
-	TESTS.add("reverse", fn(): bool {
-		ret reverse("FooBar") == "raBooF"
-	})
-
-	TESTS.add("capitalize", fn(): bool {
-		ret capitalize("foo BAR") == "Foo bar"
-	})
-}
-
-fn add_tests_math() {
-	let slice = [2, 5, 2, 6, -4, -15, 1, -3]
-
-	TESTS.add("abs", fn(): bool {
-		ret abs(-12.2) == 12.2
-	})
-
-	TESTS.add("median", fn(): bool {
-		ret median(clone(slice)) == 1.5
-	})
-}
+use tests::{TestStack}
+use tests::math::{math_package_tests}
+use tests::search::{search_package_tests}
+use tests::sort::{sort_package_tests}
+use tests::string::{string_package_tests}
 
 fn main() {
-	add_tests_sort()
-	add_tests_search()
-	add_tests_string()
-	add_tests_math()
+	let mut tests = TestStack.new()
 
-	TESTS.do()
+	math_package_tests(tests)
+	search_package_tests(tests)
+	sort_package_tests(tests)
+	string_package_tests(tests)
+
+	tests.do()
 }
