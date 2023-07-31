@@ -1,9 +1,9 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/julelang/resources/master/jule_icon.svg" width="120">
+    <a href="https://jule.dev"><img src="https://raw.githubusercontent.com/julelang/resources/master/jule_icon.svg" width="120"></a>
     <br><br>
     <h1><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Jule</h1>
-    <img src="https://img.shields.io/github/actions/workflow/status/TheAlgorithms/Jule/tests.yml?branch=main&logo=github&label=CI" height="17px">
-    <img src="https://img.shields.io/github/repo-size/TheAlgorithms/Jule.svg?label=Repo%20size&logo=github" height="17px">
+    <a href="https://github.com/TheAlgorithms/Jule/actions"><img src="https://img.shields.io/github/actions/workflow/status/TheAlgorithms/Jule/tests.yml?branch=main&logo=github&label=CI" height="20px"></a>
+    <img src="https://img.shields.io/github/repo-size/TheAlgorithms/Jule.svg?label=Repo%20size&logo=github" height="20px">
 </div>
 
 Algorithms and data structures implemented in the Jule programming language.
