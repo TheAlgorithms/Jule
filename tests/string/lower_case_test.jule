@@ -1,0 +1,8 @@
+use tests::{TestStack}
+use string::{lower_case}
+
+fn lower_case_tests(mut &tests: TestStack) {
+	tests.add("lower_case", fn(): bool {
+		ret lower_case("FOo") == "foo"
+	})
+}

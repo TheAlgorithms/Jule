@@ -1,0 +1,10 @@
+use tests::{TestStack}
+use math::{median}
+
+fn median_tests(mut &tests: TestStack) {
+	let slice = [2, 5, 2, 6, -4, -15, 1, -3]
+
+	tests.add("median", fn(): bool {
+		ret median(clone(slice)) == 1.5
+	})
+}

@@ -1,0 +1,8 @@
+use tests::{TestStack}
+use math::{abs}
+
+fn abs_tests(mut &tests: TestStack) {
+	tests.add("abs", fn(): bool {
+		ret abs(-12.2) == 12.2
+	})
+}
