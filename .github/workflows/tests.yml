@@ -1,42 +1,26 @@
 name: Tests
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Clone latest JuleC
-        run: |
-          git clone https://github.com/julelang/jule.git
-
-      - name: Get latest IR
-        run: |
-          curl -o ./jule/ir.cpp https://raw.githubusercontent.com/julelang/julec-ir/main/src/linux-amd64.cpp
-
-      - name: Compile JuleC
-        run: |
-          mkdir ./jule/bin
-          clang++ -O0 --std=c++17 -Wno-everything -o ./jule/bin/julec ./jule/ir.cpp
-          git update-index --add --chmod=-x ./jule/bin/julec
-          chmod +x ./jule/bin/julec
-          
-      - name: JuleC Version
-        run: |
-          ./jule/bin/julec version
+      - uses: Panquesito7/setup-jule@v1.1.1
+        with:
+          version: dev
+          directory: .
+          add-to-path: true
+          extra-command: version 
 
       - name: Compile Tests
         run: |
-          ./jule/bin/julec -t .
+          julec -t .
           clang++ -O0 --std=c++17 -Wno-everything -o ./tests.out ./dist/ir.cpp
           git update-index --add --chmod=-x ./tests.out
           chmod +x ./tests.out
