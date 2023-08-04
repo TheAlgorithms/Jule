@@ -1,0 +1,110 @@
+use std::process::{exit}
+use std::fs::{FsError, OFlag, open, read_dir}
+
+static mut TABLE: str = ""
+
+static PACKAGES: [...]str = [
+	"./math",
+	"./search",
+	"./sort",
+	"./string",
+]
+
+fn workflow_failed(message: str) {
+	const FAIL_EXIT_CODE = 1
+	outln(message)
+	exit(FAIL_EXIT_CODE)
+}
+
+fn write(text: str) { TABLE += text }
+fn write_line(text: str) { write(text + "\n") }
+
+fn make_name(mut s: str): str {
+	// Remove all cutset substrings.
+	let cutset_subs = [
+		".jule",
+		".",
+		"/",
+		"\\",
+	]
+	for _, subs in cutset_subs {
+		s = s.replace(subs, "", -1)
+	}
+
+	// Replace all underlines with space.
+	s = s.replace("_", " ", -1)
+
+	// Make uppercase first character of all words.
+	let mut i = 0
+	let mut wait_space = false
+	for i < s.len; i++ {
+		let b = s[i]
+		if wait_space {
+			if b == ' ' {
+				wait_space = false
+			}
+			continue
+		}
+
+		s[i] = 'Z' - ('z' - b)
+
+		wait_space = true
+	}
+
+	ret s
+}
+
+fn append_package(package: str) {
+	let (dirents, err) = read_dir(package)
+	if err != FsError.Ok {
+		workflow_failed("package did not readed: " + package)
+	}
+
+	let package_table_name = make_name(package)
+
+	write_line("")
+	write_line("")
+	write("## ")
+	write(package_table_name)
+	for _, dirent in dirents {
+		// Ignore sub-diretories.
+		if dirent.stat.is_dir() {
+			continue
+		}
+
+		let file_table_name = make_name(dirent.name)
+		let file_url = package + "/" + dirent.name
+
+		write_line("")
+		write("  - [")
+		write(file_table_name)
+		write("](")
+		write(file_url)
+		write(")")
+	}
+}
+
+fn create_directory_md() {
+	const MD_PATH = "./DIRECTORY.md"
+	let (mut f, mut err) = open(MD_PATH, OFlag.Rdwr|OFlag.Create|OFlag.Trunc, 0o666)
+	if err != FsError.Ok {
+		workflow_failed("a problem occurs when creating " + MD_PATH)
+	}
+
+	defer { f.close() }
+
+	_, err = f.write(([]byte)(TABLE))
+	if err != FsError.Ok {
+		workflow_failed("a problem occurs when creating " + MD_PATH)
+	}
+}
+
+fn main() {
+	write_line("# Table of Contents")
+
+	for _, package in PACKAGES {
+		append_package(package)
+	}
+
+	create_directory_md()
+}
