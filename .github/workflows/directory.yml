@@ -1,0 +1,50 @@
+name: Directory
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Panquesito7/setup-jule@v1.1.1
+        with:
+          version: dev
+          directory: ..
+          add-to-path: true
+
+      - name: Compile Directory Writer
+        run: |
+          julec -t ./.github/workflows
+          clang++ -O0 --std=c++17 -Wno-everything -o ./directory_writer ./dist/ir.cpp
+          git update-index --add --chmod=-x ./directory_writer
+          chmod +x ./directory_writer
+
+      - name: Generate Directory
+        run: |
+          ./directory_writer
+
+      - name: Cleanup
+        run: |
+          rm -rf ./jule
+          rm -f ./directory_writer
+
+      - name: Setup Git configurations
+        shell: bash
+        run: |
+          git config --global user.name github-actions[bot]
+          git config --global user.email 'github-actions@users.noreply.github.com'
+
+      - name: Push New Directory
+        shell: bash
+        run: |
+          git add .
+          git commit -am "update DIRECTORY.md" || true
+          git push || true
