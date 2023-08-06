@@ -1,17 +1,22 @@
-name: Directory
-
+name: Directory writer
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  schedule:
+  #        ┌───────────── minute (0 - 59)
+  #        │  ┌───────────── hour (0 - 23)
+  #        │  │ ┌───────────── day of the month (1 - 31)
+  #        │  │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+  #        │  │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+  #        │  │ │ │ │
+  #        │  │ │ │ │
+  #        │  │ │ │ │
+  #        *  * * * *
+  - cron: '0 0 * * *'
   workflow_dispatch:
 
 jobs:
   build:
+    if: github.repository == 'TheAlgorithms/Jule' # We only need this to run in our repository.
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - uses: Panquesito7/setup-jule@v1.1.1
@@ -37,14 +42,19 @@ jobs:
           rm -f ./directory_writer
 
       - name: Setup Git configurations
-        shell: bash
         run: |
           git config --global user.name github-actions[bot]
           git config --global user.email 'github-actions@users.noreply.github.com'
-
-      - name: Push New Directory
-        shell: bash
+      - name: Create branch
         run: |
-          git add .
-          git commit -am "update DIRECTORY.md" || true
-          git push || true
+          git checkout -b directory_update-${{ github.sha }}
+      - name: Commit and push changes
+        run: |
+          if [[ `git status --porcelain` ]];
+          then
+            git add .
+            git commit -m 'Update `DIRECTORY.md`'
+            git push origin directory_update-${{ github.sha }}:directory_update-${{ github.sha }}
+
+            gh pr create --base ${GITHUB_REF##*/} --head directory_update-${{ github.sha }} --title 'Update `DIRECTORY.md`' --body 'Updated the `DIRECTORY.md` file (see the diff. for changes).' || true
+          fi
