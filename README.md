@@ -8,28 +8,7 @@
 
 Algorithms and data structures implemented in the Jule programming language.
 
-## Algorithms
-
-- [Search](./search)
-  - [Linear Search](./search/linear_search.jule)
-- [Sort](./sort)
-  - [Bubble Sort](./sort/bubble_sort.jule)
-  - [Exchange Sort](./sort/exchange_sort.jule)
-  - [Insertion Sort](./sort/insertion_sort.jule)
-  - [Quick Sort](./sort/quick_sort.jule)
-  - [Selection Sort](./sort/selection_sort.jule)
-  - [Shell Sort](./sort/shell_sort.jule)
-  - [Simple Sort](./sort/simple_sort.jule)
-- [String](./string)
-  - [Is Alpha](./string/is_alpha.jule)
-  - [Is Digit](./string/is_digit.jule)
-  - [Lower Case](./string/lower_case.jule)
-  - [Upper Case](./string/upper_case.jule)
-  - [Reverse](./string/reverse.jule)
-  - [Capitalize](./string/capitalize.jule)
-- [Math](./math)
-  - [Absolute Value](./math/abs.jule)
-  - [Median](./math/median.jule)
+All contents are listed in [`DIRECTORY.md`](./DIRECTORY.md) file.
 
 ## Contributing
 
