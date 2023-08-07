@@ -19,32 +19,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: Panquesito7/setup-jule@v1.1.1
+      - uses: Panquesito7/setup-jule@v1.1.2
         with:
           version: dev
           directory: ..
           add-to-path: true
-
       - name: Compile Directory Writer
         run: |
           julec -t ./.github/workflows
           clang++ -O0 --std=c++17 -Wno-everything -o ./directory_writer ./dist/ir.cpp
           git update-index --add --chmod=-x ./directory_writer
           chmod +x ./directory_writer
-
       - name: Generate Directory
         run: |
           ./directory_writer
-
       - name: Cleanup
         run: |
           rm -rf ./jule
           rm -f ./directory_writer
-
       - name: Setup Git configurations
         run: |
           git config --global user.name github-actions[bot]
-          git config --global user.email 'github-actions@users.noreply.github.com'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Create branch
         run: |
           git checkout -b directory_update-${{ github.sha }}
@@ -58,3 +54,5 @@ jobs:
 
             gh pr create --base ${GITHUB_REF##*/} --head directory_update-${{ github.sha }} --title 'Update `DIRECTORY.md`' --body 'Updated the `DIRECTORY.md` file (see the diff. for changes).' || true
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
