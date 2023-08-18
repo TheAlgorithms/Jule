@@ -7,12 +7,12 @@ use tests::sort::{sort_package_tests}
 use tests::string::{string_package_tests}
 
 fn main() {
-	let mut tests = TestStack.new()
+    let mut tests = TestStack.new()
 
-	math_package_tests(tests)
-	search_package_tests(tests)
-	sort_package_tests(tests)
-	string_package_tests(tests)
+    math_package_tests(tests)
+    search_package_tests(tests)
+    sort_package_tests(tests)
+    string_package_tests(tests)
 
-	tests.do()
+    tests.do()
 }

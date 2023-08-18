@@ -1,5 +1,5 @@
 use tests::{TestStack}
 
 pub fn search_package_tests(mut &tests: TestStack) {
-	linear_search_tests(tests)
+    linear_search_tests(tests)
 }

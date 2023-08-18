@@ -1,11 +1,11 @@
 use tests::{TestStack}
 
 pub fn sort_package_tests(mut &tests: TestStack) {
-	bubble_sort_tests(tests)
-	exchange_sort_tests(tests)
-	insertion_sort_tests(tests)
-	quick_sort_tests(tests)
-	selection_sort_tests(tests)
-	shell_sort_tests(tests)
-	simple_sort_tests(tests)
+    bubble_sort_tests(tests)
+    exchange_sort_tests(tests)
+    insertion_sort_tests(tests)
+    quick_sort_tests(tests)
+    selection_sort_tests(tests)
+    shell_sort_tests(tests)
+    simple_sort_tests(tests)
 }

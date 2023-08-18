@@ -2,11 +2,11 @@ use tests::{TestStack}
 use string::{is_alpha}
 
 fn is_alpha_tests(mut &tests: TestStack) {
-	tests.add("is_alpha:(1)", fn(): bool {
-		ret is_alpha("foo") == true
-	})
+    tests.add("is_alpha:(1)", fn(): bool {
+        ret is_alpha("foo") == true
+    })
 
-	tests.add("is_alpha:(2)", fn(): bool {
-		ret is_alpha("12345") == false
-	})
+    tests.add("is_alpha:(2)", fn(): bool {
+        ret is_alpha("12345") == false
+    })
 }

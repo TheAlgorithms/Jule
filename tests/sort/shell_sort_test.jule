@@ -2,10 +2,10 @@ use tests::{TestStack}
 use sort::{shell_sort}
 
 fn shell_sort_tests(mut &tests: TestStack) {
-	let mut unsorted = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
-	let sorted = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
+    let mut unsorted = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
+    let sorted = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
 
-	tests.add("shell_sort", fn(): bool {
-		ret shell_sort(unsorted) == sorted
-	})
+    tests.add("shell_sort", fn(): bool {
+        ret shell_sort(unsorted) == sorted
+    })
 }
