@@ -1,17 +1,17 @@
-use sort::{
-    quick_sort,
-}
+use sort::{quick_sort}
 
 pub fn median(mut slice: []int): f64 {
     slice = quick_sort(slice)
-    let length: int = slice.len
-    let mut median: f64 = 0
 
-    if length % 2 == 0 {
-        median = (slice[(length / 2) - 1] + slice[(length / 2)]) / 2.0
-    } else {
-        median = slice[length/2]
+    let l = slice.len
+    match {
+    | l == 0:
+        ret 0
+
+    | l%2 == 0:
+        ret f64(slice[l/2-1] + slice[l/2]) / 2
+
+    |:
+        ret f64(slice[l/2])
     }
-
-    ret median
 }
