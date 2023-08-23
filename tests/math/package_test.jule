@@ -2,6 +2,7 @@ use tests::{TestStack}
 
 pub fn math_package_tests(mut &tests: TestStack) {
     abs_tests(tests)
+    max_tests(tests)
     median_tests(tests)
     min_tests(tests)
 }

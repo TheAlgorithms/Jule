@@ -1,0 +1,12 @@
+pub fn max(values: ...int): int {
+    if values.len == 0 {
+        ret 0
+    }
+    let mut max = values[0]
+    for _, x in values[1:] {
+        if max < x {
+            max = x
+        }
+    }
+    ret max
+}
