@@ -1,0 +1,8 @@
+use tests::{TestStack}
+use math::{min}
+
+fn min_tests(mut &tests: TestStack) {
+    tests.add("min", fn(): bool {
+        ret min(0, -9024, 1, 894, -34) == -9024
+    })
+}
