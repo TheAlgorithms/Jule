@@ -5,7 +5,7 @@ fn bubble_sort_tests(mut &tests: TestStack) {
     let mut unsorted = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
     let sorted = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
 
-    tests.add("bubble_sort", fn(): bool {
+    tests.add("[sort] bubble_sort", fn(): bool {
         ret bubble_sort(unsorted) == sorted
     })
 }

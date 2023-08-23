@@ -2,7 +2,7 @@ use tests::{TestStack}
 use string::{reverse}
 
 fn reverse_tests(mut &tests: TestStack) {
-    tests.add("reverse", fn(): bool {
+    tests.add("[string] reverse", fn(): bool {
         ret reverse("FooBar") == "raBooF"
     })
 }
