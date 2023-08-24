@@ -3,7 +3,9 @@
 
 ## Math
   - [Abs](./math/abs.jule)
+  - [Max](./math/max.jule)
   - [Median](./math/median.jule)
+  - [Min](./math/min.jule)
 
 ## Search
   - [Linear Search](./search/linear_search.jule)
