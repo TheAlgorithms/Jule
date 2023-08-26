@@ -52,7 +52,7 @@ jobs:
             git commit -m 'Update `DIRECTORY.md`' || true
             git push origin directory_update-${{ github.sha }}:directory_update-${{ github.sha }} || true
 
-            gh pr create --base ${GITHUB_REF##*/} --head directory_update-${{ github.sha }} --title 'Upda te `DIRECTORY.md`' --body 'Updated the `DIRECTORY.md` file (see the diff. for changes).' || true
+            gh pr create --base ${GITHUB_REF##*/} --head directory_update-${{ github.sha }} --title 'Update `DIRECTORY.md`' --body 'Updated the `DIRECTORY.md` file (see the diff. for changes).' || true
           fi
         env:
           GH_TOKEN: ${{ github.token }}
