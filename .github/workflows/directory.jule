@@ -1,5 +1,5 @@
 use std::process::{exit}
-use std::fs::{DirEntry, FsError, OFlag, open, read_dir}
+use std::fs::{DirEntry, FsError, OFlag, write_file, read_dir}
 
 static mut TABLE: str = ""
 
@@ -121,14 +121,7 @@ fn append_package(package: str) {
 
 fn create_directory_md() {
     const MD_PATH = "./DIRECTORY.md"
-    let (mut f, mut err) = open(MD_PATH, OFlag.Rdwr|OFlag.Create|OFlag.Trunc, 0o666)
-    if err != FsError.Ok {
-        workflow_failed("a problem occurs when creating " + MD_PATH)
-    }
-
-    defer { f.close() }
-
-    _, err = f.write(([]byte)(TABLE))
+    let err = write_file(MD_PATH, ([]byte)(TABLE), 0o666)
     if err != FsError.Ok {
         workflow_failed("a problem occurs when creating " + MD_PATH)
     }
