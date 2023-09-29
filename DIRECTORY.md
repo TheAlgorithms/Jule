@@ -3,11 +3,13 @@
 
 ## Math
   - [Abs](./math/abs.jule)
+  - [Fact](./math/fact.jule)
   - [Max](./math/max.jule)
   - [Median](./math/median.jule)
   - [Min](./math/min.jule)
 
 ## Search
+  - [Binary Search](./search/binary_search.jule)
   - [Linear Search](./search/linear_search.jule)
 
 ## Sort
