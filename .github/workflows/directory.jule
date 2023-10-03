@@ -1,5 +1,5 @@
 use std::process::{exit}
-use std::fs::{DirEntry, FsError, OFlag, write_file, read_dir}
+use std::fs::{DirEntry, FsError, OFlag, File, Directory}
 
 static mut TABLE: str = ""
 
@@ -89,7 +89,7 @@ fn make_name(mut s: str): str {
 }
 
 fn append_package(package: str) {
-    let (mut dirents, err) = read_dir(package)
+    let (mut dirents, err) = Directory.read(package)
     if err != FsError.Ok {
         workflow_failed("package did not readed: " + package)
     }
@@ -121,7 +121,7 @@ fn append_package(package: str) {
 
 fn create_directory_md() {
     const MD_PATH = "./DIRECTORY.md"
-    let err = write_file(MD_PATH, ([]byte)(TABLE), 0o666)
+    let err = File.write(MD_PATH, ([]byte)(TABLE), 0o666)
     if err != FsError.Ok {
         workflow_failed("a problem occurs when creating " + MD_PATH)
     }
