@@ -89,9 +89,9 @@ fn make_name(mut s: str): str {
 }
 
 fn append_package(package: str) {
-    let (mut dirents, err) = Directory.read(package)
-    if err != FsError.Ok {
+    let mut dirents = Directory.read(package) else {
         workflow_failed("package did not readed: " + package)
+        ret // Avoid derror.
     }
 
     let package_table_name = make_name(package)
@@ -121,8 +121,7 @@ fn append_package(package: str) {
 
 fn create_directory_md() {
     const MD_PATH = "./DIRECTORY.md"
-    let err = File.write(MD_PATH, ([]byte)(TABLE), 0o666)
-    if err != FsError.Ok {
+    File.write(MD_PATH, ([]byte)(TABLE), 0o666) else {
         workflow_failed("a problem occurs when creating " + MD_PATH)
     }
 }
