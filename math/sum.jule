@@ -1,0 +1,9 @@
+pub fn sum(slice: []int): int {
+    let mut total: int = 0
+
+    for _, i in slice {
+        total += i
+    }
+
+    ret total
+}

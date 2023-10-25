@@ -6,4 +6,5 @@ pub fn math_package_tests(mut &tests: TestStack) {
     max_tests(tests)
     median_tests(tests)
     min_tests(tests)
+    sum_tests(tests)
 }
