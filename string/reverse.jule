@@ -8,7 +8,7 @@ reverse("FooBar")
 */
 
 pub fn reverse(mut string: str): str {
-    let mut i: uint = 0
+    let mut i: int = 0
 
     for i < string.len/2; i++ {
         string[i], string[string.len-i-1] = string[string.len-i-1], string[i]
