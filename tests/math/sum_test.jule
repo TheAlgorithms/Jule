@@ -1,0 +1,10 @@
+use tests::{TestStack}
+use math::{sum}
+
+fn sum_tests(mut &tests: TestStack) {
+    let slice = [-9, 0, 1, 99, 54, 12]
+
+    tests.add("[math] sum", fn(): bool {
+        ret sum(clone(slice)) == 157
+    })
+}

@@ -7,6 +7,7 @@
   - [Max](./math/max.jule)
   - [Median](./math/median.jule)
   - [Min](./math/min.jule)
+  - [Sum](./math/sum.jule)
 
 ## Search
   - [Binary Search](./search/binary_search.jule)
