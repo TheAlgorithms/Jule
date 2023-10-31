@@ -1,8 +1,0 @@
-use tests::{TestStack}
-use string::{capitalize}
-
-fn capitalize_tests(mut &tests: TestStack) {
-    tests.add("[string] capitalize", fn(): bool {
-        ret capitalize("foo BAR") == "Foo bar"
-    })
-}

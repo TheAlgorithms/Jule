@@ -1,8 +1,0 @@
-use tests::{TestStack}
-use math::{fact}
-
-fn fact_tests(mut &tests: TestStack) {
-    tests.add("[math] fact", fn(): bool {
-        ret fact(10) == 3628800
-    })
-}

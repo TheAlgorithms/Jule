@@ -1,6 +1,0 @@
-use tests::{TestStack}
-
-pub fn search_package_tests(mut &tests: TestStack) {
-    binary_search_tests(tests)
-    linear_search_tests(tests)
-}

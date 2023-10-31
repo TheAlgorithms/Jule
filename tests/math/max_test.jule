@@ -1,8 +1,0 @@
-use tests::{TestStack}
-use math::{max}
-
-fn max_tests(mut &tests: TestStack) {
-    tests.add("[math] max", fn(): bool {
-        ret max(0, -9024, 1, 894, -34) == 894
-    })
-}

@@ -1,8 +1,0 @@
-use tests::{TestStack}
-use string::{upper_case}
-
-fn upper_case_tests(mut &tests: TestStack) {
-    tests.add("[string] upper_case", fn(): bool {
-        ret upper_case("foO") == "FOO"
-    })
-}

@@ -18,15 +18,14 @@ jobs:
 
       - name: Compile Tests
         run: |
-          julec -t .
-          clang++ -O0 --std=c++17 -Wno-everything -o ./tests.out ./dist/ir.cpp
-          git update-index --add --chmod=-x ./tests.out
-          chmod +x ./tests.out
+          julec test -o test .
+          git update-index --add --chmod=-x test
+          chmod +x test
 
       - name: Run Tests
         run: |
-          ./tests.out
+          ./test
 
       - name: Cleanup
         run: |
-          rm -f tests.out
+          rm -f test
