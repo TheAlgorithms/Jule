@@ -1,0 +1,8 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_lower_case(t: &T) {
+    t.assert(lower_case("FOo") == "foo", "FOo should return foo")
+}

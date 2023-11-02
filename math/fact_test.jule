@@ -1,0 +1,8 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_fact(t: &T) {
+    t.assert(fact(10) == 3628800, "10 fact should equal to 3628800")
+}

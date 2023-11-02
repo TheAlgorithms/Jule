@@ -1,0 +1,8 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_min(t: &T) {
+    t.assert(min(0, -9024, 1, 894, -34) == -9024, "min value should be -9024")
+}

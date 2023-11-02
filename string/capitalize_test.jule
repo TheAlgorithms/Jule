@@ -1,0 +1,8 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_capitalize(t: &T) {
+    t.assert(capitalize("foo BAR") == "Foo bar", "capizalized \"foo BAR\" should be \"Foo bar\"")
+}

@@ -1,0 +1,8 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_upper_case(t: &T) {
+    t.assert(upper_case("foO") == "FOO", "foO should return FOO")
+}

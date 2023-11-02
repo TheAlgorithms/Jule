@@ -1,0 +1,11 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_linear_search(t: &T) {
+    let s = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
+
+    t.assert(linear_search(s, 90) == -1, "90 should return -1")
+    t.assert(linear_search(s, -85) == 6, "-85 should return 6")
+}

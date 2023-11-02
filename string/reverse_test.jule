@@ -1,0 +1,8 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_reverse(t: &T) {
+    t.assert(reverse("FooBar") == "raBooF", "FooBar should return raBooF")
+}

@@ -1,0 +1,8 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_sum(t: &T) {
+    t.assert(sum([-9, 0, 1, 99, 54, 12]) == 157, "sum should return 157")
+}

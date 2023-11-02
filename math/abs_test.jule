@@ -1,0 +1,10 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_abs(t: &T) {
+    t.assert(abs(-12.2) == 12.2, "-12.2 should equal to 12.2")
+    t.assert(abs(-12) == 12, "-12 should equal to 12")
+    t.assert(abs(-0.35) == 0.35, "-0.35 should equal to 0.35")
+}

@@ -1,0 +1,9 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_is_alpha(t: &T) {
+    t.assert(is_alpha("foo") == true, "foo should return true")
+    t.assert(is_alpha("12345") == false, "12345 should return false")
+}
