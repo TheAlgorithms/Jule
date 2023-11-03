@@ -103,7 +103,7 @@ fn append_package(package: str) {
     sort_dirents(dirents)
     for _, dirent in dirents {
         // Ignore sub-diretories.
-        if dirent.stat.is_dir() {
+        if dirent.stat.is_dir() || dirent.name.has_suffix("_test.jule") {
             continue
         }
 
