@@ -3,11 +3,11 @@ use std::fs::{DirEntry, FsError, OFlag, File, Directory}
 
 static mut TABLE: str = ""
 
-static PACKAGES: [...]str = [
-    "./math",
-    "./search",
-    "./sort",
-    "./string",
+static IGNORE_PACKAGES: [...]str = [
+    ".",
+    "..",
+    ".github",
+    ".git",
 ]
 
 fn workflow_failed(message: str) {
@@ -91,7 +91,7 @@ fn make_name(mut s: str): str {
 fn append_package(package: str) {
     let mut dirents = Directory.read(package) else {
         workflow_failed("package did not readed: " + package)
-        ret // Avoid derror.
+        ret // Avoid error.
     }
 
     let package_table_name = make_name(package)
@@ -121,7 +121,7 @@ fn append_package(package: str) {
 
 fn create_directory_md() {
     const MD_PATH = "./DIRECTORY.md"
-    File.write(MD_PATH, ([]byte)(TABLE), 0o666) else {
+    File.write(MD_PATH, []byte(TABLE), 0o660) else {
         workflow_failed("a problem occurs when creating " + MD_PATH)
     }
 }
@@ -129,8 +129,24 @@ fn create_directory_md() {
 fn main() {
     write_line("# Table of Contents")
 
-    for _, package in PACKAGES {
-        append_package(package)
+    let mut dirents = Directory.read(".") else {
+        workflow_failed("directory did not readed")
+        ret // Avoid error.
+    }
+
+    sort_dirents(dirents)
+
+dirent:
+    for _, d in dirents {
+        for _, ip in IGNORE_PACKAGES {
+            if ip == d.name {
+                continue dirent
+            }
+        }
+
+        if d.stat.is_dir() {
+            append_package(d.name)
+        }
     }
 
     create_directory_md()
