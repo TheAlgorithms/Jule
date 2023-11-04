@@ -26,8 +26,7 @@ jobs:
           add-to-path: true
       - name: Compile Directory Writer
         run: |
-          julec -t ./.github/workflows
-          clang++ -O0 --std=c++17 -Wno-everything -o ./directory_writer ./dist/ir.cpp
+          julec -o ./directory_writer ./.github/workflows
           git update-index --add --chmod=-x ./directory_writer
           chmod +x ./directory_writer
       - name: Generate Directory
