@@ -1,5 +1,6 @@
 use std::process::{exit}
 use std::fs::{DirEntry, FsError, OFlag, File, Directory}
+use strings for std::strings
 
 static mut TABLE: str = ""
 
@@ -62,11 +63,11 @@ fn make_name(mut s: str): str {
         "\\",
     ]
     for _, subs in cutset_subs {
-        s = s.replace(subs, "", -1)
+        s = strings::replace(s, subs, "", -1)
     }
 
     // Replace all underlines with space.
-    s = s.replace("_", " ", -1)
+    s = strings::replace(s, "_", " ", -1)
 
     // Make uppercase first character of all words.
     let mut i = 0
@@ -103,7 +104,7 @@ fn append_package(package: str) {
     sort_dirents(dirents)
     for _, dirent in dirents {
         // Ignore sub-diretories.
-        if dirent.stat.is_dir() || dirent.name.has_suffix("_test.jule") {
+        if dirent.stat.is_dir() || strings::has_suffix(dirent.name, "_test.jule") {
             continue
         }
 
