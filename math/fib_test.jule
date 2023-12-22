@@ -1,0 +1,9 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_fib(t: &T) {
+    t.assert(fib(6) == 8, "index 6 of fib. should be 8")
+    t.assert(fib_seq(6) == [1, 1, 2, 3, 5, 8], "a fib. sequence up to index 6 should be 1, 1, 2, 3, 5, 8")
+}
