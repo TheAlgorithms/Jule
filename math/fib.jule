@@ -1,4 +1,4 @@
-// O(2^n).
+// O(2^n)
 pub fn fib(i: int): int {
     if i == 0 || i == 1 {
         ret i
