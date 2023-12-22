@@ -8,6 +8,7 @@
   - [Median](math/median.jule)
   - [Min](math/min.jule)
   - [Sum](math/sum.jule)
+  - [Fib](math/fib.jule)
 
 ## Search
   - [Binary Search](search/binary_search.jule)
