@@ -21,34 +21,12 @@ fn write(text: str) { TABLE += text }
 fn write_line(text: str) { write(text + "\n") }
 
 fn sort_dirents(mut &dirents: []&DirEntry) {
-    let less = fn(s1: str, s2: str): bool {
-        let s1r = ([]rune)(s1)
-        let s2r = ([]rune)(s2)
-
-        let mut n = s1r.len
-        if n > s2r.len {
-            n = s2r.len
-        }
-
-        let mut i = 0
-        for i < n; i++ {
-            let ir = s1r[i]
-            let jr = s2r[i]
-
-            if ir != jr {
-                ret ir < jr
-            }
-        }
-
-        ret s1r.len < s2r.len
-    }
-
     let mut i = 0
     for i < dirents.len-1; i++ {
         let mut j = 0
         for j < dirents.len-i-1; j++ {
-            if less(dirents[j+1].name, dirents[j].name) {
-                dirents[j+1], dirents[j] = dirents[j], dirents[j+1]
+            if dirents[j+1].name < dirents[j].name {
+                dirents.swap(j, j+1)
             }
         }
     }
