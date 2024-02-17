@@ -1,0 +1,12 @@
+#build test
+
+use std::testing::{T}
+
+#test
+fn test_atoi(t: &T) {
+    t.assert(atoi("123") == 123, "123 must be 123 in integer type")
+    t.assert(atoi("-321") == -321, "-321 must be -321 in integer type")
+    t.assert(atoi(" -456 ") == -456, "' -456 ' must be -456 in integer type")
+    t.assert(atoi("-12test") == -12, "-12test must be -12")
+    t.assert(atoi("-+42") == 0, "-+42 must be 0")
+}

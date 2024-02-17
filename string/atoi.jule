@@ -1,0 +1,49 @@
+/*
+This function, converts a string to an integer value in base 10.
+*/
+
+/*
+atoi("123")
+123
+
+atoi(" -32 ")
+-32
+
+atoi("12test")
+12
+
+atoi("+-54")
+0
+*/
+
+fn is_sep(b: byte): bool {
+    ret b == 32 || (b >= 9 && b <= 13)
+}
+
+fn is_nbr(b: byte): bool {
+    ret b >= '0' && b <= '9'
+}
+
+fn atoi(s: str): int {
+    let mut result = 0
+    let mut sign = 1
+    let mut i = 0
+    for i < s.len && is_sep(s[i]) {
+        i++
+    }
+    if i < s.len {
+        match s[i] {
+        | '-':
+            sign = -1
+            fall
+        | '+':
+            i++
+        }
+    }
+    for i < s.len && is_nbr(s[i]) {
+        result *= 10
+        result += int(s[i] - '0')
+        i++
+    }
+    ret result * sign
+}
