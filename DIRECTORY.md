@@ -24,6 +24,7 @@
   - [Simple Sort](sort/simple_sort.jule)
 
 ## String
+  - [Atoi](string/atoi.jule)
   - [Capitalize](string/capitalize.jule)
   - [Is Alpha](string/is_alpha.jule)
   - [Is Digit](string/is_digit.jule)
