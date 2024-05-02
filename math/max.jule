@@ -1,4 +1,4 @@
-pub fn max(values: ...int): int {
+pub fn Max(values: ...int): int {
     if values.len == 0 {
         ret 0
     }

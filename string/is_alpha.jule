@@ -3,20 +3,19 @@ This function, checks if a string contains only ASCII characters.
 */
 
 /*
-is_alpha("FooBar")
+IsAlpha("FooBar")
 true
 
-is_alpha("Foo123")
+IsAlpha("Foo123")
 false
 
-is_alpha("Foo Bar")
+IsAlpha("Foo Bar")
 false
 */
 
-pub fn is_alpha(string: str): bool {
+pub fn IsAlpha(s: str): bool {
     let mut state: bool = false
-
-    for _, c in string {
+    for _, c in s {
         if c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' {
             state = true
         } else {
@@ -24,6 +23,5 @@ pub fn is_alpha(string: str): bool {
             break
         }
     }
-
     ret state
 }

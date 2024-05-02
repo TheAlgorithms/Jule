@@ -2,13 +2,13 @@ use math for std::math
 
 // Fast inverse square root.
 // See: https://en.wikipedia.org/wiki/Fast_inverse_square_root
-pub fn q_rsqrt(mut f: f64): f64 {
-    const THREEHALFS = 1.5
-    const MAGIC = 0x5FE6EB50C7B537A9
+pub fn QRsqrt(mut f: f64): f64 {
+    const ThreeHalfs = 1.5
+    const Magic = 0x5FE6EB50C7B537A9
 
     let n2 = f * 0.5
-    let b = MAGIC - (math::f64_bits(f) >> 1)
-    f = math::f64_from_bits(b)
-    f *= THREEHALFS - (n2 * f * f)
+    let b = Magic - (math::F64Bits(f) >> 1)
+    f = math::F64FromBits(b)
+    f *= ThreeHalfs - (n2 * f * f)
     ret f
 }

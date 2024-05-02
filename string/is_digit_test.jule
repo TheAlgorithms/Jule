@@ -3,7 +3,7 @@
 use std::testing::{T}
 
 #test
-fn test_is_digit(t: &T) {
-    t.assert(is_digit("12345") == true, "12345 should return true")
-    t.assert(is_digit("foo") == false, "foo should return false")
+fn testIsDigit(t: &T) {
+    t.Assert(IsDigit("12345") == true, "12345 should return true")
+    t.Assert(IsDigit("foo") == false, "foo should return false")
 }

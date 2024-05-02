@@ -3,6 +3,6 @@
 use std::testing::{T}
 
 #test
-fn test_max(t: &T) {
-    t.assert(max(0, -9024, 1, 894, -34) == 894, "max value should be 894")
+fn testMax(t: &T) {
+    t.Assert(Max(0, -9024, 1, 894, -34) == 894, "max value should be 894")
 }

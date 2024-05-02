@@ -3,19 +3,18 @@ This function, converts all lowercase characters in a string to uppercase.
 */
 
 /*
-upper_case("FooBar")
+upperCase("FooBar")
 "FOOBAR"
 
-upper_case("Foo 123")
+upperCase("Foo 123")
 "FOO 123"
 */
 
-pub fn upper_case(mut string: str): str {
-    for i, c in string {
+pub fn UpperCase(mut s: str): str {
+    for i, c in s {
         if c >= 'a' && c <= 'z' {
-            string[i] = 'Z' - ('z' - c)
+            s[i] = 'Z' - ('z' - c)
         }
     }
-
-    ret string
+    ret s
 }

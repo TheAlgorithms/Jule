@@ -1,4 +1,4 @@
-pub fn min(values: ...int): int {
+pub fn Min(values: ...int): int {
     if values.len == 0 {
         ret 0
     }

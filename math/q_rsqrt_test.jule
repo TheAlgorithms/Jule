@@ -2,7 +2,7 @@
 
 use std::testing::{T}
 
-static cases_q_rsqrt: [][]f64 = [
+static casesQRsqrt: [][]f64 = [
     [90, 0.10530667845276515],
     [987743, 0.001004453602645671],
     [2, 0.706929650795464],
@@ -10,10 +10,10 @@ static cases_q_rsqrt: [][]f64 = [
 ]
 
 #test
-fn test_q_rsqrt(t: &T) {
-    for _, c in cases_q_rsqrt {
-        if q_rsqrt(c[0]) != c[1] {
-            t.errorf("q_rsqrt({}) should be {}", c[0], c[1])
+fn testQRsqrt(t: &T) {
+    for _, c in casesQRsqrt {
+        if QRsqrt(c[0]) != c[1] {
+            t.Errorf("q_rsqrt({}) should be {}", c[0], c[1])
         }
     }
 }

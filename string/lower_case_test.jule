@@ -3,6 +3,6 @@
 use std::testing::{T}
 
 #test
-fn test_lower_case(t: &T) {
-    t.assert(lower_case("FOo") == "foo", "FOo should return foo")
+fn testLowerCase(t: &T) {
+    t.Assert(LowerCase("FOo") == "foo", "FOo should return foo")
 }

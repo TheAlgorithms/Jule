@@ -1,4 +1,4 @@
-pub fn quick_sort(mut s: []int): []int {
+pub fn QuickSort(mut s: []int): []int {
     if s.len <= 1 {
         ret s
     }
@@ -12,8 +12,8 @@ pub fn quick_sort(mut s: []int): []int {
         }
     }
 
-    quick_sort(s[:i])
-    quick_sort(s[i+1:])
+    QuickSort(s[:i])
+    QuickSort(s[i+1:])
 
     ret s
 }

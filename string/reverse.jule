@@ -3,16 +3,14 @@ This function, reverses the string.
 */
 
 /*
-reverse("FooBar")
+Reverse("FooBar")
 "raBooF"
 */
 
-pub fn reverse(mut string: str): str {
-    let mut i: int = 0
-
-    for i < string.len/2; i++ {
-        string[i], string[string.len-i-1] = string[string.len-i-1], string[i]
+pub fn Reverse(mut s: str): str {
+    let mut i = 0
+    for i < s.len/2; i++ {
+        s[i], s[s.len-i-1] = s[s.len-i-1], s[i]
     }
-
-    ret string
+    ret s
 }

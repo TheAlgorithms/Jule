@@ -3,19 +3,18 @@ This function, checks if a string contains only digits.
 */
 
 /*
-is_digit("12345")
+IsDigit("12345")
 true
 
-is_digit("12345f")
+IsDigit("12345f")
 false
 
-is_digit("123 45")
+IsDigit("123 45")
 false
 */
 
-pub fn is_digit(digit: str): bool {
+pub fn IsDigit(digit: str): bool {
     let mut state: bool = false
-
     for _, n in digit {
         if n >= '0' && n <= '9' {
             state = true
@@ -24,6 +23,5 @@ pub fn is_digit(digit: str): bool {
             break
         }
     }
-
     ret state
 }

@@ -1,6 +1,6 @@
-pub fn fact(n: f64): f64 {
+pub fn Fact(n: f64): f64 {
     if n == 0 {
         ret 1
     }
-    ret n * fact(n - 1)
+    ret n * Fact(n - 1)
 }

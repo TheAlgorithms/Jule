@@ -3,10 +3,10 @@
 use std::testing::{T}
 
 #test
-fn test_binary_search(t: &T) {
+fn testBinarySearch(t: &T) {
     let s = [-9835, -85, -0, 0, 9, 35, 64, 89, 98, 8935]
 
-    t.assert(binary_search(s, 90) == -1, "90 should return -1")
-    t.assert(binary_search(s, -85) == 1, "85 should return 1")
-    t.assert(binary_search(s, 89) == 7, "89 should return 7")
+    t.Assert(BinarySearch(s, 90) == -1, "90 should return -1")
+    t.Assert(BinarySearch(s, -85) == 1, "85 should return 1")
+    t.Assert(BinarySearch(s, 89) == 7, "89 should return 7")
 }

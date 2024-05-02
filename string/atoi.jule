@@ -3,32 +3,32 @@ This function, converts a string to an integer value in base 10.
 */
 
 /*
-atoi("123")
+Atoi("123")
 123
 
-atoi(" -32 ")
+Atoi(" -32 ")
 -32
 
-atoi("12test")
+Atoi("12test")
 12
 
-atoi("+-54")
+Atoi("+-54")
 0
 */
 
-fn is_sep(b: byte): bool {
+fn isSep(b: byte): bool {
     ret b == 32 || (b >= 9 && b <= 13)
 }
 
-fn is_nbr(b: byte): bool {
+fn isNbr(b: byte): bool {
     ret b >= '0' && b <= '9'
 }
 
-pub fn atoi(s: str): int {
+pub fn Atoi(s: str): int {
     let mut result = 0
     let mut sign = 1
     let mut i = 0
-    for i < s.len && is_sep(s[i]) {
+    for i < s.len && isSep(s[i]) {
         i++
     }
     if i < s.len {
@@ -40,7 +40,7 @@ pub fn atoi(s: str): int {
             i++
         }
     }
-    for i < s.len && is_nbr(s[i]) {
+    for i < s.len && isNbr(s[i]) {
         result *= 10
         result += int(s[i] - '0')
         i++
