@@ -1,4 +1,4 @@
-pub fn QuickSort(mut s: []int): []int {
+fn QuickSort(mut s: []int): []int {
     if s.len <= 1 {
         ret s
     }

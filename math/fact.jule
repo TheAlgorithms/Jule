@@ -1,4 +1,4 @@
-pub fn Fact(n: f64): f64 {
+fn Fact(n: f64): f64 {
     if n == 0 {
         ret 1
     }

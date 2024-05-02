@@ -2,7 +2,7 @@ use math for std::math
 
 // Fast inverse square root.
 // See: https://en.wikipedia.org/wiki/Fast_inverse_square_root
-pub fn QRsqrt(mut f: f64): f64 {
+fn QRsqrt(mut f: f64): f64 {
     const ThreeHalfs = 1.5
     const Magic = 0x5FE6EB50C7B537A9
 

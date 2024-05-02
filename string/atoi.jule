@@ -24,7 +24,7 @@ fn isNbr(b: byte): bool {
     ret b >= '0' && b <= '9'
 }
 
-pub fn Atoi(s: str): int {
+fn Atoi(s: str): int {
     let mut result = 0
     let mut sign = 1
     let mut i = 0

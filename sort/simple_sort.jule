@@ -1,4 +1,4 @@
-pub fn SimpleSort(mut s: []int): []int {
+fn SimpleSort(mut s: []int): []int {
     let mut i = 1
     for i < s.len; i++ {
         let mut j = 0

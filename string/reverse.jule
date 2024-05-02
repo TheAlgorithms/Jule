@@ -7,7 +7,7 @@ Reverse("FooBar")
 "raBooF"
 */
 
-pub fn Reverse(mut s: str): str {
+fn Reverse(mut s: str): str {
     let mut i = 0
     for i < s.len/2; i++ {
         s[i], s[s.len-i-1] = s[s.len-i-1], s[i]

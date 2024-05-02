@@ -1,5 +1,5 @@
 // O(2^n)
-pub fn Fib(i: int): int {
+fn Fib(i: int): int {
     if i == 0 || i == 1 {
         ret i
     }
@@ -7,7 +7,7 @@ pub fn Fib(i: int): int {
 }
 
 // O(n * 2^n)
-pub fn FibSeq(mut n: int): []int {
+fn FibSeq(mut n: int): []int {
     let mut s: []int
     let mut i = n
     for i > 0 {

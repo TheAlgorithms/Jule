@@ -1,4 +1,4 @@
-pub fn ExchangeSort(mut s: []int): []int {
+fn ExchangeSort(mut s: []int): []int {
     let mut i = 0
     for i < s.len-1; i++ {
         let mut j = i + 1

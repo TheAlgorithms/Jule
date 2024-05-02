@@ -10,7 +10,7 @@ LowerCase("Foo 123")
 "foo 123"
 */
 
-pub fn LowerCase(mut s: str): str {
+fn LowerCase(mut s: str): str {
     for i, c in s {
         if c >= 'A' && c <= 'Z' {
             s[i] = 'z' - ('Z' - c)

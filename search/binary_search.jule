@@ -1,4 +1,4 @@
-pub fn BinarySearch(s: []int, i: int): (pos: int) {
+fn BinarySearch(s: []int, i: int): (pos: int) {
     let mut b = 0
     let mut e = s.len - 1
     for b <= e {

@@ -1,4 +1,4 @@
-pub fn Abs(mut n: f64): f64 {
+fn Abs(mut n: f64): f64 {
     if n < 0 {
         n = -n
     }

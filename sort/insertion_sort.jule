@@ -1,4 +1,4 @@
-pub fn InsertionSort(mut s: []int): []int {
+fn InsertionSort(mut s: []int): []int {
     let mut currentIndex = 1
     for currentIndex < s.len; currentIndex++ {
         let temporary = s[currentIndex]

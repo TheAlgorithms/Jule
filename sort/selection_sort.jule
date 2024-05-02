@@ -1,4 +1,4 @@
-pub fn SelectionSort(mut s: []int): []int {
+fn SelectionSort(mut s: []int): []int {
     let mut i = 0
     for i < s.len; i++ {
         let mut min = i

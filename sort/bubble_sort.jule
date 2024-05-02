@@ -1,4 +1,4 @@
-pub fn BubbleSort(mut s: []int): []int {
+fn BubbleSort(mut s: []int): []int {
     let mut swapped = true
     for swapped {
         swapped = false

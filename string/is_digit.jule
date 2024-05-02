@@ -13,7 +13,7 @@ IsDigit("123 45")
 false
 */
 
-pub fn IsDigit(digit: str): bool {
+fn IsDigit(digit: str): bool {
     let mut state: bool = false
     for _, n in digit {
         if n >= '0' && n <= '9' {

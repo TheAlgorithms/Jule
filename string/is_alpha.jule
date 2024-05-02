@@ -13,7 +13,7 @@ IsAlpha("Foo Bar")
 false
 */
 
-pub fn IsAlpha(s: str): bool {
+fn IsAlpha(s: str): bool {
     let mut state: bool = false
     for _, c in s {
         if c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z' {

@@ -1,4 +1,4 @@
-pub fn LinearSearch(s: []int, i: int): (pos: int) {
+fn LinearSearch(s: []int, i: int): (pos: int) {
     for j, x in s {
         if x == i {
             ret j

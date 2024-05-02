@@ -1,4 +1,4 @@
-pub fn ShellSort(mut s: []int): []int {
+fn ShellSort(mut s: []int): []int {
     let mut d = int(s.len / 2)
     for d > 0; d /= 2 {
         let mut i = d

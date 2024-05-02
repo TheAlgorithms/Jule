@@ -10,7 +10,7 @@ upperCase("Foo 123")
 "FOO 123"
 */
 
-pub fn UpperCase(mut s: str): str {
+fn UpperCase(mut s: str): str {
     for i, c in s {
         if c >= 'a' && c <= 'z' {
             s[i] = 'Z' - ('z' - c)

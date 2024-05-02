@@ -1,4 +1,4 @@
-pub fn Sum(slice: []int): int {
+fn Sum(slice: []int): int {
     let mut total: int = 0
     for _, i in slice {
         total += i

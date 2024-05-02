@@ -13,6 +13,6 @@ Capitalize("12345")
 "12345"
 */
 
-pub fn Capitalize(mut s: str): str {
+fn Capitalize(mut s: str): str {
     ret UpperCase((str)(s[0])) + LowerCase(s[1:])
 }
