@@ -1,132 +1,121 @@
-use std::process::{exit}
+use std::process::{Exit}
 use std::fs::{DirEntry, FsError, OFlag, File, Directory}
 use strings for std::strings
 
-static mut TABLE: str = ""
+static mut Table: str = ""
 
-static IGNORE_PACKAGES: [...]str = [
+static IgnorePackages: [...]str = [
     ".",
     "..",
     ".github",
     ".git",
 ]
 
-fn workflow_failed(message: str) {
-    const FAIL_EXIT_CODE = 1
+fn workflowFailed(message: str) {
+    const FailExitCode = 1
     outln(message)
-    exit(FAIL_EXIT_CODE)
+    Exit(FailExitCode)
 }
 
-fn write(text: str) { TABLE += text }
-fn write_line(text: str) { write(text + "\n") }
+fn write(text: str) { Table += text }
+fn writeLine(text: str) { write(text + "\n") }
 
-fn sort_dirents(mut &dirents: []&DirEntry) {
+fn sortDirents(mut &dirents: []&DirEntry) {
     let mut i = 0
     for i < dirents.len-1; i++ {
         let mut j = 0
         for j < dirents.len-i-1; j++ {
-            if dirents[j+1].name < dirents[j].name {
+            if dirents[j+1].Name < dirents[j].Name {
                 dirents.swap(j, j+1)
             }
         }
     }
 }
 
-fn make_name(mut s: str): str {
+fn makeName(mut s: str): str {
     // Remove all cutset substrings.
-    let cutset_subs = [
+    let cutsetSubs = [
         ".jule",
         ".",
         "/",
         "\\",
     ]
-    for _, subs in cutset_subs {
-        s = strings::replace(s, subs, "", -1)
+    for _, subs in cutsetSubs {
+        s = strings::Replace(s, subs, "", -1)
     }
 
     // Replace all underlines with space.
-    s = strings::replace(s, "_", " ", -1)
+    s = strings::Replace(s, "_", " ", -1)
 
     // Make uppercase first character of all words.
     let mut i = 0
-    let mut wait_space = false
+    let mut waitSpace = false
     for i < s.len; i++ {
         let b = s[i]
-        if wait_space {
+        if waitSpace {
             if b == ' ' {
-                wait_space = false
+                waitSpace = false
             }
             continue
         }
-
         s[i] = 'Z' - ('z' - b)
-
-        wait_space = true
+        waitSpace = true
     }
-
     ret s
 }
 
-fn append_package(package: str) {
-    let mut dirents = Directory.read(package) else {
-        workflow_failed("package did not readed: " + package)
+fn appendPackage(package: str) {
+    let mut dirents = Directory.Read(package) else {
+        workflowFailed("package did not readed: " + package)
         ret // Avoid error.
     }
-
-    let package_table_name = make_name(package)
-
-    write_line("")
-    write_line("")
+    let packageTableName = makeName(package)
+    writeLine("")
+    writeLine("")
     write("## ")
-    write(package_table_name)
-    sort_dirents(dirents)
+    write(packageTableName)
+    sortDirents(dirents)
     for _, dirent in dirents {
         // Ignore sub-diretories.
-        if dirent.stat.is_dir() || strings::has_suffix(dirent.name, "_test.jule") {
+        if dirent.Stat.IsDir() || strings::HasSuffix(dirent.Name, "_test.jule") {
             continue
         }
-
-        let file_table_name = make_name(dirent.name)
-        let file_url = package + "/" + dirent.name
-
-        write_line("")
+        let fileTableName = makeName(dirent.Name)
+        let fileUrl = package + "/" + dirent.Name
+        writeLine("")
         write("  - [")
-        write(file_table_name)
+        write(fileTableName)
         write("](")
-        write(file_url)
+        write(fileUrl)
         write(")")
     }
 }
 
-fn create_directory_md() {
-    const MD_PATH = "./DIRECTORY.md"
-    File.write(MD_PATH, []byte(TABLE), 0o660) else {
-        workflow_failed("a problem occurs when creating " + MD_PATH)
+fn createDirectoryMd() {
+    const MdPath = "./DIRECTORY.md"
+    File.Write(MdPath, []byte(Table), 0o660) else {
+        workflowFailed("a problem occurs when creating " + MdPath)
     }
 }
 
 fn main() {
-    write_line("# Table of Contents")
-
-    let mut dirents = Directory.read(".") else {
-        workflow_failed("directory did not readed")
+    writeLine("# Table of Contents")
+    let mut dirents = Directory.Read(".") else {
+        workflowFailed("directory did not readed")
         ret // Avoid error.
     }
-
-    sort_dirents(dirents)
-
+    sortDirents(dirents)
 dirent:
     for _, d in dirents {
-        for _, ip in IGNORE_PACKAGES {
-            if ip == d.name {
+        for _, ip in IgnorePackages {
+            if ip == d.Name {
                 continue dirent
             }
         }
 
-        if d.stat.is_dir() {
-            append_package(d.name)
+        if d.Stat.IsDir() {
+            appendPackage(d.Name)
         }
     }
-
-    create_directory_md()
+    createDirectoryMd()
 }
