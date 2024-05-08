@@ -1,8 +1,8 @@
 fn SimpleSort(mut s: []int): []int {
     let mut i = 1
-    for i < s.len; i++ {
+    for i < len(s); i++ {
         let mut j = 0
-        for j < s.len-1; j++ {
+        for j < len(s)-1; j++ {
             if s[i] < s[j] {
                 s[i], s[j] = s[j], s[i]
             }

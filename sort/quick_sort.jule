@@ -1,10 +1,10 @@
 fn QuickSort(mut s: []int): []int {
-    if s.len <= 1 {
+    if len(s) <= 1 {
         ret s
     }
 
     let mut i = -1
-    let last = s[s.len-1]
+    let last = s[len(s)-1]
     for j in s {
         if s[j] <= last {
             i++

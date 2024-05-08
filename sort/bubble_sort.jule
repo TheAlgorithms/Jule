@@ -3,7 +3,7 @@ fn BubbleSort(mut s: []int): []int {
     for swapped {
         swapped = false
         let mut i = 0
-        for i < s.len-1; i++ {
+        for i < len(s)-1; i++ {
             if s[i+1] < s[i] {
                 s[i+1], s[i] = s[i], s[i+1]
                 swapped = true

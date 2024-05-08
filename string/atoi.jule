@@ -28,10 +28,10 @@ fn Atoi(s: str): int {
     let mut result = 0
     let mut sign = 1
     let mut i = 0
-    for i < s.len && isSep(s[i]) {
+    for i < len(s) && isSep(s[i]) {
         i++
     }
-    if i < s.len {
+    if i < len(s) {
         match s[i] {
         | '-':
             sign = -1
@@ -40,7 +40,7 @@ fn Atoi(s: str): int {
             i++
         }
     }
-    for i < s.len && isNbr(s[i]) {
+    for i < len(s) && isNbr(s[i]) {
         result *= 10
         result += int(s[i] - '0')
         i++

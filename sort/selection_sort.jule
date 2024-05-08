@@ -1,9 +1,9 @@
 fn SelectionSort(mut s: []int): []int {
     let mut i = 0
-    for i < s.len; i++ {
+    for i < len(s); i++ {
         let mut min = i
         let mut j = i + 1
-        for j < s.len; j++ {
+        for j < len(s); j++ {
             if s[j] < s[min] {
                 min = j
             }

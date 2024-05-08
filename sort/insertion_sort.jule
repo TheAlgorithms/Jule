@@ -1,6 +1,6 @@
 fn InsertionSort(mut s: []int): []int {
     let mut currentIndex = 1
-    for currentIndex < s.len; currentIndex++ {
+    for currentIndex < len(s); currentIndex++ {
         let temporary = s[currentIndex]
         let mut iterator = currentIndex
         for iterator > 0 && s[iterator-1] > temporary; iterator-- {

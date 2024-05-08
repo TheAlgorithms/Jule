@@ -1,5 +1,5 @@
 fn Min(values: ...int): int {
-    if values.len == 0 {
+    if len(values) == 0 {
         ret 0
     }
     let mut min = values[0]

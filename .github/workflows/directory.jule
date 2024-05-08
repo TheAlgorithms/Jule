@@ -22,9 +22,9 @@ fn writeLine(text: str) { write(text + "\n") }
 
 fn sortDirents(mut &dirents: []&DirEntry) {
     let mut i = 0
-    for i < dirents.len-1; i++ {
+    for i < len(dirents)-1; i++ {
         let mut j = 0
-        for j < dirents.len-i-1; j++ {
+        for j < len(dirents)-i-1; j++ {
             if dirents[j+1].Name < dirents[j].Name {
                 dirents.swap(j, j+1)
             }
@@ -50,7 +50,7 @@ fn makeName(mut s: str): str {
     // Make uppercase first character of all words.
     let mut i = 0
     let mut waitSpace = false
-    for i < s.len; i++ {
+    for i < len(s); i++ {
         let b = s[i]
         if waitSpace {
             if b == ' ' {
