@@ -1,9 +1,10 @@
 #build test
 
 use std::testing::{T}
+use slices for std::slices
 
 #test
 fn testFib(t: &T) {
     t.Assert(Fib(6) == 8, "index 6 of fib. should be 8")
-    t.Assert(FibSeq(6) == [1, 1, 2, 3, 5, 8], "a fib. sequence up to index 6 should be 1, 1, 2, 3, 5, 8")
+    t.Assert(slices::Equal(FibSeq(6), [1, 1, 2, 3, 5, 8]), "a fib. sequence up to index 6 should be 1, 1, 2, 3, 5, 8")
 }
