@@ -11,10 +11,11 @@ LowerCase("Foo 123")
 */
 
 fn LowerCase(mut s: str): str {
-    for i, c in s {
+    let mut b = []byte(s)
+    for i, c in b {
         if c >= 'A' && c <= 'Z' {
-            s[i] = 'z' - ('Z' - c)
+            b[i] = 'z' - ('Z' - c)
         }
     }
-    ret s
+    ret str(b)
 }

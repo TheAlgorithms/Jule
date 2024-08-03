@@ -8,9 +8,10 @@ Reverse("FooBar")
 */
 
 fn Reverse(mut s: str): str {
+    let mut b = []byte(s)
     let mut i = 0
     for i < len(s)/2; i++ {
-        s[i], s[len(s)-i-1] = s[len(s)-i-1], s[i]
+        b.swap(i, len(b)-i-1)
     }
-    ret s
+    ret str(b)
 }

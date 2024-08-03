@@ -11,10 +11,11 @@ upperCase("Foo 123")
 */
 
 fn UpperCase(mut s: str): str {
-    for i, c in s {
+    let mut b = []byte(s)
+    for i, c in b {
         if c >= 'a' && c <= 'z' {
-            s[i] = 'Z' - ('z' - c)
+            b[i] = 'Z' - ('z' - c)
         }
     }
-    ret s
+    ret str(b)
 }
