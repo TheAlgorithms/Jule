@@ -50,18 +50,19 @@ fn makeName(mut s: str): str {
     // Make uppercase first character of all words.
     let mut i = 0
     let mut waitSpace = false
-    for i < len(s); i++ {
-        let b = s[i]
+    let mut sb = []byte(s)
+    for i < len(sb); i++ {
+        let b = sb[i]
         if waitSpace {
             if b == ' ' {
                 waitSpace = false
             }
             continue
         }
-        s[i] = 'Z' - ('z' - b)
+        sb[i] = 'Z' - ('z' - b)
         waitSpace = true
     }
-    ret s
+    ret str(sb)
 }
 
 fn appendPackage(package: str) {
