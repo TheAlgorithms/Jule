@@ -11,7 +11,7 @@ fn Reverse(mut s: str): str {
     let mut b = []byte(s)
     let mut i = 0
     for i < len(s)/2; i++ {
-        b.swap(i, len(b)-i-1)
+        b[i], b[len(b)-i-1] = b[len(b)-i-1], b[i]
     }
     ret str(b)
 }

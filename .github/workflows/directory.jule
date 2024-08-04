@@ -26,7 +26,7 @@ fn sortDirents(mut &dirents: []&DirEntry) {
         let mut j = 0
         for j < len(dirents)-i-1; j++ {
             if dirents[j+1].Name < dirents[j].Name {
-                dirents.swap(j, j+1)
+                dirents[j], dirents[j+1] = dirents[j+1], dirents[j]
             }
         }
     }
