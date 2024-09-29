@@ -1,8 +1,8 @@
 #build test
 
-use std::testing::{T}
+use testing for std::testing
 
 #test
-fn testFact(t: &T) {
+fn testFact(t: &testing::T) {
     t.Assert(Fact(10) == 3628800, "10 fact should equal to 3628800")
 }

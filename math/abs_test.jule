@@ -1,9 +1,9 @@
 #build test
 
-use std::testing::{T}
+use testing for std::testing
 
 #test
-fn testAbs(t: &T) {
+fn testAbs(t: &testing::T) {
     t.Assert(Abs(-12.2) == 12.2, "-12.2 should equal to 12.2")
     t.Assert(Abs(-12) == 12, "-12 should equal to 12")
     t.Assert(Abs(-0.35) == 0.35, "-0.35 should equal to 0.35")

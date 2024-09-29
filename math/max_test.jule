@@ -1,8 +1,8 @@
 #build test
 
-use std::testing::{T}
+use testing for std::testing
 
 #test
-fn testMax(t: &T) {
+fn testMax(t: &testing::T) {
     t.Assert(Max(0, -9024, 1, 894, -34) == 894, "max value should be 894")
 }

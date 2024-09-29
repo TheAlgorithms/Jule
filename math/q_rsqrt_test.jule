@@ -1,6 +1,6 @@
 #build test
 
-use std::testing::{T}
+use testing for std::testing
 
 static casesQRsqrt: [][]f64 = [
     [90, 0.10530667845276515],
@@ -10,7 +10,7 @@ static casesQRsqrt: [][]f64 = [
 ]
 
 #test
-fn testQRsqrt(t: &T) {
+fn testQRsqrt(t: &testing::T) {
     for _, c in casesQRsqrt {
         if QRsqrt(c[0]) != c[1] {
             t.Errorf("q_rsqrt({}) should be {}", c[0], c[1])
