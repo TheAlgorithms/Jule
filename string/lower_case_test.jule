@@ -1,8 +1,8 @@
 #build test
 
-use std::testing::{T}
+use testing for std::testing
 
 #test
-fn testLowerCase(t: &T) {
+fn testLowerCase(t: &testing::T) {
     t.Assert(LowerCase("FOo") == "foo", "FOo should return foo")
 }
