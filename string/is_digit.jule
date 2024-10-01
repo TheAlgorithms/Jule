@@ -14,14 +14,14 @@ false
 */
 
 fn IsDigit(digit: str): bool {
-    let mut state: bool = false
-    for _, n in digit {
-        if n >= '0' && n <= '9' {
-            state = true
-        } else {
-            state = false
-            break
-        }
-    }
-    ret state
+	let mut state: bool = false
+	for _, n in digit {
+		if n >= '0' && n <= '9' {
+			state = true
+		} else {
+			state = false
+			break
+		}
+	}
+	ret state
 }

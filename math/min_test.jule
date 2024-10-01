@@ -1,8 +1,8 @@
 #build test
 
-use testing for std::testing
+use "std/testing"
 
 #test
 fn testMin(t: &testing::T) {
-    t.Assert(Min(0, -9024, 1, 894, -34) == -9024, "min value should be -9024")
+	t.Assert(Min(0, -9024, 1, 894, -34) == -9024, "min value should be -9024")
 }

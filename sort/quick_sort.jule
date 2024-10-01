@@ -1,19 +1,19 @@
 fn QuickSort(mut s: []int): []int {
-    if len(s) <= 1 {
-        ret s
-    }
+	if len(s) <= 1 {
+		ret s
+	}
 
-    let mut i = -1
-    let last = s[len(s)-1]
-    for j in s {
-        if s[j] <= last {
-            i++
-            s[i], s[j] = s[j], s[i]
-        }
-    }
+	let mut i = -1
+	let last = s[len(s)-1]
+	for j in s {
+		if s[j] <= last {
+			i++
+			s[i], s[j] = s[j], s[i]
+		}
+	}
 
-    QuickSort(s[:i])
-    QuickSort(s[i+1:])
+	QuickSort(s[:i])
+	QuickSort(s[i+1:])
 
-    ret s
+	ret s
 }

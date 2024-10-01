@@ -1,8 +1,8 @@
 fn LinearSearch(s: []int, i: int): (pos: int) {
-    for j, x in s {
-        if x == i {
-            ret j
-        }
-    }
-    ret -1
+	for j, x in s {
+		if x == i {
+			ret j
+		}
+	}
+	ret -1
 }

@@ -1,8 +1,8 @@
 #build test
 
-use testing for std::testing
+use "std/testing"
 
 #test
 fn testUpperCase(t: &testing::T) {
-    t.Assert(UpperCase("foO") == "FOO", "foO should return FOO")
+	t.Assert(UpperCase("foO") == "FOO", "foO should return FOO")
 }

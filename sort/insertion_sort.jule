@@ -1,12 +1,12 @@
 fn InsertionSort(mut s: []int): []int {
-    let mut currentIndex = 1
-    for currentIndex < len(s); currentIndex++ {
-        let temporary = s[currentIndex]
-        let mut iterator = currentIndex
-        for iterator > 0 && s[iterator-1] > temporary; iterator-- {
-            s[iterator] = s[iterator-1]
-        }
-        s[iterator] = temporary
-    }
-    ret s
+	let mut currentIndex = 1
+	for currentIndex < len(s); currentIndex++ {
+		let temporary = s[currentIndex]
+		let mut iterator = currentIndex
+		for iterator > 0 && s[iterator-1] > temporary; iterator-- {
+			s[iterator] = s[iterator-1]
+		}
+		s[iterator] = temporary
+	}
+	ret s
 }

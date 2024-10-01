@@ -1,11 +1,11 @@
 #build test
 
-use testing for std::testing
+use "std/testing"
 
 #test
 fn testLinearSearch(t: &testing::T) {
-    let s = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
+	let s = [9, 35, -0, 0, 98, 8935, -85, -9835, 64, 89]
 
-    t.Assert(LinearSearch(s, 90) == -1, "90 should return -1")
-    t.Assert(LinearSearch(s, -85) == 6, "-85 should return 6")
+	t.Assert(LinearSearch(s, 90) == -1, "90 should return -1")
+	t.Assert(LinearSearch(s, -85) == 6, "-85 should return 6")
 }

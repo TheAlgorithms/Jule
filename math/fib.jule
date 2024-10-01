@@ -1,18 +1,18 @@
 // O(2^n)
 fn Fib(i: int): int {
-    if i == 0 || i == 1 {
-        ret i
-    }
-    ret Fib(i - 1) + Fib(i - 2)
+	if i == 0 || i == 1 {
+		ret i
+	}
+	ret Fib(i-1) + Fib(i-2)
 }
 
 // O(n * 2^n)
 fn FibSeq(mut n: int): []int {
-    let mut s: []int
-    let mut i = n
-    for i > 0 {
-        s = append(s, Fib(n - i + 1))
-        i--
-    }
-    ret s
+	let mut s: []int
+	let mut i = n
+	for i > 0 {
+		s = append(s, Fib(n-i+1))
+		i--
+	}
+	ret s
 }

@@ -1,8 +1,8 @@
 #build test
 
-use testing for std::testing
+use "std/testing"
 
 #test
 fn testSum(t: &testing::T) {
-    t.Assert(Sum([-9, 0, 1, 99, 54, 12]) == 157, "sum should return 157")
+	t.Assert(Sum([-9, 0, 1, 99, 54, 12]) == 157, "sum should return 157")
 }

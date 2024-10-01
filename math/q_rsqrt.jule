@@ -1,14 +1,14 @@
-use math for std::math
+use "std/math"
 
 // Fast inverse square root.
 // See: https://en.wikipedia.org/wiki/Fast_inverse_square_root
 fn QRsqrt(mut f: f64): f64 {
-    const ThreeHalfs = 1.5
-    const Magic = 0x5FE6EB50C7B537A9
+	const ThreeHalfs = 1.5
+	const Magic = 0x5FE6EB50C7B537A9
 
-    let n2 = f * 0.5
-    let b = Magic - (math::F64Bits(f) >> 1)
-    f = math::F64FromBits(b)
-    f *= ThreeHalfs - (n2 * f * f)
-    ret f
+	let n2 = f * 0.5
+	let b = Magic - (math::F64Bits(f) >> 1)
+	f = math::F64FromBits(b)
+	f *= ThreeHalfs - (n2 * f * f)
+	ret f
 }

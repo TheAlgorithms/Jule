@@ -17,33 +17,33 @@ Atoi("+-54")
 */
 
 fn isSep(b: byte): bool {
-    ret b == 32 || (b >= 9 && b <= 13)
+	ret b == 32 || (b >= 9 && b <= 13)
 }
 
 fn isNbr(b: byte): bool {
-    ret b >= '0' && b <= '9'
+	ret b >= '0' && b <= '9'
 }
 
 fn Atoi(s: str): int {
-    let mut result = 0
-    let mut sign = 1
-    let mut i = 0
-    for i < len(s) && isSep(s[i]) {
-        i++
-    }
-    if i < len(s) {
-        match s[i] {
-        | '-':
-            sign = -1
-            fall
-        | '+':
-            i++
-        }
-    }
-    for i < len(s) && isNbr(s[i]) {
-        result *= 10
-        result += int(s[i] - '0')
-        i++
-    }
-    ret result * sign
+	let mut result = 0
+	let mut sign = 1
+	let mut i = 0
+	for i < len(s) && isSep(s[i]) {
+		i++
+	}
+	if i < len(s) {
+		match s[i] {
+		| '-':
+			sign = -1
+			fall
+		| '+':
+			i++
+		}
+	}
+	for i < len(s) && isNbr(s[i]) {
+		result *= 10
+		result += int(s[i] - '0')
+		i++
+	}
+	ret result * sign
 }

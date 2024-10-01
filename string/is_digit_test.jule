@@ -1,9 +1,9 @@
 #build test
 
-use testing for std::testing
+use "std/testing"
 
 #test
 fn testIsDigit(t: &testing::T) {
-    t.Assert(IsDigit("12345") == true, "12345 should return true")
-    t.Assert(IsDigit("foo") == false, "foo should return false")
+	t.Assert(IsDigit("12345") == true, "12345 should return true")
+	t.Assert(IsDigit("foo") == false, "foo should return false")
 }

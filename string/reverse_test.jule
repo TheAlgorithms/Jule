@@ -1,8 +1,8 @@
 #build test
 
-use testing for std::testing
+use "std/testing"
 
 #test
 fn testReverse(t: &testing::T) {
-    t.Assert(Reverse("FooBar") == "raBooF", "FooBar should return raBooF")
+	t.Assert(Reverse("FooBar") == "raBooF", "FooBar should return raBooF")
 }

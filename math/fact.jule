@@ -1,6 +1,6 @@
 fn Fact(n: f64): f64 {
-    if n == 0 {
-        ret 1
-    }
-    ret n * Fact(n - 1)
+	if n == 0 {
+		ret 1
+	}
+	ret n * Fact(n-1)
 }

@@ -1,14 +1,14 @@
-use sort
+use "sort"
 
 fn Median(mut slice: []int): f64 {
-    slice = sort::QuickSort(slice)
-    let l = len(slice)
-    match {
-    | l == 0:
-        ret 0
-    | l%2 == 0:
-        ret f64(slice[l/2-1] + slice[l/2]) / 2
-    |:
-        ret f64(slice[l/2])
-    }
+	slice = sort::QuickSort(slice)
+	let l = len(slice)
+	match {
+	| l == 0:
+		ret 0
+	| l%2 == 0:
+		ret f64(slice[l/2-1]+slice[l/2]) / 2
+	|:
+		ret f64(slice[l/2])
+	}
 }
