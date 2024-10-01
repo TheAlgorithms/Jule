@@ -1,122 +1,122 @@
-use process for std::process
-use fs for std::fs
-use strings for std::strings
+use "std/fs"
+use "std/process"
+use "std/strings"
 
 static mut Table: str = ""
 
 static IgnorePackages: [...]str = [
-    ".",
-    "..",
-    ".github",
-    ".git",
+	".",
+	"..",
+	".github",
+	".git",
 ]
 
 fn workflowFailed(message: str) {
-    const FailExitCode = 1
-    outln(message)
-    process::Exit(FailExitCode)
+	const FailExitCode = 1
+	println(message)
+	process::Exit(FailExitCode)
 }
 
 fn write(text: str) { Table += text }
 fn writeLine(text: str) { write(text + "\n") }
 
 fn sortDirents(mut &dirents: []&fs::DirEntry) {
-    let mut i = 0
-    for i < len(dirents)-1; i++ {
-        let mut j = 0
-        for j < len(dirents)-i-1; j++ {
-            if dirents[j+1].Name < dirents[j].Name {
-                dirents[j], dirents[j+1] = dirents[j+1], dirents[j]
-            }
-        }
-    }
+	let mut i = 0
+	for i < len(dirents)-1; i++ {
+		let mut j = 0
+		for j < len(dirents)-i-1; j++ {
+			if dirents[j+1].Name < dirents[j].Name {
+				dirents[j], dirents[j+1] = dirents[j+1], dirents[j]
+			}
+		}
+	}
 }
 
 fn makeName(mut s: str): str {
-    // Remove all cutset substrings.
-    let cutsetSubs = [
-        ".jule",
-        ".",
-        "/",
-        "\\",
-    ]
-    for _, subs in cutsetSubs {
-        s = strings::Replace(s, subs, "", -1)
-    }
+	// Remove all cutset substrings.
+	let cutsetSubs = [
+		".jule",
+		".",
+		"/",
+		"\\",
+	]
+	for _, subs in cutsetSubs {
+		s = strings::Replace(s, subs, "", -1)
+	}
 
-    // Replace all underlines with space.
-    s = strings::Replace(s, "_", " ", -1)
+	// Replace all underlines with space.
+	s = strings::Replace(s, "_", " ", -1)
 
-    // Make uppercase first character of all words.
-    let mut i = 0
-    let mut waitSpace = false
-    let mut sb = []byte(s)
-    for i < len(sb); i++ {
-        let b = sb[i]
-        if waitSpace {
-            if b == ' ' {
-                waitSpace = false
-            }
-            continue
-        }
-        sb[i] = 'Z' - ('z' - b)
-        waitSpace = true
-    }
-    ret str(sb)
+	// Make uppercase first character of all words.
+	let mut i = 0
+	let mut waitSpace = false
+	let mut sb = []byte(s)
+	for i < len(sb); i++ {
+		let b = sb[i]
+		if waitSpace {
+			if b == ' ' {
+				waitSpace = false
+			}
+			continue
+		}
+		sb[i] = 'Z' - ('z' - b)
+		waitSpace = true
+	}
+	ret str(sb)
 }
 
 fn appendPackage(package: str) {
-    let mut dirents = fs::Directory.Read(package) else {
-        workflowFailed("package did not readed: " + package)
-        ret // Avoid error.
-    }
-    let packageTableName = makeName(package)
-    writeLine("")
-    writeLine("")
-    write("## ")
-    write(packageTableName)
-    sortDirents(dirents)
-    for _, dirent in dirents {
-        // Ignore sub-diretories.
-        if dirent.Stat.IsDir() || strings::HasSuffix(dirent.Name, "_test.jule") {
-            continue
-        }
-        let fileTableName = makeName(dirent.Name)
-        let fileUrl = package + "/" + dirent.Name
-        writeLine("")
-        write("  - [")
-        write(fileTableName)
-        write("](")
-        write(fileUrl)
-        write(")")
-    }
+	let mut dirents = fs::Directory.Read(package) else {
+		workflowFailed("package did not readed: " + package)
+		ret // Avoid error.
+	}
+	let packageTableName = makeName(package)
+	writeLine("")
+	writeLine("")
+	write("## ")
+	write(packageTableName)
+	sortDirents(dirents)
+	for _, dirent in dirents {
+		// Ignore sub-diretories.
+		if dirent.Stat.IsDir() || strings::HasSuffix(dirent.Name, "_test.jule") {
+			continue
+		}
+		let fileTableName = makeName(dirent.Name)
+		let fileUrl = package + "/" + dirent.Name
+		writeLine("")
+		write("  - [")
+		write(fileTableName)
+		write("](")
+		write(fileUrl)
+		write(")")
+	}
 }
 
 fn createDirectoryMd() {
-    const MdPath = "./DIRECTORY.md"
-    fs::File.Write(MdPath, []byte(Table), 0o660) else {
-        workflowFailed("a problem occurs when creating " + MdPath)
-    }
+	const MdPath = "./DIRECTORY.md"
+	fs::File.Write(MdPath, []byte(Table), 0o660) else {
+		workflowFailed("a problem occurs when creating " + MdPath)
+	}
 }
 
 fn main() {
-    writeLine("# Table of Contents")
-    let mut dirents = fs::Directory.Read(".") else {
-        workflowFailed("directory did not readed")
-        ret // Avoid error.
-    }
-    sortDirents(dirents)
+	writeLine("# Table of Contents")
+	let mut dirents = fs::Directory.Read(".") else {
+		workflowFailed("directory did not readed")
+		ret // Avoid error.
+	}
+	sortDirents(dirents)
 dirent:
-    for _, d in dirents {
-        for _, ip in IgnorePackages {
-            if ip == d.Name {
-                continue dirent
-            }
-        }
+	for _, d in dirents {
+		for _, ip in IgnorePackages {
+			if ip == d.Name {
+				continue dirent
+			}
+		}
 
-        if d.Stat.IsDir() {
-            appendPackage(d.Name)
-        }
-    }
-    createDirectoryMd()
+		if d.Stat.IsDir() {
+			appendPackage(d.Name)
+		}
+	}
+	createDirectoryMd()
 }
