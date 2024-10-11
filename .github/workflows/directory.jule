@@ -1,5 +1,4 @@
-use "std/fs"
-use "std/process"
+use "std/os"
 use "std/strings"
 
 static mut Table: str = ""
@@ -14,13 +13,13 @@ static IgnorePackages: [...]str = [
 fn workflowFailed(message: str) {
 	const FailExitCode = 1
 	println(message)
-	process::Exit(FailExitCode)
+	os::Exit(FailExitCode)
 }
 
 fn write(text: str) { Table += text }
 fn writeLine(text: str) { write(text + "\n") }
 
-fn sortDirents(mut &dirents: []&fs::DirEntry) {
+fn sortDirents(mut &dirents: []os::Dir) {
 	let mut i = 0
 	for i < len(dirents)-1; i++ {
 		let mut j = 0
@@ -66,7 +65,7 @@ fn makeName(mut s: str): str {
 }
 
 fn appendPackage(package: str) {
-	let mut dirents = fs::Directory.Read(package) else {
+	let mut dirents = os::Dir.Read(package) else {
 		workflowFailed("package did not readed: " + package)
 		ret // Avoid error.
 	}
@@ -94,14 +93,14 @@ fn appendPackage(package: str) {
 
 fn createDirectoryMd() {
 	const MdPath = "./DIRECTORY.md"
-	fs::File.Write(MdPath, []byte(Table), 0o660) else {
+	os::File.Write(MdPath, []byte(Table), 0o660) else {
 		workflowFailed("a problem occurs when creating " + MdPath)
 	}
 }
 
 fn main() {
 	writeLine("# Table of Contents")
-	let mut dirents = fs::Directory.Read(".") else {
+	let mut dirents = os::Dir.Read(".") else {
 		workflowFailed("directory did not readed")
 		ret // Avoid error.
 	}
