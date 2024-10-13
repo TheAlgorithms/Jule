@@ -1,0 +1,71 @@
+#build test
+
+use "std/testing"
+
+struct subsequenceTest {
+	name:     str
+	s:        str
+	t:        str
+	expected: bool
+}
+
+static subsequenceTests: []subsequenceTest = [
+	{
+		"Valid case 1 ",
+		"ace",
+		"abcde",
+		true,
+	},
+	{
+		"Invalid case 1",
+		"aec",
+		"abcde",
+		false,
+	},
+	{
+		"Empty strings",
+		"",
+		"",
+		true,
+	},
+	{
+		"s is more then t",
+		"aeccccc",
+		"abcde",
+		false,
+	},
+	{
+		"s is empty",
+		"",
+		"abcde",
+		true,
+	},
+	{
+		"Equal strings",
+		"aec",
+		"aec",
+		true,
+	},
+	{
+		"Valid case 2",
+		"pyr",
+		"wpxqyrz",
+		true,
+	},
+	{
+		"Invalid case 2",
+		"prx",
+		"wpxqyrz",
+		false,
+	},
+]
+
+#test
+fn testIsSubsequence(t: &testing::T) {
+	for _, test in subsequenceTests {
+		funcResult := IsSubsequence(test.s, test.t)
+		if test.expected != funcResult {
+			t.Errorf("expected: {}, got {}", test.expected, funcResult)
+		}
+	}
+}

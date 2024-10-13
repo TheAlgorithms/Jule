@@ -1,0 +1,33 @@
+// Checks if a given string is a subsequence of another string.
+// A subsequence of a given string is a string that can be derived from the given
+// string by deleting some or no characters without changing the order of the
+// remaining characters. (i.e., "dpr" is a subsequence of "depqr" while "drp" is not).
+// Author: sanjibgirics
+
+// Returns true if s is subsequence of t, otherwise return false.
+fn IsSubsequence(s: str, t: str): bool {
+	if len(s) > len(t) {
+		ret false
+	}
+
+	if s == t {
+		ret true
+	}
+
+	if len(s) == 0 {
+		ret true
+	}
+
+	mut sIndex := 0
+	mut tIndex := 0
+	for tIndex < len(t); tIndex++ {
+		if s[sIndex] == t[tIndex] {
+			sIndex++
+		}
+		if sIndex == len(s) {
+			ret true
+		}
+	}
+
+	ret false
+}

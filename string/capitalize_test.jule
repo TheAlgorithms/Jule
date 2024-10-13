@@ -1,8 +1,0 @@
-#build test
-
-use "std/testing"
-
-#test
-fn testCapitalize(t: &testing::T) {
-	t.Assert(Capitalize("foo BAR") == "Foo bar", "capizalized \"foo BAR\" should be \"Foo bar\"")
-}

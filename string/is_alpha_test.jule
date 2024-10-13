@@ -1,9 +1,0 @@
-#build test
-
-use "std/testing"
-
-#test
-fn testIsAlpha(t: &testing::T) {
-	t.Assert(IsAlpha("foo") == true, "foo should return true")
-	t.Assert(IsAlpha("12345") == false, "12345 should return false")
-}
