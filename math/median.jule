@@ -1,7 +1,7 @@
 use "sort"
 
 fn Median(mut slice: []int): f64 {
-	slice = sort::QuickSort(slice)
+	slice = sort::Quicksort(slice)
 	let l = len(slice)
 	match {
 	| l == 0:
