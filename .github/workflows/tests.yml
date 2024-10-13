@@ -37,9 +37,9 @@ jobs:
           chmod +x test
           ./test
 
-      - name: Test - string
+      - name: Test - strings
         run: |
-          julec test -o test string
+          julec test -o test strings
           git update-index --add --chmod=-x test
           chmod +x test
           ./test
