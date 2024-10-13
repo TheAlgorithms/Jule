@@ -1,7 +1,15 @@
 use "std/os"
+use "std/os/filepath"
+use "std/slices"
 use "std/strings"
 
-static mut Table: str = ""
+// Buffer for the table.
+static mut Table = strings::Builder.New(1 << 8)
+
+// Path strings should be formatted by markdown URLs.
+static IgnorePaths: [...]str = [
+	"search/error.jule",
+]
 
 static IgnorePackages: [...]str = [
 	".",
@@ -16,19 +24,25 @@ fn workflowFailed(message: str) {
 	os::Exit(FailExitCode)
 }
 
-fn write(text: str) { Table += text }
-fn writeLine(text: str) { write(text + "\n") }
+fn write(text: str) { Table.WriteStr(text)! }
 
+fn writeLine(text: str) {
+	Table.WriteStr(text)!
+	Table.WriteByte('\n')!
+}
+
+// Subdirectories comes first and ordered by the strings::Compare function.
+// Implementation files comes after subdirectories and ordered by the strings::Compare function.
 fn sortDirents(mut &dirents: []os::Dir) {
-	let mut i = 0
-	for i < len(dirents)-1; i++ {
-		let mut j = 0
-		for j < len(dirents)-i-1; j++ {
-			if dirents[j+1].Name < dirents[j].Name {
-				dirents[j], dirents[j+1] = dirents[j+1], dirents[j]
-			}
+	slices::SortFunc(dirents, fn(a: os::Dir, b: os::Dir): int {
+		if a.Stat.IsDir() && !b.Stat.IsDir() {
+			ret -1
 		}
-	}
+		if !a.Stat.IsDir() && b.Stat.IsDir() {
+			ret +1
+		}
+		ret strings::Compare(a.Name, b.Name)
+	})
 }
 
 fn makeName(mut s: str): str {
@@ -64,37 +78,64 @@ fn makeName(mut s: str): str {
 	ret str(sb)
 }
 
-fn appendPackage(package: str) {
-	let mut dirents = os::Dir.Read(package) else {
-		workflowFailed("package did not readed: " + package)
-		ret // Avoid error.
-	}
-	let packageTableName = makeName(package)
-	writeLine("")
-	writeLine("")
-	write("## ")
-	write(packageTableName)
-	sortDirents(dirents)
-	for _, dirent in dirents {
-		// Ignore sub-diretories.
-		if dirent.Stat.IsDir() || strings::HasSuffix(dirent.Name, "_test.jule") {
-			continue
+fn isIgnorePackage(path: str): bool {
+	for _, ip in IgnorePackages {
+		if ip == path {
+			ret true
 		}
-		let fileTableName = makeName(dirent.Name)
-		let fileUrl = package + "/" + dirent.Name
-		writeLine("")
-		write("  - [")
-		write(fileTableName)
-		write("](")
-		write(fileUrl)
-		write(")")
 	}
+	ret false
+}
+
+fn isIgnorePath(path: str): bool {
+	for _, ip in IgnorePaths {
+		if ip == path {
+			ret true
+		}
+	}
+	ret false
 }
 
 fn createDirectoryMd() {
 	const MdPath = "./DIRECTORY.md"
-	os::File.Write(MdPath, []byte(Table), 0o660) else {
+	os::File.Write(MdPath, unsafe { Table.Buf() }, 0o660) else {
 		workflowFailed("a problem occurs when creating " + MdPath)
+	}
+}
+
+fn walkPackage(package: str, path: str, indent: int) {
+	let mut dirents = os::Dir.Read(path) else {
+		workflowFailed("directory did not readed")
+		ret // Avoid error.
+	}
+	sortDirents(dirents)
+	for _, d in dirents {
+		if isIgnorePackage(d.Name) {
+			continue
+		}
+		if strings::HasSuffix(d.Name, "_test.jule") {
+			// ignore test files
+			continue
+		}
+
+		// add file or directory as table entry
+		url := path + "/" + d.Name
+		tableName := makeName(d.Name)
+		if isIgnorePath(url) {
+			continue
+		}
+
+		write(strings::Repeat("  ", indent))
+		write("- [")
+		write(tableName)
+		write("](")
+		write(url)
+		writeLine(")")
+
+		if d.Stat.IsDir() {
+			// append entries of subdirectory
+			walkPackage(package, filepath::Join(path, d.Name), indent+1)
+		}
 	}
 }
 
@@ -105,16 +146,15 @@ fn main() {
 		ret // Avoid error.
 	}
 	sortDirents(dirents)
-dirent:
 	for _, d in dirents {
-		for _, ip in IgnorePackages {
-			if ip == d.Name {
-				continue dirent
-			}
+		if isIgnorePackage(d.Name) {
+			continue
 		}
-
 		if d.Stat.IsDir() {
-			appendPackage(d.Name)
+			let packageTableName = makeName(d.Name)
+			write("\n## ")
+			writeLine(packageTableName)
+			walkPackage(d.Name, filepath::Join(".", d.Name), 0)
 		}
 	}
 	createDirectoryMd()
