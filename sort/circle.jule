@@ -3,7 +3,8 @@ fn Circle[T: ordered](mut arr: []T): []T {
 	if len(arr) == 0 {
 		ret arr
 	}
-	for doSort(arr, 0, len(arr)-1) {}
+	for doSort(arr, 0, len(arr)-1) {
+	}
 	ret arr
 }
 

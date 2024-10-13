@@ -27,17 +27,14 @@ fn Interpolation(sortedData: []int, guess: int)!: int {
 				mid--
 			}
 			ret mid
-
 		}
 
 		// adjust our guess and continue
 		if sortedData[mid] > guess {
-			high, highVal = mid-1, sortedData[high]
-
+			high, highVal = mid - 1, sortedData[high]
 		} else {
-			low, lowVal = mid+1, sortedData[low]
+			low, lowVal = mid + 1, sortedData[low]
 		}
-
 	}
 
 	if guess == lowVal {

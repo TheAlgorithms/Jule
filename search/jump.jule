@@ -48,5 +48,4 @@ fn Jump(array: []int, target: int)!: int {
 	}
 
 	error(Error.NotFound)
-
 }

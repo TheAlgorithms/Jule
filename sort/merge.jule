@@ -1,5 +1,4 @@
 fn merge[T: ordered](a: []T, b: []T): []T {
-
 	mut r := make([]T, len(a)+len(b))
 	mut i := 0
 	mut j := 0
