@@ -1,0 +1,54 @@
+import std;
+
+fn insertionSort(bucket []f32) []f32 {
+    for i := 1; i < len(bucket); i++ {
+        key := bucket[i];
+        j := i - 1;
+        for j >= 0 && bucket[j] > key {
+            bucket[j + 1] = bucket[j];
+            j--;
+        }
+        bucket[j + 1] = key;
+    }
+    return bucket;
+}
+
+fn bucketSort(arr []f32) []f32 {
+    n := len(arr);
+
+    // Create n empty buckets
+    b := make([][]f32, n);
+
+    // Put array elements in different buckets
+    for i := 0; i < n; i++ {
+        bi := int(n * arr[i]);
+        b[bi] = append(b[bi], arr[i]);
+    }
+
+    // Sort individual buckets using insertion sort
+    for i := 0; i < n; i++ {
+        if len(b[i]) > 0 {
+            b[i] = insertionSort(b[i]);
+        }
+    }
+
+    // Concatenate all buckets into arr
+    index := 0;
+    for i := 0; i < n; i++ {
+        for j := 0; j < len(b[i]); j++ {
+            arr[index] = b[i][j];
+            index++;
+        }
+    }
+    return arr;
+}
+
+fn main() {
+    mut arr := []f32{0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434};
+    arr = bucketSort(arr);
+
+    std.io.println("Sorted array is:");
+    for i := 0; i < len(arr); i++ {
+        std.io.print(arr[i].str() + " ");
+    }
+}
