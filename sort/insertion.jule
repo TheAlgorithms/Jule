@@ -1,0 +1,12 @@
+fn Insertion[T: ordered](mut arr: []T): []T {
+	mut currentIndex := 1
+	for currentIndex < len(arr); currentIndex++ {
+		mut temporary := arr[currentIndex]
+		mut iterator := currentIndex
+		for iterator > 0 && arr[iterator-1] > temporary; iterator-- {
+			arr[iterator] = arr[iterator-1]
+		}
+		arr[iterator] = temporary
+	}
+	ret arr
+}

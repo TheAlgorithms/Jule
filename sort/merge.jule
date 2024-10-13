@@ -1,0 +1,38 @@
+fn merge[T: ordered](a: []T, b: []T): []T {
+
+	mut r := make([]T, len(a)+len(b))
+	mut i := 0
+	mut j := 0
+
+	for i < len(a) && j < len(b) {
+		if a[i] <= b[j] {
+			r[i+j] = a[i]
+			i++
+		} else {
+			r[i+j] = b[j]
+			j++
+		}
+	}
+
+	for i < len(a) {
+		r[i+j] = a[i]
+		i++
+	}
+	for j < len(b) {
+		r[i+j] = b[j]
+		j++
+	}
+
+	ret r
+}
+
+// Perform merge sort on a slice
+fn Merge[T: ordered](mut items: []T): []T {
+	if len(items) < 2 {
+		ret items
+	}
+	middle := len(items) / 2
+	mut a := Merge(items[:middle])
+	mut b := Merge(items[middle:])
+	ret merge(a, b)
+}

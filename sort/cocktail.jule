@@ -1,0 +1,52 @@
+// Implementation of Cocktail sorting
+// reference: https://en.wikipedia.org/wiki/Cocktail_shaker_sort
+
+// Sort is a variation of bubble sort, operating in two directions (beginning to end, end to beginning).
+fn Cocktail[T: ordered](mut arr: []T): []T {
+	if len(arr) == 0 { // ignore 0 length arrays
+		ret arr
+	}
+
+	mut swapped := true // true if swapped two or more elements in the last loop
+	// if it loops through the array without swapping, the array is sorted
+
+	// start and end indexes, this will be updated excluding already sorted elements
+	mut start := 0
+	mut end := len(arr) - 1
+
+	for swapped {
+		swapped = false
+		mut newStart := 0
+		mut newEnd := 0
+
+		mut i := start
+		for i < end; i++ { // first loop, from start to end
+			if arr[i] > arr[i+1] { // if current and next elements are unordered
+				arr[i], arr[i+1] = arr[i+1], arr[i] // swap two elements
+				newEnd = i
+				swapped = true
+			}
+		}
+
+		end = newEnd
+
+		if !swapped { // early exit, skipping the second loop
+			break
+		}
+
+		swapped = false
+
+		i = end
+		for i > start; i-- { // second loop, from end to start
+			if arr[i] < arr[i-1] { // same process of the first loop, now going 'backwards'
+				arr[i], arr[i-1] = arr[i-1], arr[i]
+				newStart = i
+				swapped = true
+			}
+		}
+
+		start = newStart
+	}
+
+	ret arr
+}

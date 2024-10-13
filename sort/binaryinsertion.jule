@@ -1,0 +1,33 @@
+// Binary Insertion Sort
+// description: Implementation of binary insertion sort in Go
+// details: Binary Insertion Sort is a variation of
+// Insertion sort in which proper location to
+// insert the selected element is found using the
+// Binary search algorithm.
+// ref: https://www.geeksforgeeks.org/binary-insertion-sort
+
+fn BinaryInsertion[T: ordered](mut arr: []T): []T {
+	mut currentIndex := 1
+	for currentIndex < len(arr); currentIndex++ {
+		mut temporary := arr[currentIndex]
+		mut low := 0
+		mut high := currentIndex - 1
+
+		for low <= high {
+			mid := low + (high-low)/2
+			if arr[mid] > temporary {
+				high = mid - 1
+			} else {
+				low = mid + 1
+			}
+		}
+
+		mut itr := currentIndex
+		for itr > low; itr-- {
+			arr[itr] = arr[itr-1]
+		}
+
+		arr[low] = temporary
+	}
+	ret arr
+}

@@ -1,0 +1,42 @@
+// Bucket sorts a slice. It is mainly useful
+// when input is uniformly distributed over a range.
+fn Bucket[T: numeric](mut arr: []T): []T {
+	// early return if the array too small
+	if len(arr) <= 1 {
+		ret arr
+	}
+
+	// find the maximum and minimum elements in arr
+	mut max := arr[0]
+	mut min := arr[0]
+	for _, v in arr {
+		if v > max {
+			max = v
+		}
+		if v < min {
+			min = v
+		}
+	}
+
+	// create an empty bucket for each element in arr
+	mut bucket := make([][]T, len(arr))
+
+	// put each element in the appropriate bucket
+	for (_, mut v) in arr {
+		bucketIndex := int((v - min) / (max - min) * T(len(arr)-1))
+		bucket[bucketIndex] = append(bucket[bucketIndex], v)
+	}
+
+	// use insertion sort to sort each bucket
+	for i in bucket {
+		bucket[i] = Insertion(bucket[i])
+	}
+
+	// concatenate the sorted buckets
+	mut sorted := make([]T, 0, len(arr))
+	for _, v in bucket {
+		sorted = append(sorted, v...)
+	}
+
+	ret sorted
+}

@@ -1,0 +1,43 @@
+// Pancake sorts a slice using flip operations,
+// where flip refers to the idea of reversing the
+// slice from index `0` to `i`.
+fn Pancake[T: ordered](mut arr: []T): []T {
+	// early return if the array too small
+	if len(arr) <= 1 {
+		ret arr
+	}
+
+	// start from the end of the array
+	mut i := len(arr) - 1
+	for i > 0; i-- {
+		// find the index of the maximum element in arr
+		mut max := 0
+		mut j := 1
+		for j <= i; j++ {
+			if arr[j] > arr[max] {
+				max = j
+			}
+		}
+
+		// if the maximum element is not at the end of the array
+		if max != i {
+			// flip the maximum element to the beginning of the array
+			arr = flip(arr, max)
+
+			// flip the maximum element to the end of the array by flipping the whole array
+			arr = flip(arr, i)
+		}
+	}
+
+	ret arr
+}
+
+// flip reverses the input slice from `0` to `i`.
+fn flip[T: ordered](mut arr: []T, mut i: int): []T {
+	mut j := 0
+	for j < i; j++ {
+		arr[j], arr[i] = arr[i], arr[j]
+		i--
+	}
+	ret arr
+}

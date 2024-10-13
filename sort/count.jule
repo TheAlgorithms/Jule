@@ -1,0 +1,31 @@
+// description: Implementation of counting sort algorithm
+// details: A simple counting sort algorithm implementation
+// author [Phil](https://github.com/pschik)
+
+fn Count[T: int | i64 | i32 | i16 | i8 | uint | u8 | u16 | u32 | u64](mut data: []T): []T {
+	if len(data) == 0 {
+		ret data
+	}
+	mut aMin, mut aMax := data[0], data[0]
+	for _, x in data {
+		if x < aMin {
+			aMin = x
+		}
+		if x > aMax {
+			aMax = x
+		}
+	}
+	mut count := make([]int, aMax-aMin+1)
+	for _, x in data {
+		count[x-aMin]++ // this is the reason for having only Integer constraint instead of Ordered.
+	}
+	mut z := 0
+	for (i, mut c) in count {
+		for c > 0 {
+			data[z] = T(i) + aMin
+			z++
+			c--
+		}
+	}
+	ret data
+}

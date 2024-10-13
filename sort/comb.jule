@@ -1,0 +1,30 @@
+// Implementation of comb sort algorithm, an improvement of bubble sort
+// Reference: https://www.geeksforgeeks.org/comb-sort/
+
+fn getNextGap(mut gap: int): int {
+	gap = (gap * 10) / 13
+	if gap < 1 {
+		ret 1
+	}
+	ret gap
+}
+
+// Simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+fn Comb[T: ordered](mut data: []T): []T {
+	n := len(data)
+	mut gap := n
+	mut swapped := true
+
+	for gap != 1 || swapped {
+		gap = getNextGap(gap)
+		swapped = false
+		mut i := 0
+		for i < n-gap; i++ {
+			if data[i] > data[i+gap] {
+				data[i], data[i+gap] = data[i+gap], data[i]
+				swapped = true
+			}
+		}
+	}
+	ret data
+}

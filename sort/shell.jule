@@ -1,0 +1,13 @@
+fn Shell[T: ordered](mut arr: []T): []T {
+	mut d := int(len(arr) / 2)
+	for d > 0; d /= 2 {
+		mut i := d
+		for i < len(arr); i++ {
+			mut j := i
+			for j >= d && arr[j-d] > arr[j]; j -= d {
+				arr[j], arr[j-d] = arr[j-d], arr[j]
+			}
+		}
+	}
+	ret arr
+}

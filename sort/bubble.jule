@@ -1,0 +1,18 @@
+// Implementation of basic bubble sort algorithm
+// Reference: https://en.wikipedia.org/wiki/Bubble_sort
+
+// Bubble is a simple generic definition of Bubble sort algorithm.
+fn Bubble[T: ordered](mut arr: []T): []T {
+	mut swapped := true
+	for swapped {
+		swapped = false
+		mut i := 0
+		for i < len(arr)-1; i++ {
+			if arr[i+1] < arr[i] {
+				arr[i+1], arr[i] = arr[i], arr[i+1]
+				swapped = true
+			}
+		}
+	}
+	ret arr
+}

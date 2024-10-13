@@ -1,0 +1,15 @@
+// Implementation of exchange sort algorithm, a variant of bubble sort
+// Reference: https://en.wikipedia.org/wiki/Sorting_algorithm#Exchange_sort
+
+fn Exchange[T: ordered](mut arr: []T): []T {
+	mut i := 0
+	for i < len(arr)-1; i++ {
+		mut j := i + 1
+		for j < len(arr); j++ {
+			if arr[i] > arr[j] {
+				arr[i], arr[j] = arr[j], arr[i]
+			}
+		}
+	}
+	ret arr
+}

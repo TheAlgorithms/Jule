@@ -1,0 +1,38 @@
+// Sorts an array using the circle sort algorithm.
+fn Circle[T: ordered](mut arr: []T): []T {
+	if len(arr) == 0 {
+		ret arr
+	}
+	for doSort(arr, 0, len(arr)-1) {}
+	ret arr
+}
+
+// The recursive function that implements the circle sort algorithm.
+fn doSort[T: ordered](mut arr: []T, left: int, right: int): bool {
+	if left == right {
+		ret false
+	}
+	mut swapped := false
+	mut low := left
+	mut high := right
+
+	for low < high {
+		if arr[low] > arr[high] {
+			arr[low], arr[high] = arr[high], arr[low]
+			swapped = true
+		}
+		low++
+		high--
+	}
+
+	if low == high && arr[low] > arr[high+1] {
+		arr[low], arr[high+1] = arr[high+1], arr[low]
+		swapped = true
+	}
+
+	mid := left + (right-left)/2
+	leftHalf := doSort(arr, left, mid)
+	rightHalf := doSort(arr, mid+1, right)
+
+	ret swapped || leftHalf || rightHalf
+}
