@@ -1,0 +1,37 @@
+// description: Implementation of in-place quicksort algorithm
+// details:
+// A simple in-place quicksort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Quicksort)
+// author(s) [Taj](https://github.com/tjgurwara99)
+
+fn Partition[T: ordered](mut arr: []T, low: int, high: int): int {
+	mut index := low - 1
+	pivotElement := arr[high]
+	mut i := low
+	for i < high; i++ {
+		if arr[i] <= pivotElement {
+			index += 1
+			arr[index], arr[i] = arr[i], arr[index]
+		}
+	}
+	arr[index+1], arr[high] = arr[high], arr[index+1]
+	ret index + 1
+}
+
+// Sorts the specified range within the array
+fn QuicksortRange[T: ordered](mut arr: []T, low: int, high: int) {
+	if len(arr) <= 1 {
+		ret
+	}
+
+	if low < high {
+		pivot := Partition(arr, low, high)
+		QuicksortRange(arr, low, pivot-1)
+		QuicksortRange(arr, pivot+1, high)
+	}
+}
+
+// Sorts the entire array.
+fn Quicksort[T: ordered](mut arr: []T): []T {
+	QuicksortRange(arr, 0, len(arr)-1)
+	ret arr
+}

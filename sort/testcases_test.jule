@@ -139,3 +139,8 @@ fn testPancake(t: &testing::T) {
 fn testShell(t: &testing::T) {
 	testGeneral(t, Shell[int])
 }
+
+#test
+fn testQuicksort(t: &testing::T) {
+	testGeneral(t, Quicksort[int])
+}
