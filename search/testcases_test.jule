@@ -1,0 +1,58 @@
+#build test
+
+struct searchTest {
+	data:          []int
+	key:           int
+	expected:      int
+	expectedError: Error
+	name:          str
+}
+
+// Note that these are immutable therefore they are shared among all the search tests.
+// If your algorithm is mutating these then it is advisable to create separate test cases.
+static searchTests: []searchTest = [
+	//Sanity
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 9, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 9, 8, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 8, 7, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7, 6, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 6, 5, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 4, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4, 3, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 2, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2, 1, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, 0, Error.NA, "Sanity"},
+	//Absent
+	{[1, 4, 5, 6, 7, 10], -25, -1, Error.NotFound, "Absent"},
+	{[1, 4, 5, 6, 7, 10], 25, -1, Error.NotFound, "Absent"},
+	//Empty slice
+	{[], 2, -1, Error.NotFound, "Empty"},
+]
+
+static lowerBoundTests: []searchTest = [
+	//Sanity
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], -25, 0, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, 0, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 4, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 9, Error.NA, "Sanity"},
+	{[1, 2, 2, 2, 2, 6, 7, 8, 9, 10], 2, 1, Error.NA, "Sanity"},
+	{[2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 2, 0, Error.NA, "Sanity"},
+	//Absent
+	{[1, 4, 5, 6, 7, 10], 25, -1, Error.NotFound, "Absent"},
+	//Empty slice
+	{[], 2, -1, Error.NotFound, "Empty"},
+]
+
+static upperBoundTests: []searchTest = [
+	//Sanity
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], -25, 0, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, 1, Error.NA, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 5, Error.NA, "Sanity"},
+	{[1, 2, 2, 2, 2, 6, 7, 8, 9, 10], 2, 5, Error.NA, "Sanity"},
+	//Absent
+	{[2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 2, -1, Error.NotFound, "Sanity"},
+	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, -1, Error.NotFound, "Sanity"},
+	{[1, 4, 5, 6, 7, 10], 25, -1, Error.NotFound, "Absent"},
+	//Empty slice
+	{[], 2, -1, Error.NotFound, "Empty"},
+]

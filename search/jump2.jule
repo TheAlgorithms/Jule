@@ -1,0 +1,24 @@
+use "std/math"
+
+fn Jump2(arr: []int, target: int)!: int {
+	step := int(math::Round(math::Sqrt(f64(len(arr)))))
+	mut rbound := len(arr)
+	mut i := step
+	for i < len(arr); i += step {
+		if arr[i] > target {
+			rbound = i
+			break
+		}
+	}
+
+	i = rbound - step
+	for i < rbound; i++ {
+		if arr[i] == target {
+			ret i
+		}
+		if arr[i] > target {
+			break
+		}
+	}
+	error(Error.NotFound)
+}

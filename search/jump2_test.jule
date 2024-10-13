@@ -1,0 +1,21 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testJump2(t: &testing::T) {
+	for _, test in searchTests {
+		actualValue := Jump2(test.data, test.key) else {
+			if error != test.expectedError {
+				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
+			}
+			continue
+		}
+		if test.expectedError != Error.NA {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, Error.NA)
+		}
+		if actualValue != test.expected {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected '{}', get '{}'", test.name, test.data, test.key, test.expected, actualValue)
+		}
+	}
+}

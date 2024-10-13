@@ -1,0 +1,9 @@
+// Simple linear search algorithm that iterates over all elements of an array in the worst case scenario
+fn Linear(array: []int, query: int)!: int {
+	for i, item in array {
+		if item == query {
+			ret i
+		}
+	}
+	error(Error.NotFound)
+}

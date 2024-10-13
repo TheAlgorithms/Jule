@@ -1,0 +1,75 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testBinary(t: &testing::T) {
+	for _, test in searchTests {
+		actualValue := Binary(test.data, test.key, 0, len(test.data)-1) else {
+			if error != test.expectedError {
+				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
+			}
+			continue
+		}
+		if test.expectedError != Error.NA {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, Error.NA)
+		}
+		if actualValue != test.expected {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected '{}', get '{}'", test.name, test.data, test.key, test.expected, actualValue)
+		}
+	}
+}
+
+#test
+fn testBinaryIterative(t: &testing::T) {
+	for _, test in searchTests {
+		actualValue := BinaryIterative(test.data, test.key) else {
+			if error != test.expectedError {
+				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
+			}
+			continue
+		}
+		if test.expectedError != Error.NA {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, Error.NA)
+		}
+		if actualValue != test.expected {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected '{}', get '{}'", test.name, test.data, test.key, test.expected, actualValue)
+		}
+	}
+}
+
+#test
+fn testLowerBound(t: &testing::T) {
+	for _, test in lowerBoundTests {
+		actualValue := LowerBound(test.data, test.key) else {
+			if error != test.expectedError {
+				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
+			}
+			continue
+		}
+		if test.expectedError != Error.NA {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, Error.NA)
+		}
+		if actualValue != test.expected {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected '{}', get '{}'", test.name, test.data, test.key, test.expected, actualValue)
+		}
+	}
+}
+
+#test
+fn testUpperBound(t: &testing::T) {
+	for _, test in upperBoundTests {
+		actualValue := UpperBound(test.data, test.key) else {
+			if error != test.expectedError {
+				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
+			}
+			continue
+		}
+		if test.expectedError != Error.NA {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, Error.NA)
+		}
+		if actualValue != test.expected {
+			t.Errorf("test '{}' failed: input array '{}' with key '{}', expected '{}', get '{}'", test.name, test.data, test.key, test.expected, actualValue)
+		}
+	}
+}
