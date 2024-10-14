@@ -1,0 +1,52 @@
+// Function to get the maximum value in the array
+fn get_max(arr: []i32) i32 {
+    mut max: i32 = arr[0]
+    for i := 1; i < arr.len(); i++ {
+        if arr[i] > max {
+            max = arr[i]
+        }
+    }
+    return max
+}
+
+// A function to perform counting sort on the array based on the digit represented by exp
+fn counting_sort(arr: []i32, exp: i32) {
+    mut output: []i32 = []i32{len: arr.len()}  // Output array
+    mut count: []i32 = []i32{len: 10}  // There are 10 possible digits (0-9)
+
+    // Count occurrences of digits
+    for i := 0; i < arr.len(); i++ {
+        index := (arr[i] / exp) % 10
+        count[index]++
+    }
+
+    // Change count[i] to hold the actual position of the digits in output[]
+    for i := 1; i < 10; i++ {
+        count[i] += count[i - 1]
+    }
+
+    // Build the output array
+    for i := arr.len() - 1; i >= 0; i-- {
+        index := (arr[i] / exp) % 10
+        output[count[index] - 1] = arr[i]
+        count[index]--
+    }
+
+    // Copy the output array to arr[]
+    for i := 0; i < arr.len(); i++ {
+        arr[i] = output[i]
+    }
+}
+
+// Main function to do radix sort
+fn radix_sort(arr: []i32) {
+    // Find the maximum number to determine the number of digits
+    max_val := get_max(arr)
+
+    // Perform counting sort for every digit (exp is 10^i where i is the digit index)
+    mut exp: i32 = 1
+    while max_val / exp > 0 {
+        counting_sort(arr, exp)
+        exp *= 10
+    }
+}
