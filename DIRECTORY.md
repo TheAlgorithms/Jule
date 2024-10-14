@@ -10,6 +10,11 @@
 - [Q Rsqrt](math/q_rsqrt.jule)
 - [Sum](math/sum.jule)
 
+## Graph
+- [Bellman-Ford](graph/bellman-Ford.jule)
+- [Floyd Warshall](graph/floyd-Warshall.jule)
+- [Minimum Spanning Tree](graph/minimum_spanning_tree.jule)
+
 ## Search
 - [Binary](search/binary.jule)
 - [Interpolation](search/interpolation.jule)
@@ -31,6 +36,7 @@
 - [Merge](sort/merge.jule)
 - [Pancake](sort/pancake.jule)
 - [Quicksort](sort/quicksort.jule)
+- [RadixSort](sort/radixsort.jule)
 - [Shell](sort/shell.jule)
 
 ## Strings
