@@ -1,0 +1,37 @@
+// Floyd-Warshall algorithm for all-pairs shortest paths
+fn floyd_warshall(graph: [][]i32) {
+    V := graph.len()  // Number of vertices
+
+    // Initialize the solution matrix same as input graph matrix
+    mut dist: [][]i32 = [][]i32{len: V}
+    for i := 0; i < V; i++ {
+        dist[i] = []i32{len: V}
+        for j := 0; j < V; j++ {
+            dist[i][j] = graph[i][j]
+        }
+    }
+
+    // Apply the Floyd-Warshall algorithm
+    for k := 0; k < V; k++ {
+        for i := 0; i < V; i++ {
+            for j := 0; j < V; j++ {
+                if dist[i][j] > dist[i][k] + dist[k][j] {
+                    dist[i][j] = dist[i][k] + dist[k][j]
+                }
+            }
+        }
+    }
+
+    // Print the shortest distance matrix
+    println("Shortest distances between every pair of vertices:")
+    for i := 0; i < V; i++ {
+        for j := 0; j < V; j++ {
+            if dist[i][j] == 99999 {
+                print("INF ")
+            } else {
+                print("${dist[i][j]} ")
+            }
+        }
+        println("")
+    }
+}
