@@ -1,0 +1,75 @@
+// Structure to represent an edge in the graph
+struct Edge {
+    src: i32
+    dest: i32
+    weight: i32
+}
+
+// Structure to represent a graph
+struct Graph {
+    vertices: i32
+    edges: []Edge
+}
+
+// Find function for union-find algorithm
+fn find(parent: []i32, i: i32) i32 {
+    if parent[i] == i {
+        return i
+    }
+    return find(parent, parent[i])
+}
+
+// Union function for union-find algorithm
+fn union(parent: []i32, rank: []i32, x: i32, y: i32) {
+    xroot := find(parent, x)
+    yroot := find(parent, y)
+
+    if rank[xroot] < rank[yroot] {
+        parent[xroot] = yroot
+    } else if rank[xroot] > rank[yroot] {
+        parent[yroot] = xroot
+    } else {
+        parent[yroot] = xroot
+        rank[xroot]++
+    }
+}
+
+// Kruskal's algorithm to find minimum spanning tree
+fn kruskal_mst(graph: Graph) {
+    mut result: []Edge = []Edge{}  // Store the resultant MST
+    mut i: i32 = 0  // Variable to iterate over sorted edges
+    mut e: i32 = 0  // Number of edges in the result
+
+    // Sort all edges in non-decreasing order of their weight
+    mut sorted_edges := graph.edges
+    sorted_edges.sort_by(|a, b| return a.weight - b.weight)
+
+    // Create V subsets with single elements
+    mut parent: []i32 = []i32{len: graph.vertices}
+    mut rank: []i32 = []i32{len: graph.vertices}
+    for v := 0; v < graph.vertices; v++ {
+        parent[v] = v
+        rank[v] = 0
+    }
+
+    // Iterate over sorted edges and add the smallest edge to the result
+    while e < graph.vertices - 1 {
+        next_edge := sorted_edges[i]
+        i++
+
+        x := find(parent, next_edge.src)
+        y := find(parent, next_edge.dest)
+
+        // If including this edge does not cause a cycle, include it in result
+        if x != y {
+            result.append(next_edge)
+            union(parent, rank, x, y)
+            e++
+        }
+    }
+
+    println("Edges in the minimum spanning tree:")
+    for edge in result {
+        println("${edge.src} -- ${edge.dest} == ${edge.weight}")
+    }
+}
