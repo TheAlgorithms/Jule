@@ -1,0 +1,39 @@
+// Bellman-Ford algorithm for single source shortest paths
+fn bellman_ford(graph: []Edge, V: i32, E: i32, src: i32) {
+    mut dist: []i32 = []i32{len: V}
+    
+    // Step 1: Initialize distances from src to all other vertices as INFINITE
+    for i := 0; i < V; i++ {
+        dist[i] = 99999
+    }
+    dist[src] = 0
+
+    // Step 2: Relax all edges V-1 times
+    for i := 1; i < V; i++ {
+        for j := 0; j < E; j++ {
+            u := graph[j].src
+            v := graph[j].dest
+            weight := graph[j].weight
+            if dist[u] != 99999 && dist[u] + weight < dist[v] {
+                dist[v] = dist[u] + weight
+            }
+        }
+    }
+
+    // Step 3: Check for negative-weight cycles
+    for j := 0; j < E; j++ {
+        u := graph[j].src
+        v := graph[j].dest
+        weight := graph[j].weight
+        if dist[u] != 99999 && dist[u] + weight < dist[v] {
+            println("Graph contains negative weight cycle")
+            return
+        }
+    }
+
+    // Print the distances from source
+    println("Vertex distances from source:")
+    for i := 0; i < V; i++ {
+        println("${i} \t ${dist[i]}")
+    }
+}
