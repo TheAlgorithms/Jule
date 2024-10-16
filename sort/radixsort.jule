@@ -1,0 +1,51 @@
+// description: Implementation of in-place Radix Sort algorithm
+// details:
+// A simple in-place Radix Sort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Radix_sort)
+// author(s) [Aman Upadhyay](https://github.com/amanxupadhyay)
+
+fn CountingSort[T: int](mut arr: []T, exp: int) {
+    n := len(arr)
+    output := make([]T, n)
+    count := make([]int, 10)
+    
+    for i := 0; i < n; i++ {
+        count[(arr[i] / exp) % 10] += 1
+    }
+    
+    for i := 1; i < 10; i++ {
+        count[i] += count[i-1]
+    }
+    
+    for i := n-1; i >= 0; i-- {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i]
+        count[(arr[i] / exp) % 10] -= 1
+    }
+    
+    for i := 0; i < n; i++ {
+        arr[i] = output[i]
+    }
+}
+
+fn RadixSort[T: int](mut arr: []T): []T {
+    max := arr[0]
+    for i := 1; i < len(arr); i++ {
+        if arr[i] > max {
+            max = arr[i]
+        }
+    }
+    
+    for exp := 1; max / exp > 0; exp *= 10 {
+        CountingSort(arr, exp)
+    }
+    
+    ret arr
+}
+
+// Example usage
+fn main() {
+    arr := [170, 45, 75, 90, 802, 24, 2, 66]
+    arr = RadixSort(arr)
+    println(arr)
+}
+
+// Output: [2, 24, 45, 66, 75, 90, 170, 802]
