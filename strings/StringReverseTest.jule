@@ -1,0 +1,43 @@
+# built testcases
+
+import reverse_string
+
+fn test_reverse_string() {
+
+    // Test 1: Regular string
+
+    let input1 := "hello"
+    let expected1 := "olleh"
+    let output1 := reverse_string.reverse(input1)
+    assert(output1 == expected1, "Test case 1 failed: Expected 'olleh', got " + output1)
+
+    // Test 2: Empty string
+
+    let input2 := ""
+    let expected2 := ""
+    let output2 := reverse_string.reverse(input2)
+    assert(output2 == expected2, "Test case 2 failed: Expected '', got " + output2)
+
+    // Test 3: Single character
+
+    let input3 := "A"
+    let expected3 := "A"
+    let output3 := reverse_string.reverse(input3)
+    assert(output3 == expected3, "Test case 3 failed: Expected 'A', got " + output3)
+
+    // Test case 4: Palindrome
+    let input4 := "madam"
+    let expected4 := "madam"
+    let output4 := reverse_string.reverse(input4)
+    assert(output4 == expected4, "Test case 4 failed: Expected 'madam', got " + output4)
+
+    // Test case 5: String with spaces
+    let input5 := "hello world"
+    let expected5 := "dlrow olleh"
+    let output5 := reverse_string.reverse(input5)
+    assert(output5 == expected5, "Test case 5 failed: Expected 'dlrow olleh', got " + output5)
+}
+
+fn main() {
+    test_reverse_string()
+}
