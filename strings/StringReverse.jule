@@ -1,0 +1,12 @@
+// Reverse a given string and return reversed string 
+// e.g. input: Hello, output: olleH
+// Author: Jivanjamadar
+
+fn StringReverse(s: str): str{
+    mut reversed := ""
+    for i:= len(s)-1; i >= 0; i--
+    {
+        reversed += s[i]
+    }
+    ret reversed
+}
