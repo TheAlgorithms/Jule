@@ -63,7 +63,7 @@ static StringReverseTests: []StringReverseTest = [
     
     #test
     fn testStringRevese(t: &testing::T){
-        for_, test in StringReverseTests{
+        for _, test in StringReverseTests {
             funcResult := StringReverse(test.s)
             if test.expected != funcResult{
                 t.Error("Expected: {}, got{}", test.expected, funcResult)
