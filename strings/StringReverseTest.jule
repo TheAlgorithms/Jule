@@ -1,7 +1,7 @@
 #build test
 
 use "std/testing"
-struc StringReverseTest {
+struct StringReverseTest {
 	name:     str
 	s:        str
 	expected: str
