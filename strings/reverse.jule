@@ -7,7 +7,8 @@ fn StringReverse(s: str): str {
     mut reversed := make([]rune, len(runes)) // Create an array of the same length as 'runes'
 
 
-    for i := 0; i < len(runes); i++ {
+    mut i := 0
+    for i < len(runes); i++ {
         reversed[i] = runes[len(runes) - i - 1]
     }
 
