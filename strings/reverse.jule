@@ -4,7 +4,7 @@
 
 fn StringReverse(s: str): str {
     runes := []rune(s)  // Convert string to rune array
-    mut reversed := []rune(len(runes)) // Create an array of the same length as 'runes'
+    mut reversed := make([]rune, len(runes)) // Create an array of the same length as 'runes'
 
 
     for i := 0; i < len(runes); i++ {
