@@ -1,0 +1,16 @@
+// Reverse a given string and return reversed string 
+// e.g. input: Hello, output: olleH
+// Author: Jivanjamadar
+
+fn StringReverse(s: str): str {
+    runes := []rune(s)  // Convert string to rune array
+    mut reversed := make([]rune, len(runes)) // Create an array of the same length as 'runes'
+
+
+    mut i := 0
+    for i < len(runes); i++ {
+        reversed[i] = runes[len(runes) - i - 1]
+    }
+
+    ret str(reversed)                 // Convert rune array back to string using casting
+}

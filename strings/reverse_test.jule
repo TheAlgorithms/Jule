@@ -1,0 +1,72 @@
+#build test
+
+use "std/testing"
+struct StringReverseTest {
+	name:     str
+	s:        str
+	expected: str
+}
+
+static StringReverseTests: []StringReverseTest = [
+   {
+        "Simple case 1",
+        "hello",
+        "olleh",
+    },
+    {
+        "Simple case 2",
+        "world",
+        "dlrow",
+    },
+    {
+        "Palindrome case",
+        "madam",
+        "madam",
+    },
+    {
+        "Empty string",
+        "",
+        "",
+    },
+    {
+        "Single character",
+        "a",
+        "a",
+    },
+    {
+        "Numbers in string",
+        "12345",
+        "54321",
+    },
+    {
+        "Special characters",
+        "!@#",
+        "#@!",
+    },
+    {
+        "Mixed case",
+        "HeLLo",
+        "oLLeH",
+    },
+    {
+        "Spaces included",
+        "hello world",
+        "dlrow olleh",
+    },
+    {
+        "String with spaces only",
+        "   ",
+        "   ",
+    },
+    
+    ]
+    
+    #test
+    fn testStringRevese(t: &testing::T){
+        for _, test in StringReverseTests {
+            funcResult := StringReverse(test.s)
+            if test.expected != funcResult{
+                t.Errorf("Expected: {}, got{}", test.expected, funcResult)
+            }
+        }
+    }
