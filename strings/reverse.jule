@@ -3,7 +3,7 @@
 // Author: Jivanjamadar
 
 fn StringReverse(s: str): str {
-    runes := s.runes()                // Convert string to rune array
+    runes := []rune(s)  // Convert string to rune array
     mut reversed := []rune(len(runes)) // Create an array of the same length as 'runes'
 
 
