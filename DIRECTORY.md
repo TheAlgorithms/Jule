@@ -35,3 +35,4 @@
 
 ## Strings
 - [Issubsequence](strings/issubsequence.jule)
+- [Reverse](strings/reverse.jule)
