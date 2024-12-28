@@ -4,7 +4,7 @@ use "std/slices"
 use "std/strings"
 
 // Buffer for the table.
-static mut Table = strings::Builder.New(1 << 8)
+static mut Table = strings::Builder{}
 
 // Path strings should be formatted by markdown URLs.
 static IgnorePaths: [...]str = [
