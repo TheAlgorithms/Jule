@@ -33,8 +33,8 @@ fn writeLine(text: str) {
 
 // Subdirectories comes first and ordered by the strings::Compare function.
 // Implementation files comes after subdirectories and ordered by the strings::Compare function.
-fn sortDirents(mut &dirents: []os::Dir) {
-	slices::SortFunc(dirents, fn(a: os::Dir, b: os::Dir): int {
+fn sortDirents(mut &dirents: []os::DirEntry) {
+	slices::SortFunc(dirents, fn(a: os::DirEntry, b: os::DirEntry): int {
 		if a.Stat.IsDir() && !b.Stat.IsDir() {
 			ret -1
 		}
@@ -98,13 +98,13 @@ fn isIgnorePath(path: str): bool {
 
 fn createDirectoryMd() {
 	const MdPath = "./DIRECTORY.md"
-	os::File.Write(MdPath, unsafe { Table.Buf() }, 0o660) else {
+	os::WriteFile(MdPath, unsafe { Table.Buf() }, 0o660) else {
 		workflowFailed("a problem occurs when creating " + MdPath)
 	}
 }
 
 fn walkPackage(package: str, path: str, indent: int) {
-	let mut dirents = os::Dir.Read(path) else {
+	let mut dirents = os::ReadDir(path) else {
 		workflowFailed("directory did not readed")
 		ret // Avoid error.
 	}
@@ -141,7 +141,7 @@ fn walkPackage(package: str, path: str, indent: int) {
 
 fn main() {
 	writeLine("# Table of Contents")
-	let mut dirents = os::Dir.Read(".") else {
+	let mut dirents = os::ReadDir(".") else {
 		workflowFailed("directory did not readed")
 		ret // Avoid error.
 	}
