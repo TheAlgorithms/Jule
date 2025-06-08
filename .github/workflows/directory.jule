@@ -4,14 +4,14 @@ use "std/slices"
 use "std/strings"
 
 // Buffer for the table.
-static mut Table = strings::Builder{}
+let mut Table = strings::Builder{}
 
 // Path strings should be formatted by markdown URLs.
-static IgnorePaths: [...]str = [
+let IgnorePaths: [...]str = [
 	"search/error.jule",
 ]
 
-static IgnorePackages: [...]str = [
+let IgnorePackages: [...]str = [
 	".",
 	"..",
 	".github",
