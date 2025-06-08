@@ -8,7 +8,7 @@ struct reverseTest {
 	expected: str
 }
 
-static reverseTests: []reverseTest = [
+let reverseTests: []reverseTest = [
 	{
 		"Simple case 1",
 		"hello",

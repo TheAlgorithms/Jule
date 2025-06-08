@@ -10,7 +10,7 @@ struct searchTest {
 
 // Note that these are immutable therefore they are shared among all the search tests.
 // If your algorithm is mutating these then it is advisable to create separate test cases.
-static searchTests: []searchTest = [
+let searchTests: []searchTest = [
 	//Sanity
 	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 9, Error.NA, "Sanity"},
 	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 9, 8, Error.NA, "Sanity"},
@@ -29,7 +29,7 @@ static searchTests: []searchTest = [
 	{[], 2, -1, Error.NotFound, "Empty"},
 ]
 
-static lowerBoundTests: []searchTest = [
+let lowerBoundTests: []searchTest = [
 	//Sanity
 	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], -25, 0, Error.NA, "Sanity"},
 	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, 0, Error.NA, "Sanity"},
@@ -43,7 +43,7 @@ static lowerBoundTests: []searchTest = [
 	{[], 2, -1, Error.NotFound, "Empty"},
 ]
 
-static upperBoundTests: []searchTest = [
+let upperBoundTests: []searchTest = [
 	//Sanity
 	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], -25, 0, Error.NA, "Sanity"},
 	{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, 1, Error.NA, "Sanity"},

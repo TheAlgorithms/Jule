@@ -9,7 +9,7 @@ struct subsequenceTest {
 	expected: bool
 }
 
-static subsequenceTests: []subsequenceTest = [
+let subsequenceTests: []subsequenceTest = [
 	{
 		"Valid case 1 ",
 		"ace",
