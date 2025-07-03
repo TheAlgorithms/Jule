@@ -33,7 +33,7 @@ fn writeLine(text: str) {
 
 // Subdirectories comes first and ordered by the strings::Compare function.
 // Implementation files comes after subdirectories and ordered by the strings::Compare function.
-fn sortDirents(mut &dirents: []os::DirEntry) {
+fn sortDirents(mut dirents: []os::DirEntry) {
 	slices::SortFunc(dirents, fn(a: os::DirEntry, b: os::DirEntry): int {
 		if a.Stat.IsDir() && !b.Stat.IsDir() {
 			ret -1
