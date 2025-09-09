@@ -1,4 +1,4 @@
-use "sort"
+use "jule/sort"
 
 fn Median(mut slice: []int): f64 {
 	slice = sort::Quicksort(slice)
