@@ -1,5 +1,5 @@
 // Import the standard math library
-use std::math { pow }
+use std::math { pow, abs }
 // Import the standard testing library
 use std::testing { T }
 

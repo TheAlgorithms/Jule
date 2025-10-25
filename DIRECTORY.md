@@ -2,6 +2,7 @@
 
 ## Math
 - [Abs](math/abs.jule)
+- [Cube Root](math/cube_root.jule)
 - [Fact](math/fact.jule)
 - [Fib](math/fib.jule)
 - [Max](math/max.jule)
