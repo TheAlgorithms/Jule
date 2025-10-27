@@ -1,0 +1,42 @@
+#build test // Tells Jule this file is for testing
+
+// Import necessary libraries with correct syntax
+use std::testing::{T} // Correct import for testing type T
+use std::math::{abs}  // Import abs function for tolerance check
+use super::{cbrt}     // Import the cbrt function from cube_root.jule
+
+/**
+ * Test function for the cbrt implementation.
+ * Jule's test functions are prefixed with #test.
+ */
+#test
+fn test_cbrt(t: &T) {
+    // Define a small tolerance for floating-point comparisons
+    const TOLERANCE: f64 = 0.000001
+
+    // Test cases: Define the type explicitly as an array of (f64, f64) tuples
+    let test_cases: [(f64, f64)] = [
+        (27.0, 3.0),
+        (-64.0, -4.0),
+        (125.0, 5.0),
+        (0.0, 0.0),
+        (15.625, 2.5),
+        (1.0, 1.0),
+        (-1.0, -1.0),
+        (8.0, 2.0),
+    ]
+
+    // Iterate through the test cases
+    for tc in test_cases {
+        let input: f64 = tc[0]
+        let expected: f64 = tc[1]
+        let result: f64 = cbrt(input) // Call the imported function
+
+        // Check if the absolute difference is within the tolerance
+        // Use the imported 'abs' function
+        if abs(result - expected) > TOLERANCE {
+            // Use t.Errorf to report a test failure with details
+            t.Errorf("cbrt({}) = {}; expected {}", input, result, expected)
+        }
+    }
+}

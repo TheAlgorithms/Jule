@@ -1,7 +1,5 @@
 // Import the standard math library
-use std::math { pow, abs }
-// Import the standard testing library
-use std::testing { T }
+use std::math::pow 
 
 /**
  * Calculates the cube root of a given f64 number.
@@ -19,57 +17,3 @@ fn cbrt(x: f64): f64 {
     ret pow(x, 1.0 / 3.0)
 }
 
-/**
- * Entry point for example usage.
- */
-fn main() {
-    let num1: f64 = 27.0
-    let root1: f64 = cbrt(num1)
-    println("Cube root of " + f64_to_str(num1) + " is " + f64_to_str(root1)) // Expected: 3.0
-
-    let num2: f64 = -64.0
-    let root2: f64 = cbrt(num2)
-    println("Cube root of " + f64_to_str(num2) + " is " + f64_to_str(root2)) // Expected: -4.0
-
-    let num3: f64 = 15.625
-    let root3: f64 = cbrt(num3)
-    println("Cube root of " + f64_to_str(num3) + " is " + f64_to_str(root3)) // Expected: 2.5
-
-    let num4: f64 = 0.0
-    let root4: f64 = cbrt(num4)
-    println("Cube root of " + f64_to_str(num4) + " is " + f64_to_str(root4)) // Expected: 0.0
-}
-
-/**
- * Test function for the cbrt implementation.
- * Jule's test functions are prefixed with #test.
- */
-#test
-fn test_cbrt(t: &T) {
-    // Define a small tolerance for floating-point comparisons
-    const TOLERANCE: f64 = 0.000001
-
-    // Test cases
-    let test_cases = [
-        (27.0, 3.0),
-        (-64.0, -4.0),
-        (125.0, 5.0),
-        (0.0, 0.0),
-        (15.625, 2.5),
-        (1.0, 1.0),
-        (-1.0, -1.0),
-        (8.0, 2.0),
-    ]
-
-    for tc in test_cases {
-        let input: f64 = tc[0]
-        let expected: f64 = tc[1]
-        let result: f64 = cbrt(input)
-
-        // Check if the result is within the tolerance of the expected value
-        if math::abs(result - expected) > TOLERANCE {
-            // Use t.Errorf to report a test failure
-            t.Errorf("cbrt({}) = {}; expected {}", input, result, expected)
-        }
-    }
-}
