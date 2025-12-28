@@ -98,7 +98,7 @@ fn isIgnorePath(path: str): bool {
 
 fn createDirectoryMd() {
 	const MdPath = "./DIRECTORY.md"
-	os::WriteFile(MdPath, unsafe { Table.Buf() }, 0o660) else {
+	os::WriteFileSync(MdPath, unsafe { Table.Buf() }, 0o660) else {
 		workflowFailed("a problem occurs when creating " + MdPath)
 	}
 }
