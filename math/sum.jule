@@ -3,5 +3,5 @@ fn Sum(slice: []int): int {
 	for _, i in slice {
 		total += i
 	}
-	ret total
+	return total
 }

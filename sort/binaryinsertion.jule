@@ -29,5 +29,5 @@ fn BinaryInsertion[T: ordered](mut arr: []T): []T {
 
 		arr[low] = temporary
 	}
-	ret arr
+	return arr
 }

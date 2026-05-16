@@ -5,7 +5,7 @@ fn Cycle[T: numeric](mut arr: []T): []T {
 	mut counter, mut cycle, len := 0, 0, len(arr)
 	// Early return if the array too small
 	if len <= 1 {
-		ret arr
+		return arr
 	}
 
 	for cycle < len-1; cycle++ {
@@ -50,5 +50,5 @@ fn Cycle[T: numeric](mut arr: []T): []T {
 		}
 	}
 
-	ret arr
+	return arr
 }

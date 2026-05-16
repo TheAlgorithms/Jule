@@ -1,9 +1,9 @@
 // O(2^n)
 fn Fib(i: int): int {
 	if i == 0 || i == 1 {
-		ret i
+		return i
 	}
-	ret Fib(i-1) + Fib(i-2)
+	return Fib(i-1) + Fib(i-2)
 }
 
 // O(n * 2^n)
@@ -14,5 +14,5 @@ fn FibSeq(mut n: int): []int {
 		s = append(s, Fib(n-i+1))
 		i--
 	}
-	ret s
+	return s
 }

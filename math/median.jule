@@ -5,10 +5,10 @@ fn Median(mut slice: []int): f64 {
 	let l = len(slice)
 	match {
 	| l == 0:
-		ret 0
+		return 0
 	| l%2 == 0:
-		ret f64(slice[l/2-1]+slice[l/2]) / 2
+		return f64(slice[l/2-1]+slice[l/2]) / 2
 	|:
-		ret f64(slice[l/2])
+		return f64(slice[l/2])
 	}
 }

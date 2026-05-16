@@ -14,11 +14,11 @@ fn Jump2(arr: []int, target: int)!: int {
 	i = rbound - step
 	for i < rbound; i++ {
 		if arr[i] == target {
-			ret i
+			return i
 		}
 		if arr[i] > target {
 			break
 		}
 	}
-	error(Error.NotFound)
+	throw Error.NotFound
 }

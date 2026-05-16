@@ -14,5 +14,5 @@ fn Bubble[T: ordered](mut arr: []T): []T {
 			}
 		}
 	}
-	ret arr
+	return arr
 }

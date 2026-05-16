@@ -1,6 +1,6 @@
 fn Min(values: ...int): int {
 	if len(values) == 0 {
-		ret 0
+		return 0
 	}
 	let mut min = values[0]
 	for _, x in values[1:] {
@@ -8,5 +8,5 @@ fn Min(values: ...int): int {
 			min = x
 		}
 	}
-	ret min
+	return min
 }

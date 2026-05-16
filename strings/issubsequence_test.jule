@@ -3,9 +3,9 @@
 use "std/testing"
 
 struct subsequenceTest {
-	name:     str
-	s:        str
-	t:        str
+	name:     string
+	s:        string
+	t:        string
 	expected: bool
 }
 

@@ -12,10 +12,10 @@
 //	fmt::Println(Interpolation([1, 2, 9, 20, 31, 45, 63, 70, 100],100))
 fn Interpolation(sortedData: []int, guess: int)!: int {
 	if len(sortedData) == 0 {
-		error(Error.NotFound)
+		throw Error.NotFound
 	}
 
-	mut low, mut high := 0, len(sortedData) - 1
+	mut low, mut high := 0, len(sortedData)-1
 	mut lowVal, mut highVal := sortedData[low], sortedData[high]
 
 	for lowVal != highVal && (lowVal <= guess) && (guess <= highVal) {
@@ -26,19 +26,19 @@ fn Interpolation(sortedData: []int, guess: int)!: int {
 			for mid > 0 && sortedData[mid-1] == guess {
 				mid--
 			}
-			ret mid
+			return mid
 		}
 
 		// adjust our guess and continue
 		if sortedData[mid] > guess {
-			high, highVal = mid - 1, sortedData[high]
+			high, highVal = mid-1, sortedData[high]
 		} else {
-			low, lowVal = mid + 1, sortedData[low]
+			low, lowVal = mid+1, sortedData[low]
 		}
 	}
 
 	if guess == lowVal {
-		ret low
+		return low
 	}
-	error(Error.NotFound)
+	throw Error.NotFound
 }

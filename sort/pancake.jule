@@ -4,7 +4,7 @@
 fn Pancake[T: ordered](mut arr: []T): []T {
 	// early return if the array too small
 	if len(arr) <= 1 {
-		ret arr
+		return arr
 	}
 
 	// start from the end of the array
@@ -29,7 +29,7 @@ fn Pancake[T: ordered](mut arr: []T): []T {
 		}
 	}
 
-	ret arr
+	return arr
 }
 
 // flip reverses the input slice from `0` to `i`.
@@ -39,5 +39,5 @@ fn flip[T: ordered](mut arr: []T, mut i: int): []T {
 		arr[j], arr[i] = arr[i], arr[j]
 		i--
 	}
-	ret arr
+	return arr
 }

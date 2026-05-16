@@ -3,7 +3,7 @@
 fn Bucket[T: numeric](mut arr: []T): []T {
 	// early return if the array too small
 	if len(arr) <= 1 {
-		ret arr
+		return arr
 	}
 
 	// find the maximum and minimum elements in arr
@@ -38,5 +38,5 @@ fn Bucket[T: numeric](mut arr: []T): []T {
 		sorted = append(sorted, v...)
 	}
 
-	ret sorted
+	return sorted
 }

@@ -22,16 +22,16 @@ fn merge[T: ordered](a: []T, b: []T): []T {
 		j++
 	}
 
-	ret r
+	return r
 }
 
 // Perform merge sort on a slice
 fn Merge[T: ordered](mut items: []T): []T {
 	if len(items) < 2 {
-		ret items
+		return items
 	}
 	middle := len(items) / 2
 	mut a := Merge(items[:middle])
 	mut b := Merge(items[middle:])
-	ret merge(a, b)
+	return merge(a, b)
 }

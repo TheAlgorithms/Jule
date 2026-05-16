@@ -4,9 +4,9 @@
 fn getNextGap(mut gap: int): int {
 	gap = (gap * 10) / 13
 	if gap < 1 {
-		ret 1
+		return 1
 	}
-	ret gap
+	return gap
 }
 
 // Simple sorting algorithm which is an improvement of the bubble sorting algorithm.
@@ -26,5 +26,5 @@ fn Comb[T: ordered](mut data: []T): []T {
 			}
 		}
 	}
-	ret data
+	return data
 }

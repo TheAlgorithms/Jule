@@ -5,7 +5,7 @@ struct searchTest {
 	key:           int
 	expected:      int
 	expectedError: Error
-	name:          str
+	name:          string
 }
 
 // Note that these are immutable therefore they are shared among all the search tests.

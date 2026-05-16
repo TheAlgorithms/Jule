@@ -12,7 +12,7 @@ use "std/math"
 fn Jump(array: []int, target: int)!: int {
 	n := len(array)
 	if n == 0 {
-		error(Error.NotFound)
+		throw Error.NotFound
 	}
 
 	// the optimal value of step is square root of the length of list
@@ -23,7 +23,7 @@ fn Jump(array: []int, target: int)!: int {
 	for array[curr-1] < target {
 		prev = curr
 		if prev >= len(array) {
-			error(Error.NotFound)
+			throw Error.NotFound
 		}
 
 		curr += step
@@ -40,12 +40,12 @@ fn Jump(array: []int, target: int)!: int {
 
 		// if reach end of range, indicate target not found
 		if prev == curr {
-			error(Error.NotFound)
+			throw Error.NotFound
 		}
 	}
 	if array[prev] == target {
-		ret prev
+		return prev
 	}
 
-	error(Error.NotFound)
+	throw Error.NotFound
 }

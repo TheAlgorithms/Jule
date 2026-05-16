@@ -14,13 +14,13 @@ fn Partition[T: ordered](mut arr: []T, low: int, high: int): int {
 		}
 	}
 	arr[index+1], arr[high] = arr[high], arr[index+1]
-	ret index + 1
+	return index + 1
 }
 
 // Sorts the specified range within the array
 fn QuicksortRange[T: ordered](mut arr: []T, low: int, high: int) {
 	if len(arr) <= 1 {
-		ret
+		return
 	}
 
 	if low < high {
@@ -33,5 +33,5 @@ fn QuicksortRange[T: ordered](mut arr: []T, low: int, high: int) {
 // Sorts the entire array.
 fn Quicksort[T: ordered](mut arr: []T): []T {
 	QuicksortRange(arr, 0, len(arr)-1)
-	ret arr
+	return arr
 }

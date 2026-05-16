@@ -10,5 +10,5 @@ fn QRsqrt(mut f: f64): f64 {
 	let b = Magic - (math::F64bits(f) >> 1)
 	f = math::F64frombits(b)
 	f *= ThreeHalfs - (n2 * f * f)
-	ret f
+	return f
 }

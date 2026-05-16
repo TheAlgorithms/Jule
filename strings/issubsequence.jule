@@ -5,17 +5,17 @@
 // Author: sanjibgirics
 
 // Returns true if s is subsequence of t, otherwise return false.
-fn IsSubsequence(s: str, t: str): bool {
+fn IsSubsequence(s: string, t: string): bool {
 	if len(s) > len(t) {
-		ret false
+		return false
 	}
 
 	if s == t {
-		ret true
+		return true
 	}
 
 	if len(s) == 0 {
-		ret true
+		return true
 	}
 
 	mut sIndex := 0
@@ -25,9 +25,9 @@ fn IsSubsequence(s: str, t: str): bool {
 			sIndex++
 		}
 		if sIndex == len(s) {
-			ret true
+			return true
 		}
 	}
 
-	ret false
+	return false
 }

@@ -3,11 +3,11 @@
 // Author: Jivanjamadar, mertcandav
 
 // Returns the reversed s.
-fn Reverse(s: str): str {
+fn Reverse(s: string): string {
 	mut runes := []rune(s)
 	mut i, mut j := 0, len(runes)-1
 	for i < j; i, j = i+1, j-1 {
 		runes[i], runes[j] = runes[j], runes[i]
 	}
-	ret str(runes)
+	return string(runes)
 }

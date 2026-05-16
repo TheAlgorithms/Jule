@@ -1,6 +1,6 @@
 fn Max(values: ...int): int {
 	if len(values) == 0 {
-		ret 0
+		return 0
 	}
 	let mut max = values[0]
 	for _, x in values[1:] {
@@ -8,5 +8,5 @@ fn Max(values: ...int): int {
 			max = x
 		}
 	}
-	ret max
+	return max
 }

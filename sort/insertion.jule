@@ -8,5 +8,5 @@ fn Insertion[T: ordered](mut arr: []T): []T {
 		}
 		arr[iterator] = temporary
 	}
-	ret arr
+	return arr
 }

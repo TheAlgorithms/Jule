@@ -3,9 +3,9 @@
 use "std/testing"
 
 struct reverseTest {
-	name:     str
-	s:        str
-	expected: str
+	name:     string
+	s:        string
+	expected: string
 }
 
 let reverseTests: []reverseTest = [

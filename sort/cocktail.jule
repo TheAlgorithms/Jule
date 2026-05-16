@@ -4,7 +4,7 @@
 // Sort is a variation of bubble sort, operating in two directions (beginning to end, end to beginning).
 fn Cocktail[T: ordered](mut arr: []T): []T {
 	if len(arr) == 0 { // ignore 0 length arrays
-		ret arr
+		return arr
 	}
 
 	mut swapped := true // true if swapped two or more elements in the last loop
@@ -48,5 +48,5 @@ fn Cocktail[T: ordered](mut arr: []T): []T {
 		start = newStart
 	}
 
-	ret arr
+	return arr
 }

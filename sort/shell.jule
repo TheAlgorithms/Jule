@@ -9,5 +9,5 @@ fn Shell[T: ordered](mut arr: []T): []T {
 			}
 		}
 	}
-	ret arr
+	return arr
 }
