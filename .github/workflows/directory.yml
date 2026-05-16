@@ -18,7 +18,7 @@ jobs:
     if: github.repository == 'TheAlgorithms/Jule' # We only need this to run in our repository.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: julelang/setup-jule@v1
         with:
           version: dev
