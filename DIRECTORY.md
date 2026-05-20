@@ -7,6 +7,7 @@
 - [Max](math/max.jule)
 - [Median](math/median.jule)
 - [Min](math/min.jule)
+- [Prime](math/prime.jule)
 - [Q Rsqrt](math/q_rsqrt.jule)
 - [Sum](math/sum.jule)
 

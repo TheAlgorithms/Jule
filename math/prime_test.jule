@@ -1,0 +1,15 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testCheckPrime(t: &testing::T) {
+	t.Assert(!CheckPrime(-7), "-7 should not be prime")
+	t.Assert(!CheckPrime(0), "0 should not be prime")
+	t.Assert(!CheckPrime(1), "1 should not be prime")
+	t.Assert(CheckPrime(2), "2 should be prime")
+	t.Assert(CheckPrime(3), "3 should be prime")
+	t.Assert(!CheckPrime(4), "4 should not be prime")
+	t.Assert(CheckPrime(97), "97 should be prime")
+	t.Assert(!CheckPrime(100), "100 should not be prime")
+}
