@@ -1,4 +1,4 @@
-fn CheckPrime(n: int): bool {
+fn Prime(n: int): bool {
 	if n <= 1 {
 		return false
 	}
