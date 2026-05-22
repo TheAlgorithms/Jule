@@ -4,6 +4,7 @@
 - [Abs](math/abs.jule)
 - [Fact](math/fact.jule)
 - [Fib](math/fib.jule)
+- [Gcd](math/gcd.jule)
 - [Max](math/max.jule)
 - [Median](math/median.jule)
 - [Min](math/min.jule)
