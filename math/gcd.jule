@@ -1,4 +1,4 @@
-fn Gcd(a: int, b: int): int {
+fn GCD(a: int, b: int): int {
 	let mut x = a
 	let mut y = b
 
