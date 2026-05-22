@@ -1,0 +1,52 @@
+#build test
+
+use "std/testing"
+
+struct palindromeTest {
+	name:     string
+	s:        string
+	expected: bool
+}
+
+let palindromeTests: []palindromeTest = [
+	{
+		"Simple palindrome",
+		"madam",
+		true,
+	},
+	{
+		"Simple non-palindrome",
+		"hello",
+		false,
+	},
+	{
+		"Empty string",
+		"",
+		true,
+	},
+	{
+		"Single character",
+		"a",
+		true,
+	},
+	{
+		"Even length palindrome",
+		"abba",
+		true,
+	},
+	{
+		"Case sensitive mismatch",
+		"Madam",
+		false,
+	},
+]
+
+#test
+fn testIsPalindrome(t: &testing::T) {
+	for _, test in palindromeTests {
+		funcResult := IsPalindrome(test.s)
+		if test.expected != funcResult {
+			t.Errorf("expected: {}, got {}", test.expected, funcResult)
+		}
+	}
+}

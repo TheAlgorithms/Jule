@@ -36,4 +36,5 @@
 
 ## Strings
 - [Issubsequence](strings/issubsequence.jule)
+- [Palindrome](strings/palindrome.jule)
 - [Reverse](strings/reverse.jule)
