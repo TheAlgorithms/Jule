@@ -1,0 +1,16 @@
+fn LCM(a: int, b: int): int {
+	if a == 0 || b == 0 {
+		return 0
+	}
+
+	let mut x = a
+	if x < 0 {
+		x = -x
+	}
+	let mut y = b
+	if y < 0 {
+		y = -y
+	}
+
+	return (x / GCD(x, y)) * y
+}
