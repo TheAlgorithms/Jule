@@ -3,7 +3,7 @@
 use "std/testing"
 
 #test
-fn testLcm(t: &testing::T) {
+fn testLCM(t: &testing::T) {
 	t.Assert(LCM(0, 7) == 0, "lcm of zero and 7 should be 0")
 	t.Assert(LCM(4, 6) == 12, "lcm of 4 and 6 should be 12")
 	t.Assert(LCM(21, 6) == 42, "lcm of 21 and 6 should be 42")
