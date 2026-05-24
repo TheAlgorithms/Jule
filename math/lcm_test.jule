@@ -1,0 +1,12 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testLcm(t: &testing::T) {
+	t.Assert(Lcm(0, 7) == 0, "lcm of zero and 7 should be 0")
+	t.Assert(Lcm(4, 6) == 12, "lcm of 4 and 6 should be 12")
+	t.Assert(Lcm(21, 6) == 42, "lcm of 21 and 6 should be 42")
+	t.Assert(Lcm(-8, 12) == 24, "lcm should be positive for negative inputs")
+	t.Assert(Lcm(-9, -6) == 18, "lcm should be positive for two negatives")
+}
