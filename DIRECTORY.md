@@ -5,6 +5,7 @@
 - [Fact](math/fact.jule)
 - [Fib](math/fib.jule)
 - [Gcd](math/gcd.jule)
+- [Lcm](math/lcm.jule)
 - [Max](math/max.jule)
 - [Median](math/median.jule)
 - [Min](math/min.jule)
