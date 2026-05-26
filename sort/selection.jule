@@ -1,0 +1,16 @@
+fn Selection[T: ordered](mut arr: []T): []T {
+	mut i := 0
+	for i < len(arr); i++ {
+		mut minIdx := i
+		mut j := i + 1
+		for j < len(arr); j++ {
+			if arr[j] < arr[minIdx] {
+				minIdx = j
+			}
+		}
+		if minIdx != i {
+			arr[i], arr[minIdx] = arr[minIdx], arr[i]
+		}
+	}
+	return arr
+}

@@ -141,6 +141,11 @@ fn testShell(t: &testing::T) {
 }
 
 #test
+fn testSelection(t: &testing::T) {
+	testGeneral(t, Selection[int])
+}
+
+#test
 fn testQuicksort(t: &testing::T) {
 	testGeneral(t, Quicksort[int])
 }
