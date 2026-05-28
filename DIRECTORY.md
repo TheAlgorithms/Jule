@@ -34,6 +34,7 @@
 - [Merge](sort/merge.jule)
 - [Pancake](sort/pancake.jule)
 - [Quicksort](sort/quicksort.jule)
+- [Selection](sort/selection.jule)
 - [Shell](sort/shell.jule)
 
 ## Strings
