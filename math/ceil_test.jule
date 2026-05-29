@@ -1,0 +1,11 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testCeil(t: &testing::T) {
+	t.Assert(Ceil(12.2) == 13, "12.2 should ceil to 13")
+	t.Assert(Ceil(12) == 12, "12 should ceil to 12")
+	t.Assert(Ceil(-0.35) == 0, "-0.35 should ceil to 0")
+	t.Assert(Ceil(-12.2) == -12, "-12.2 should ceil to -12")
+}

@@ -1,0 +1,7 @@
+fn Ceil(n: f64): f64 {
+	let i = int(n)
+	if n > f64(i) {
+		return f64(i + 1)
+	}
+	return f64(i)
+}
