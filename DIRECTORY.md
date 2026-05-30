@@ -2,6 +2,7 @@
 
 ## Math
 - [Abs](math/abs.jule)
+- [Ceil](math/ceil.jule)
 - [Fact](math/fact.jule)
 - [Fib](math/fib.jule)
 - [Gcd](math/gcd.jule)
