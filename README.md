@@ -15,7 +15,7 @@ All contents are listed in [`DIRECTORY.md`](./DIRECTORY.md) file.
 Please feel free to contribute.
 Any contribution is appreciated.
 
-Fork repository, add your algorithm, write your tests, add the README to the algorithm tree and open the PR.
+Fork repository, add your algorithm, write your tests, and open the PR.
 Make sure your code follows the current repository layout and all CIs are passed successfully.
 
 ## License
