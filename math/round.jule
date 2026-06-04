@@ -1,0 +1,6 @@
+fn Round(n: f64): f64 {
+	if n >= 0 {
+		return f64(int(n + 0.5))
+	}
+	return f64(int(n - 0.5))
+}

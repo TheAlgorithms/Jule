@@ -1,0 +1,18 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testRound(t: &testing::T) {
+	t.Assert(Round(12.2) == 12, "12.2 should round to 12")
+	t.Assert(Round(12.5) == 13, "12.5 should round to 13")
+	t.Assert(Round(12.8) == 13, "12.8 should round to 13")
+	t.Assert(Round(12.0) == 12, "12.0 should round to 12")
+	t.Assert(Round(-12.2) == -12, "-12.2 should round to -12")
+	t.Assert(Round(-12.5) == -13, "-12.5 should round to -13")
+	t.Assert(Round(-12.8) == -13, "-12.8 should round to -13")
+	t.Assert(Round(0.49) == 0, "0.49 should round to 0")
+	t.Assert(Round(0.5) == 1, "0.5 should round to 1")
+	t.Assert(Round(-0.49) == 0, "-0.49 should round to 0")
+	t.Assert(Round(-0.5) == -1, "-0.5 should round to -1")
+}
