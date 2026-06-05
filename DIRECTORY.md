@@ -12,6 +12,7 @@
 - [Min](math/min.jule)
 - [Prime](math/prime.jule)
 - [Q Rsqrt](math/q_rsqrt.jule)
+- [Round](math/round.jule)
 - [Sum](math/sum.jule)
 
 ## Search
