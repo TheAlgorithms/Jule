@@ -1,0 +1,11 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testFloor(t: &testing::T) {
+	t.Assert(Floor(12.2) == 12, "12.2 should floor to 12")
+	t.Assert(Floor(12) == 12, "12 should floor to 12")
+	t.Assert(Floor(-0.35) == -1, "-0.35 should floor to -1")
+	t.Assert(Floor(-12.2) == -13, "-12.2 should floor to -13")
+}
