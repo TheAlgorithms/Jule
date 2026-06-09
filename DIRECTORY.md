@@ -5,6 +5,7 @@
 - [Ceil](math/ceil.jule)
 - [Fact](math/fact.jule)
 - [Fib](math/fib.jule)
+- [Floor](math/floor.jule)
 - [Gcd](math/gcd.jule)
 - [Lcm](math/lcm.jule)
 - [Max](math/max.jule)
