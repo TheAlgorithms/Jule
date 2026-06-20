@@ -9,7 +9,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest]
     steps:
       - uses: actions/checkout@v6
-      - uses: julelang/setup-jule@v1
+      - uses: julelang/setup-jule@v2
         with:
           version: dev
           directory: .
