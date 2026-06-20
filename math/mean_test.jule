@@ -1,0 +1,10 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testMean(t: &testing::T) {
+	t.Assert(Mean([2, 4, 6, 8]) == 5, "mean should be 5")
+	t.Assert(Mean([-3, 0, 3]) == 0, "mean should be 0")
+	t.Assert(Mean([]) == 0, "mean of empty slice should be 0")
+}

@@ -1,0 +1,13 @@
+fn Mean(slice: []int): f64 {
+	let l = len(slice)
+	if l == 0 {
+		return 0
+	}
+
+	let mut total: int = 0
+	for _, n in slice {
+		total += n
+	}
+
+	return f64(total) / f64(l)
+}
