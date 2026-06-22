@@ -9,6 +9,7 @@
 - [Gcd](math/gcd.jule)
 - [Lcm](math/lcm.jule)
 - [Max](math/max.jule)
+- [Mean](math/mean.jule)
 - [Median](math/median.jule)
 - [Min](math/min.jule)
 - [Prime](math/prime.jule)
