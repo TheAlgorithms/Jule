@@ -1,0 +1,12 @@
+#build test
+
+use "std/math"
+use "std/testing"
+
+#test
+fn testStddev(t: &testing::T) {
+	t.Assert(Stddev([]) == 0, "stddev of empty slice should be 0")
+	t.Assert(Stddev([5]) == 0, "stddev of single element should be 0")
+	t.Assert(Stddev([2, 4, 4, 4, 5, 5, 7, 9]) == 2, "stddev should be 2")
+	t.Assert(math::Abs(Stddev([1, 2, 3, 4, 5])-1.4142135623730951) < 1e-9, "stddev should be sqrt(2)")
+}
