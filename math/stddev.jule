@@ -1,0 +1,18 @@
+use "std/math"
+
+fn Stddev(slice: []int): f64 {
+	let l = len(slice)
+	if l == 0 {
+		return 0
+	}
+
+	let m = Mean(slice)
+
+	let mut sqSum: f64 = 0
+	for _, n in slice {
+		let d = f64(n) - m
+		sqSum += d * d
+	}
+
+	return math::Sqrt(sqSum / f64(l))
+}
