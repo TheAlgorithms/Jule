@@ -15,6 +15,7 @@
 - [Prime](math/prime.jule)
 - [Q Rsqrt](math/q_rsqrt.jule)
 - [Round](math/round.jule)
+- [Stddev](math/stddev.jule)
 - [Sum](math/sum.jule)
 
 ## Search
