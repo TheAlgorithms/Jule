@@ -1,0 +1,50 @@
+// Implementation of a generic LIFO (last-in, first-out) stack.
+// Reference: https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
+
+// Stack is a generic last-in, first-out (LIFO) collection.
+struct Stack[T] {
+	items: []T
+}
+
+impl Stack {
+	// Push adds an item to the top of the stack.
+	fn Push(mut *self, item: T) {
+		self.items = append(self.items, item)
+	}
+
+	// Pop removes and returns the item at the top of the stack.
+	// The second return value reports whether an item was removed;
+	// it is false when the stack is empty.
+	fn Pop(mut *self): (item: T, ok: bool) {
+		if len(self.items) == 0 {
+			return
+		}
+		last := len(self.items) - 1
+		item = self.items[last]
+		self.items = self.items[:last]
+		ok = true
+		return
+	}
+
+	// Peek returns the item at the top of the stack without removing it.
+	// The second return value reports whether the stack has an item;
+	// it is false when the stack is empty.
+	fn Peek(*self): (item: T, ok: bool) {
+		if len(self.items) == 0 {
+			return
+		}
+		item = self.items[len(self.items)-1]
+		ok = true
+		return
+	}
+
+	// Len returns the number of items in the stack.
+	fn Len(*self): int {
+		return len(self.items)
+	}
+
+	// Empty reports whether the stack has no items.
+	fn Empty(*self): bool {
+		return len(self.items) == 0
+	}
+}

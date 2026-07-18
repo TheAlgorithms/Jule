@@ -1,0 +1,55 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testStackPushPop(t: &testing::T) {
+	mut s := Stack[int]{}
+	t.Assert(s.Empty(), "new stack should be empty")
+	t.Assert(s.Len() == 0, "new stack should have length 0")
+
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
+	t.Assert(!s.Empty(), "stack with items should not be empty")
+	t.Assert(s.Len() == 3, "stack should have length 3")
+
+	v1, ok1 := s.Pop()
+	t.Assert(ok1 && v1 == 3, "pop should return the last pushed item (3)")
+
+	v2, ok2 := s.Pop()
+	t.Assert(ok2 && v2 == 2, "pop should return 2")
+
+	v3, ok3 := s.Pop()
+	t.Assert(ok3 && v3 == 1, "pop should return 1")
+
+	t.Assert(s.Empty(), "stack should be empty after popping all items")
+}
+
+#test
+fn testStackPopEmpty(t: &testing::T) {
+	mut s := Stack[int]{}
+	_, ok := s.Pop()
+	t.Assert(!ok, "pop on empty stack should report ok == false")
+}
+
+#test
+fn testStackPeek(t: &testing::T) {
+	mut s := Stack[int]{}
+	_, ok := s.Peek()
+	t.Assert(!ok, "peek on empty stack should report ok == false")
+
+	s.Push(42)
+	v, ok2 := s.Peek()
+	t.Assert(ok2 && v == 42, "peek should return the top item (42)")
+	t.Assert(s.Len() == 1, "peek should not remove the item")
+}
+
+#test
+fn testStackGenericString(t: &testing::T) {
+	mut s := Stack[string]{}
+	s.Push("a")
+	s.Push("b")
+	v, ok := s.Pop()
+	t.Assert(ok && v == "b", "generic string stack should pop \"b\"")
+}
