@@ -15,6 +15,13 @@ jobs:
           directory: .
           add-to-path: true
 
+      - name: Test - data_structures
+        run: |
+          julec test -o test data_structures
+          git update-index --add --chmod=-x test
+          chmod +x test
+          ./test
+
       - name: Test - math
         run: |
           julec test -o test math
