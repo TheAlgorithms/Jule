@@ -1,5 +1,8 @@
 # Table of Contents
 
+## Data Structures
+- [Stack](data_structures/stack.jule)
+
 ## Math
 - [Abs](math/abs.jule)
 - [Ceil](math/ceil.jule)
