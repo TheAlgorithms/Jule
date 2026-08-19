@@ -8,7 +8,7 @@ struct Stack[T] {
 
 impl Stack {
 	// Push adds an item to the top of the stack.
-	fn Push(mut *self, item: T) {
+	fn Push(mut *self, mut item: T) {
 		self.items = append(self.items, item)
 	}
 
@@ -29,7 +29,7 @@ impl Stack {
 	// Peek returns the item at the top of the stack without removing it.
 	// The second return value reports whether the stack has an item;
 	// it is false when the stack is empty.
-	fn Peek(*self): (item: T, ok: bool) {
+	fn Peek(mut *self): (item: T, ok: bool) {
 		if len(self.items) == 0 {
 			return
 		}
