@@ -8,7 +8,7 @@ struct Queue[T] {
 
 impl Queue {
 	// Enqueue adds an item to the back of the queue.
-	fn Enqueue(mut *self, item: T) {
+	fn Enqueue(mut *self, mut item: T) {
 		self.items = append(self.items, item)
 	}
 
@@ -28,7 +28,7 @@ impl Queue {
 	// Front returns the item at the front of the queue without removing it.
 	// The second return value reports whether the queue has an item;
 	// it is false when the queue is empty.
-	fn Front(*self): (item: T, ok: bool) {
+	fn Front(mut *self): (item: T, ok: bool) {
 		if len(self.items) == 0 {
 			return
 		}
