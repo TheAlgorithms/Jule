@@ -1,0 +1,56 @@
+#build test
+
+use "std/testing"
+
+#test
+fn testQueueEnqueueDequeue(t: &testing::T) {
+	mut q := Queue[int]{}
+	t.Assert(q.Empty(), "new queue should be empty")
+	t.Assert(q.Len() == 0, "new queue should have length 0")
+
+	q.Enqueue(1)
+	q.Enqueue(2)
+	q.Enqueue(3)
+	t.Assert(!q.Empty(), "queue with items should not be empty")
+	t.Assert(q.Len() == 3, "queue should have length 3")
+
+	v1, ok1 := q.Dequeue()
+	t.Assert(ok1 && v1 == 1, "dequeue should return the first enqueued item (1)")
+
+	v2, ok2 := q.Dequeue()
+	t.Assert(ok2 && v2 == 2, "dequeue should return 2")
+
+	v3, ok3 := q.Dequeue()
+	t.Assert(ok3 && v3 == 3, "dequeue should return 3")
+
+	t.Assert(q.Empty(), "queue should be empty after dequeuing all items")
+}
+
+#test
+fn testQueueDequeueEmpty(t: &testing::T) {
+	mut q := Queue[int]{}
+	_, ok := q.Dequeue()
+	t.Assert(!ok, "dequeue on empty queue should report ok == false")
+}
+
+#test
+fn testQueueFront(t: &testing::T) {
+	mut q := Queue[int]{}
+	_, ok := q.Front()
+	t.Assert(!ok, "front on empty queue should report ok == false")
+
+	q.Enqueue(42)
+	q.Enqueue(7)
+	v, ok2 := q.Front()
+	t.Assert(ok2 && v == 42, "front should return the first item (42)")
+	t.Assert(q.Len() == 2, "front should not remove the item")
+}
+
+#test
+fn testQueueGenericString(t: &testing::T) {
+	mut q := Queue[string]{}
+	q.Enqueue("a")
+	q.Enqueue("b")
+	v, ok := q.Dequeue()
+	t.Assert(ok && v == "a", "generic string queue should dequeue \"a\"")
+}
