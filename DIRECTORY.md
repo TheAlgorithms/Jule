@@ -1,6 +1,7 @@
 # Table of Contents
 
 ## Data Structures
+- [Queue](data_structures/queue.jule)
 - [Stack](data_structures/stack.jule)
 
 ## Math
