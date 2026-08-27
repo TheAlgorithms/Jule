@@ -1,0 +1,78 @@
+#build test
+
+use "std/slices"
+use "std/testing"
+
+#test
+fn testLinkedListPushBack(t: &testing::T) {
+	mut l := LinkedList[int]{}
+	t.Assert(l.Empty(), "new list should be empty")
+	t.Assert(l.Len() == 0, "new list should have length 0")
+
+	l.PushBack(1)
+	l.PushBack(2)
+	l.PushBack(3)
+	t.Assert(!l.Empty(), "list with items should not be empty")
+	t.Assert(l.Len() == 3, "list should have length 3")
+	t.Assert(slices::Equal(l.Slice(), [1, 2, 3]), "push back should append in order")
+}
+
+#test
+fn testLinkedListPushFront(t: &testing::T) {
+	mut l := LinkedList[int]{}
+	l.PushFront(1)
+	l.PushFront(2)
+	l.PushFront(3)
+	t.Assert(slices::Equal(l.Slice(), [3, 2, 1]), "push front should prepend items")
+}
+
+#test
+fn testLinkedListMixedPush(t: &testing::T) {
+	mut l := LinkedList[int]{}
+	l.PushBack(2)
+	l.PushFront(1)
+	l.PushBack(3)
+	t.Assert(slices::Equal(l.Slice(), [1, 2, 3]), "mixed pushes should keep order")
+}
+
+#test
+fn testLinkedListPopFront(t: &testing::T) {
+	mut l := LinkedList[int]{}
+	l.PushBack(1)
+	l.PushBack(2)
+
+	v1, ok1 := l.PopFront()
+	t.Assert(ok1 && v1 == 1, "pop front should return 1")
+	v2, ok2 := l.PopFront()
+	t.Assert(ok2 && v2 == 2, "pop front should return 2")
+	t.Assert(l.Empty(), "list should be empty after popping all items")
+
+	_, ok3 := l.PopFront()
+	t.Assert(!ok3, "pop front on empty list should report ok == false")
+}
+
+#test
+fn testLinkedListFrontBack(t: &testing::T) {
+	mut l := LinkedList[int]{}
+	_, okf := l.Front()
+	t.Assert(!okf, "front on empty list should report ok == false")
+	_, okb := l.Back()
+	t.Assert(!okb, "back on empty list should report ok == false")
+
+	l.PushBack(10)
+	l.PushBack(20)
+	f, okf2 := l.Front()
+	t.Assert(okf2 && f == 10, "front should return 10")
+	b, okb2 := l.Back()
+	t.Assert(okb2 && b == 20, "back should return 20")
+	t.Assert(l.Len() == 2, "front/back should not remove items")
+}
+
+#test
+fn testLinkedListGenericString(t: &testing::T) {
+	mut l := LinkedList[string]{}
+	l.PushBack("a")
+	l.PushBack("b")
+	v, ok := l.PopFront()
+	t.Assert(ok && v == "a", "generic string list should pop \"a\"")
+}

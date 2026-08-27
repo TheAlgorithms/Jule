@@ -1,0 +1,103 @@
+// Implementation of a generic singly linked list.
+// Reference: https://en.wikipedia.org/wiki/Linked_list
+
+// node is a single element of a LinkedList.
+struct node[T] {
+	value: T
+	next:  &node[T]
+}
+
+// LinkedList is a generic singly linked list.
+struct LinkedList[T] {
+	head: &node[T]
+	tail: &node[T]
+	size: int
+}
+
+impl LinkedList {
+	// PushFront adds an item to the front of the list.
+	fn PushFront(mut *self, mut item: T) {
+		mut n := &node[T]{value: item, next: self.head}
+		self.head = n
+		if self.tail == nil {
+			self.tail = n
+		}
+		self.size++
+	}
+
+	// PushBack adds an item to the back of the list.
+	fn PushBack(mut *self, mut item: T) {
+		mut n := &node[T]{value: item, next: nil}
+		if self.tail == nil {
+			self.head = n
+			self.tail = n
+		} else {
+			self.tail.next = n
+			self.tail = n
+		}
+		self.size++
+	}
+
+	// PopFront removes and returns the item at the front of the list.
+	// The second return value reports whether an item was removed;
+	// it is false when the list is empty.
+	fn PopFront(mut *self): (item: T, ok: bool) {
+		if self.head == nil {
+			return
+		}
+		item = self.head.value
+		mut next := self.head.next
+		self.head = next
+		if self.head == nil {
+			self.tail = nil
+		}
+		self.size--
+		ok = true
+		return
+	}
+
+	// Front returns the item at the front of the list without removing it.
+	// The second return value reports whether the list has an item;
+	// it is false when the list is empty.
+	fn Front(mut *self): (item: T, ok: bool) {
+		if self.head == nil {
+			return
+		}
+		item = self.head.value
+		ok = true
+		return
+	}
+
+	// Back returns the item at the back of the list without removing it.
+	// The second return value reports whether the list has an item;
+	// it is false when the list is empty.
+	fn Back(mut *self): (item: T, ok: bool) {
+		if self.tail == nil {
+			return
+		}
+		item = self.tail.value
+		ok = true
+		return
+	}
+
+	// Len returns the number of items in the list.
+	fn Len(*self): int {
+		return self.size
+	}
+
+	// Empty reports whether the list has no items.
+	fn Empty(*self): bool {
+		return self.size == 0
+	}
+
+	// Slice returns the items of the list as a slice, ordered from front to back.
+	fn Slice(mut *self): []T {
+		mut out := make([]T, 0, self.size)
+		mut n := self.head
+		for n != nil {
+			out = append(out, n.value)
+			n = n.next
+		}
+		return out
+	}
+}
