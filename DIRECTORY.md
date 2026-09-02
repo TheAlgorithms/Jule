@@ -1,6 +1,7 @@
 # Table of Contents
 
 ## Data Structures
+- [Linked List](data_structures/linked_list.jule)
 - [Queue](data_structures/queue.jule)
 - [Stack](data_structures/stack.jule)
 
