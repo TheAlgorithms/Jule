@@ -1,0 +1,94 @@
+// Implementation of a generic priority queue backed by a binary min-heap.
+// Reference: https://en.wikipedia.org/wiki/Priority_queue
+
+// PriorityQueue is a generic priority queue. Items are ordered by their
+// natural ordering, and the smallest item is always at the front of the
+// queue (min-heap).
+struct PriorityQueue[T: ordered] {
+	items: []T
+}
+
+impl PriorityQueue {
+	// Push adds an item to the queue.
+	fn Push(mut *self, mut item: T) {
+		self.items = append(self.items, item)
+		self.siftUp(len(self.items) - 1)
+	}
+
+	// Pop removes and returns the smallest item in the queue.
+	// The second return value reports whether an item was removed;
+	// it is false when the queue is empty.
+	fn Pop(mut *self): (item: T, ok: bool) {
+		if len(self.items) == 0 {
+			return
+		}
+		item = self.items[0]
+		ok = true
+
+		last := len(self.items) - 1
+		self.items[0] = self.items[last]
+		self.items = self.items[:last]
+		if len(self.items) > 0 {
+			self.siftDown(0)
+		}
+		return
+	}
+
+	// Peek returns the smallest item in the queue without removing it.
+	// The second return value reports whether the queue has an item;
+	// it is false when the queue is empty.
+	fn Peek(mut *self): (item: T, ok: bool) {
+		if len(self.items) == 0 {
+			return
+		}
+		item = self.items[0]
+		ok = true
+		return
+	}
+
+	// Len returns the number of items in the queue.
+	fn Len(*self): int {
+		return len(self.items)
+	}
+
+	// Empty reports whether the queue has no items.
+	fn Empty(*self): bool {
+		return len(self.items) == 0
+	}
+
+	// siftUp restores the heap property by moving the item at index i
+	// up towards the root while it is smaller than its parent.
+	fn siftUp(mut *self, mut i: int) {
+		for i > 0 {
+			parent := (i - 1) / 2
+			if self.items[i] < self.items[parent] {
+				self.items[i], self.items[parent] = self.items[parent], self.items[i]
+				i = parent
+			} else {
+				break
+			}
+		}
+	}
+
+	// siftDown restores the heap property by moving the item at index i
+	// down towards the leaves while it is bigger than one of its children.
+	fn siftDown(mut *self, mut i: int) {
+		n := len(self.items)
+		for {
+			left := 2*i + 1
+			right := 2*i + 2
+			mut smallest := i
+			if left < n && self.items[left] < self.items[smallest] {
+				smallest = left
+			}
+			if right < n && self.items[right] < self.items[smallest] {
+				smallest = right
+			}
+			if smallest == i {
+				break
+			}
+			self.items[i], self.items[smallest] = self.items[smallest], self.items[i]
+			i = smallest
+		}
+	}
+}

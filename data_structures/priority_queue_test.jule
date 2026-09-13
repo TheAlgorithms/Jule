@@ -1,0 +1,75 @@
+#build test
+
+use "std/slices"
+use "std/testing"
+
+#test
+fn testPriorityQueuePushPop(t: &testing::T) {
+	mut pq := PriorityQueue[int]{}
+	t.Assert(pq.Empty(), "new priority queue should be empty")
+	t.Assert(pq.Len() == 0, "new priority queue should have length 0")
+
+	pq.Push(5)
+	pq.Push(1)
+	pq.Push(3)
+	pq.Push(2)
+	pq.Push(4)
+	t.Assert(!pq.Empty(), "priority queue with items should not be empty")
+	t.Assert(pq.Len() == 5, "priority queue should have length 5")
+
+	mut got := make([]int, 0, 5)
+	for !pq.Empty() {
+		v, ok := pq.Pop()
+		t.Assert(ok, "pop should succeed while queue is not empty")
+		got = append(got, v)
+	}
+	t.Assert(slices::Equal(got, [1, 2, 3, 4, 5]), "pop should always return the smallest remaining item")
+	t.Assert(pq.Empty(), "priority queue should be empty after popping all items")
+}
+
+#test
+fn testPriorityQueuePopEmpty(t: &testing::T) {
+	mut pq := PriorityQueue[int]{}
+	_, ok := pq.Pop()
+	t.Assert(!ok, "pop on empty priority queue should report ok == false")
+}
+
+#test
+fn testPriorityQueuePeek(t: &testing::T) {
+	mut pq := PriorityQueue[int]{}
+	_, ok := pq.Peek()
+	t.Assert(!ok, "peek on empty priority queue should report ok == false")
+
+	pq.Push(10)
+	pq.Push(3)
+	pq.Push(7)
+	v, ok2 := pq.Peek()
+	t.Assert(ok2 && v == 3, "peek should return the smallest item (3)")
+	t.Assert(pq.Len() == 3, "peek should not remove the item")
+}
+
+#test
+fn testPriorityQueueDuplicates(t: &testing::T) {
+	mut pq := PriorityQueue[int]{}
+	pq.Push(2)
+	pq.Push(2)
+	pq.Push(1)
+	pq.Push(1)
+
+	mut got := make([]int, 0, 4)
+	for !pq.Empty() {
+		v, _ := pq.Pop()
+		got = append(got, v)
+	}
+	t.Assert(slices::Equal(got, [1, 1, 2, 2]), "duplicate items should still pop in sorted order")
+}
+
+#test
+fn testPriorityQueueGenericString(t: &testing::T) {
+	mut pq := PriorityQueue[string]{}
+	pq.Push("banana")
+	pq.Push("apple")
+	pq.Push("cherry")
+	v, ok := pq.Pop()
+	t.Assert(ok && v == "apple", "generic string priority queue should pop \"apple\" first")
+}
