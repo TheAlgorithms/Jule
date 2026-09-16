@@ -98,13 +98,13 @@ fn isIgnorePath(path: string): bool {
 
 fn createDirectoryMd() {
 	const MdPath = "./DIRECTORY.md"
-	os::WriteFileSync(MdPath, unsafe { Table.Buf() }, 0o660) else {
+	os::WriteFile(MdPath, unsafe { Table.Buf() }, 0o660) catch {
 		workflowFailed("a problem occurs when creating " + MdPath)
 	}
 }
 
 fn walkPackage(package: string, path: string, indent: int) {
-	let mut dirents = os::ReadDir(path) else {
+	let mut dirents = os::ReadDir(path) catch {
 		workflowFailed("directory did not readed")
 		return // Avoid error.
 	}
@@ -141,7 +141,7 @@ fn walkPackage(package: string, path: string, indent: int) {
 
 fn main() {
 	writeLine("# Table of Contents")
-	let mut dirents = os::ReadDir(".") else {
+	let mut dirents = os::ReadDir(".") catch {
 		workflowFailed("directory did not readed")
 		return // Avoid error.
 	}
