@@ -5,7 +5,7 @@ use "std/testing"
 #test
 fn testBinary(t: &testing::T) {
 	for _, test in searchTests {
-		actualValue := Binary(test.data, test.key, 0, len(test.data)-1) else {
+		actualValue := Binary(test.data, test.key, 0, len(test.data)-1) catch {
 			if error != test.expectedError {
 				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
 			}
@@ -23,7 +23,7 @@ fn testBinary(t: &testing::T) {
 #test
 fn testBinaryIterative(t: &testing::T) {
 	for _, test in searchTests {
-		actualValue := BinaryIterative(test.data, test.key) else {
+		actualValue := BinaryIterative(test.data, test.key) catch {
 			if error != test.expectedError {
 				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
 			}
@@ -41,7 +41,7 @@ fn testBinaryIterative(t: &testing::T) {
 #test
 fn testLowerBound(t: &testing::T) {
 	for _, test in lowerBoundTests {
-		actualValue := LowerBound(test.data, test.key) else {
+		actualValue := LowerBound(test.data, test.key) catch {
 			if error != test.expectedError {
 				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
 			}
@@ -59,7 +59,7 @@ fn testLowerBound(t: &testing::T) {
 #test
 fn testUpperBound(t: &testing::T) {
 	for _, test in upperBoundTests {
-		actualValue := UpperBound(test.data, test.key) else {
+		actualValue := UpperBound(test.data, test.key) catch {
 			if error != test.expectedError {
 				t.Errorf("test '{}' failed: input array '{}' with key '{}', expected error '{}', get error '{}'", test.name, test.data, test.key, test.expectedError, error)
 			}
